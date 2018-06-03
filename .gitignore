@@ -1,4 +1,5 @@
 venv/*
+!venv/configure_secret_key.py
 !venv/lib
 venv/lib/*
 !venv/lib/python3.6
