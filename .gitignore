@@ -1,4 +1,10 @@
-venv/
+venv/*
+!venv/lib
+venv/lib/*
+!venv/lib/python3.6
+venv/lib/python3.6/*
+!venv/lib/python3.6/site-packages
+venv/lib/python3.6/site-packages/*
 !venv/lib/python3.6/site-packages/uwsgi.py
 
 *.pyc
