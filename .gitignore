@@ -1,12 +1,4 @@
-venv/*
-!venv/configure_secret_key.py
-!venv/lib
-venv/lib/*
-!venv/lib/python3.6
-venv/lib/python3.6/*
-!venv/lib/python3.6/site-packages
-venv/lib/python3.6/site-packages/*
-!venv/lib/python3.6/site-packages/uwsgi.py
+venv/
 
 *.pyc
 __pycache__/
