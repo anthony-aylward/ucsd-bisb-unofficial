@@ -1,4 +1,5 @@
 venv/
+!venv/lib/python3.6/site-packages/uwsgi.py
 
 *.pyc
 __pycache__/
