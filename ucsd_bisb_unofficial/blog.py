@@ -14,8 +14,8 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from flaskr.auth import login_required
-from flaskr.db import get_db
+from ucsd_bisb_unofficial.auth import login_required
+from ucsd_bisb_unofficial.db import get_db
 
 
 
