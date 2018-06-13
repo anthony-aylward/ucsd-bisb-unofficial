@@ -1,11 +1,12 @@
 html { font-family: sans-serif; background: var(--dark); padding: 1rem; }
-body { max-width: 960px; margin: 0 auto; background: white; border-radius: 25px}
+body { max-width: 960px; margin: 0 auto; background: white; border-radius: 5px}
 h1 { font-family: var(--font-family-sans-serif); color: var(--cyan); margin: 1rem 0; }
 a { color: var(--cyan); }
+a:hover {color: var(--yellow)}
 hr { border: none; border-top: 1px solid lightgray; }
 nav { background: var(--cyan); display: flex; align-items: center; padding: 0 0.5rem; }
-nav a {color: var(--light)}
-nav h1 { fles: auto; margin: 0; color: white}
+nav a {color: white}
+nav h1 { flex: auto; margin: 0; color: white}
 nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
 nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
 nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }

@@ -13,12 +13,11 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   
-  <title>{% block title %}{% endblock %} - Flaskr</title>
+  <title>{% block title %}{% endblock %} - UCSD BISB Unofficial</title>
 </head>
 
-<body class='rounded'>
 <nav class='rounded-top'>
-  <h1>Flaskr</h1>
+  <h1>UCSD BISB Unofficial</h1>
   <ul>
     {% if g.user %}
       <li><span>{{ g.user['username'] }}</span>
@@ -38,5 +37,4 @@
   {% endfor %}
   {% block content %}{% endblock %}
 </section>
-</body>
 </html>
