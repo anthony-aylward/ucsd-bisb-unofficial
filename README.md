@@ -1,4 +1,4 @@
-# ucsd-bisb.info
+# ucsd-bisb-unofficial
 
 Locally for development:
 ```
