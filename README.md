@@ -20,5 +20,5 @@ pip3 install dist/flaskr-1.0.0-py3-none-any.whl
 cd venv/lib/python3.6/site-packages/
 export FLASK_APP=flaskr
 flask init-db
-python3 configure_secret_key/configure_secret_key.py ../../../var/flaskr-instance/
+python3 configure_secret_key/__init__.py ../../../var/flaskr-instance/
 ```
