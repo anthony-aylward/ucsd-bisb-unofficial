@@ -53,6 +53,9 @@ def create_app(test_config=None):
     from . import blog
     app.register_blueprint(blog.bp)
     
+    from . import jumbotron
+    app.register_blueprint(jumbotron.bp)
+
     app.add_url_rule('/', endpoint='login')
     
     return app
