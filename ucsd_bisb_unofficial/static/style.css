@@ -50,10 +50,8 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
   padding: 0 1rem 1rem;
 }
 .content > header {
-  border-bottom: 1px solid var(--secondary);
   display: flex;
   align-items: flex-end;
-  
 }
 .content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
 .flash {

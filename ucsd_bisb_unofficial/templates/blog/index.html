@@ -9,6 +9,9 @@
 
 {% block content %}
   {% for post in posts %}
+    {% if loop.first %}
+      <hr>
+    {% endif %}
     <article class="post">
       <header>
         <div>
