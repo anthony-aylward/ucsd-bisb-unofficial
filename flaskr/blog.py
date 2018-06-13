@@ -22,7 +22,7 @@ from flaskr.db import get_db
 
 # Blueprint assignment =========================================================
 
-bp = Blueprint('blog', __name__)
+bp = Blueprint('blog', __name__, url_prefix='/blog')
 
 
 
