@@ -56,6 +56,9 @@ def create_app(test_config=None):
     from . import jumbotron
     app.register_blueprint(jumbotron.bp)
 
+    from . import survey
+    app.register_blueprint(survey.bp)
+
     app.add_url_rule('/', endpoint='login')
     
     return app
