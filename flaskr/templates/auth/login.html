@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Log In{% endblock %}</h1>
+  <h1>
+    {% block title %}
+      {% if g.user %}
+        Logged In
+      {% else %}
+        Log In
+      {% endif %}
+    {% endblock %}
+  </h1>
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Log In">
-  </form>
+  {% if g.user %}
+    <p>Go to <a href='{{ url_for('blog.index') }}'>index</a></p>
+  {% else %}
+    <form method="post">
+      <label for="username">Username</label>
+      <input name="username" id="username" required>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required>
+      <input type="submit" value="Log In">
+    </form>
+  {% endif %}
 {% endblock %}
-
