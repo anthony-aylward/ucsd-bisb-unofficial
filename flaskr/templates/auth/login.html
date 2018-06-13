@@ -14,7 +14,11 @@
 
 {% block content %}
   {% if g.user %}
-    <p>Go to <a href='{{ url_for('blog.index') }}'>index</a></p>
+    <p>
+      Welcome to the unnoficial information hub for students in the
+      Bioinformatics and Systems Biology graduate program at UCSD. Please
+      proceed to the <a href='{{ url_for('blog.index') }}'>index page</a.>
+    </p>
   {% else %}
     <form method="post">
       <label for="username">Username</label>
