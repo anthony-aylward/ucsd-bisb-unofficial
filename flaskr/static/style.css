@@ -1,17 +1,17 @@
 html { font-family: sans-serif; background: var(--dark); padding: 1rem; }
-body { max-width: 960px; margin: 0 auto; background: white; border-radius: 5px}
+body { max-width: 960px; margin: 0 auto; background: var(--white); border-radius: 5px}
 h1 { font-family: var(--font-family-sans-serif); color: var(--cyan); margin: 1rem 0; }
 a { color: var(--cyan); }
 a:hover {color: var(--yellow)}
-hr { border: none; border-top: 1px solid lightgray; }
+hr { border: none; border-top: 1px solid var(--gray); }
 nav { background: var(--cyan); display: flex; align-items: center; padding: 0 0.5rem; }
-nav a {color: white}
-nav h1 { flex: auto; margin: 0; color: white}
+nav a {color: var(--white)}
+nav h1 { flex: auto; margin: 0; color: var(--white)}
 nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
 nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
 nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 .content { padding: 0 1rem 1rem; }
-.content > header { border-bottom: 1px solid lightgray; display: flex; align-items: flex-end; }
+.content > header { border-bottom: 1px solid var(--gray); display: flex; align-items: flex-end; }
 .content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
 .flash { margin: 1em 0; padding: 1em; background: #cae6f6; border: 1px solid #377ba8; }
 .post > header { display: flex; align-items: flex-end; font-size: 0.85em; }
