@@ -23,7 +23,7 @@ from ucsd_bisb_unofficial.db import get_db
 
 # Blueprint assignment =========================================================
 
-bp = Blueprint('auth', __name__)
+bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 
@@ -62,7 +62,7 @@ def register():
     return render_template('auth/register.html')
 
 
-@bp.route('/', methods=('GET', 'POST'))
+@bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         username = request.form['username']

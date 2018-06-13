@@ -10,15 +10,15 @@
   color: var(--primary) !important;
   border-color: var(--primary) !important;
 }
-.btn-outline-primary:hover:enabled {
+.btn-outline-primary:hover:not(:disabled) {
   color: var(--white) !important;
   background-color: var(--primary) !important;
 }
 .btn-outline-info {
-  color: var(--primary) !important;
+  color: var(--info) !important;
   border-color: var(--info) !important;
 }
-.btn-outline-info:hover:enabled {
+.btn-outline-info:hover:not(:disabled) {
   color: var(--white) !important;
   background-color: var(--info) !important;
 }

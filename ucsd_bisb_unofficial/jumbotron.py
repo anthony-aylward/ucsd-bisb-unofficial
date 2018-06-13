@@ -15,14 +15,13 @@ from flask import (
 from werkzeug.exceptions import abort
 
 from ucsd_bisb_unofficial.auth import login_required
-from ucsd_bisb_unofficial.db import get_db
 
 
 
 
 # Blueprint assignment =========================================================
 
-bp = Blueprint('jumbotron', __name__, url_prefix='/jumbotron')
+bp = Blueprint('jumbotron', __name__)
 
 
 
