@@ -8,13 +8,13 @@
     <p>
       Welcome to the unnoficial information hub for students in the
       Bioinformatics and Systems Biology graduate program at UCSD. Please
-      proceed to the <a href='{{ url_for('blog.index') }}'>index page</a.>
+      proceed to the <a href='{{ url_for('jumbotron.index') }}'>index page</a.>
     </p>
   {% else %}
     <form class="form-login" method="post">
       <input name="username" id="username" class="form-control" placeholder="Username" required autofocus>
       <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
-      <button class="btn btn-lg btn-outline-primary" type="submit">Log in</button>
+      <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Log in</button>
     </form>
   {% endif %}
 </div>
