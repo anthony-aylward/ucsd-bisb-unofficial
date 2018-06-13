@@ -16,7 +16,7 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from flaskr.db import get_db
+from ucsd_bisb_unofficial.db import get_db
 
 
 
