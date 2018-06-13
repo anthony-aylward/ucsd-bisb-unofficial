@@ -6,8 +6,30 @@
   --anchor-nav: paleturquoise;
 }
 
+.btn-outline-primary {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.btn-outline-primary:hover:enabled {
+  color: var(--white) !important;
+  background-color: var(--primary) !important;
+}
+.btn-outline-info {
+  color: var(--primary) !important;
+  border-color: var(--info) !important;
+}
+.btn-outline-info:hover:enabled {
+  color: var(--white) !important;
+  background-color: var(--info) !important;
+}
+
 html { background: var(--dark); padding: 1rem; }
-body { max-width: 960px; margin: 0 auto; border-radius: 5px}
+body {
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 5px
+}
+
 h1 { color: var(--primary); margin: 1rem 0; }
 a { color: var(--anchor); }
 a:hover { text-decoration: none; color: var(--anchor-hover) }
@@ -24,10 +46,14 @@ nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
 nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
 nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 
-.content { padding: 0 1rem 1rem; }
+.content {
+  padding: 0 1rem 1rem;
+}
 .content > header {
-  border-bottom: 1px solid var(--secondary); display: flex;
+  border-bottom: 1px solid var(--secondary);
+  display: flex;
   align-items: flex-end;
+  
 }
 .content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
 .flash {
@@ -40,10 +66,28 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 .post .about { color: var(--secondary); font-style: italic; }
 .post .body { white-space: pre-line; }
 .content:last-child { margin-bottom: 0; }
-.content form { margin: 1em 0; display: flex; flex-direction: column; }
+.content form {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+}
 .content label { font-weight: bold; margin-bottom: 0.5em; }
 .content input, .content textarea { margin-bottom: 1em; }
 .content textarea { min-height: 12em; resize: vertical; }
 
 input.danger { color: var(--danger); }
 input[type=submit] { align-self: start; min-width: 10em; }
+
+.content-login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.form-login {
+  width: 100%;
+  max-width: 330px;
+}
+.form-login .form-control {
+  padding: 10px;
+  font-size: 16px;
+}
