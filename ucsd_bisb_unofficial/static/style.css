@@ -72,6 +72,11 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 input.danger { color: var(--danger); }
 input[type=submit] { align-self: start; min-width: 10em; }
 
+.content-post form {
+  display: flex;
+  flex-direction: column;
+}
+
 .content-login {
   display: flex;
   align-items: center;

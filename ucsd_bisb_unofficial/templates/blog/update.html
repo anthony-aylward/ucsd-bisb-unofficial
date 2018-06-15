@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+  <div class='content-post'>
   <form method="post">
     <label for="title">Title</label>
     <input name="title" id="title"
@@ -17,4 +18,5 @@
   <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
     <input class="danger" type="submit" value="Delete" onclick="return confirm ('Are you sure?');">
   </form>
+</div>
 {% endblock %}
