@@ -11,7 +11,7 @@
 
 import pytest
 from flask import g, session
-from flaskr.db import get_db
+from ucsd_bisb_unofficial.db import get_db
 
 
 
@@ -56,8 +56,8 @@ def test_login(client, auth):
 
 
 @pytest.mark.parametrize(('username', 'password', 'message'), (
-    ('a', 'test', b'Incorrect username.'),
-    ('test','a', b'Incorrect password.'),
+    ('a', 'test', b'Incorrect username or password.'),
+    ('test','a', b'Incorrect username or password.'),
 ))
 def test_login_validate_input(auth, username, password, message):
     response = auth.login(username, password)

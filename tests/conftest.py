@@ -2,7 +2,7 @@
 # conftest.py
 #===============================================================================
 
-"""Tests for flaskr"""
+"""Tests for ucsd_bisb_unofficial"""
 
 
 
@@ -13,8 +13,8 @@ import os
 import tempfile
 
 import pytest
-from flaskr import create_app
-from flaskr.db import get_db, init_db
+from ucsd_bisb_unofficial import create_app
+from ucsd_bisb_unofficial.db import get_db, init_db
 
 with open(os.path.join(os.path.dirname(__file__), 'data.sql'), 'rb') as f:
     _data_sql = f.read().decode('utf8')
