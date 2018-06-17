@@ -2,7 +2,7 @@
 The unofficial information hub for students in the Bioinformatics and Systems Biology graduate program at UCSD.
 
 ## How to contribute
-First, if you haven't yet, spend a few hours getting familiar with [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS), and [Flask](http://flask.pocoo.org). (Optionally, you might also want to look at [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/).) The first few chapters of [this tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) are great.
+First, if you haven't yet, spend a few hours getting familiar with [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS), and [Flask](http://flask.pocoo.org). (Optionally, you might also want to look at [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/).) The first few chapters of [this Flask tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) are great.
 
 It might seem like a lot, but don't worry - all you need is a basic understanding of how each of these things works.
 
