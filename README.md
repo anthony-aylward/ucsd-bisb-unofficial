@@ -4,6 +4,8 @@ The unofficial information hub for students in the Bioinformatics and Systems Bi
 ## How to contribute
 First, if you haven't yet, spend a few hours getting familiar with [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS), and [Flask](http://flask.pocoo.org). (Optionally, you might also want to look at [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/).) It might seem like a lot, but don't worry - all you need is a very basic understanding of how each of these things works. Most of the heavy lifting is taken care of by frameworks, so there's no need to read about all the details. It's better to just start developing!
 
+The best place to start might be the official [Flask tutorial](http://flask.pocoo.org/docs/1.0/tutorial/). [This other Flask tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) is a bit dated but the first few chapters are also worth a look. 
+
 Once you're ready, create your own fork of this repository, clone the fork to your local machine and navigate to the working directory. When inside, do the following:
 ```
 python3 -m venv venv
