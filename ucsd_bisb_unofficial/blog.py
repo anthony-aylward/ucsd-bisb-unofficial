@@ -32,6 +32,7 @@ bp = Blueprint('blog', __name__, url_prefix='/blog')
 # Functions ====================================================================
 
 @bp.route('/index')
+@login_required
 def index():
     db = get_db()
     posts = Post.query.all()
