@@ -23,12 +23,12 @@
 <nav class='rounded-top'>
   <h1>UCSD BISB Unofficial</h1>
   <ul>
-    {% if g.user %}
-      <li><span>{{ g.user['username'] }}</span>
-      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-    {% else %}
+    {% if current_user.is_anonymous %}
       <li><a href="{{ url_for('auth.register') }}">Register</a>
       <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    {% else %}
+    <li><span>{{ current_user.username }}</span>
+    <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
     {% endif %}
   </ul>
 </nav>

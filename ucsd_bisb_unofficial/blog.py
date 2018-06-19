@@ -15,7 +15,7 @@ from flask import (
 from werkzeug.exceptions import abort
 
 from ucsd_bisb_unofficial.auth import login_required
-from ucsd_bisb_unofficial.db import get_db
+from ucsd_bisb_unofficial.models import get_db, Post
 
 
 
@@ -32,11 +32,7 @@ bp = Blueprint('blog', __name__, url_prefix='/blog')
 @bp.route('/index')
 def index():
     db = get_db()
-    posts = db.execute(
-        'SELECT p.id, title, body, created, author_id, username'
-        ' FROM post p JOIN user u ON p.author_id = u.id'
-        ' ORDER BY created DESC'
-    ).fetchall()
+    posts = Post.query.all()
     return render_template('blog/index.html', posts=posts)
 
 

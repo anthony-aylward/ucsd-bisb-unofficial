@@ -5,9 +5,32 @@
 {% block content %}
 <div class='content-login'>
   <form class="form-login" method="post">
-    <input name="username" id="username" class="form-control" placeholder="Username" required autofocus>
-    <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
-    <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Log in</button>
+    {{ form.hidden_tag() }}
+    {{
+      form.username(
+        id='username',
+        class_='form-control',
+        placeholder='Username',
+        required=True,
+        autofocus=True
+      )
+    }}
+    {% for error in form.username.errors %}
+    <span style='color: red;'>[{{ error }}]</span>
+    {% endfor %}
+    {{
+      form.password(
+        type='password',
+        id='password',
+        class_='form-control',
+        placeholder='Password',
+        required=True
+      )
+    }}
+    {% for error in form.password.errors %}
+    <span style='color: red;'>[{{ error }}]</span>
+    {% endfor %}
+    {{ form.submit(class_="btn btn-lg btn-outline-primary btn-block") }}
   </form>
 </div>
 {% endblock %}
