@@ -7,7 +7,9 @@
 {% block content %}
   <div class='content-post'>
   <form method="post">
-    <label for="title">Title</label>
+    {{ form.hidden_tag() }}
+    <!-- <label for="title">Title</label> -->
+    {{ form.title.label }}
     <input name="title" id="title"
       value="{{ request.form['title'] or post['title'] }}" required>
     <label for="body">Body</label>

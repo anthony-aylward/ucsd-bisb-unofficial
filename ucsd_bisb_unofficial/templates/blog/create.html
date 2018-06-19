@@ -11,11 +11,11 @@
     <!-- <label for="title">Title</label> -->
     {{ form.title.label }}
     <!-- <input name="title" id="title" value="{{ request.form['title'] }}" required> -->
-    {{ form.title() }}
+    {{ form.title(id='title', required=True) }}
     <!-- <label for="body">Body</label> -->
     {{ form.post.label }}
     <!-- <textarea name="body" id="body">{{ request.form['body'] }}</textarea> -->
-    {{ form.post(cols=32, rows=4) }}
+    {{ form.post(cols=32, rows=4, id='body') }}
     <!-- <input type="submit" value="Save"> -->
     {% for error in form.post.errors %}
     <span style="color: red;">[{{ error }}]</span>
