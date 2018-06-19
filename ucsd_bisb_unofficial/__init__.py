@@ -57,6 +57,9 @@ def create_app(test_config=None):
     from . import jumbotron
     app.register_blueprint(jumbotron.bp)
 
+    from . import protected
+    app.register_blueprint(protected.bp)
+
     app.add_url_rule('/', endpoint='auth.login')
     
     return app
