@@ -12,7 +12,8 @@
         class_='form-control',
         placeholder='Username',
         required=True,
-        autofocus=True
+        autofocus=True,
+        disabled=True
       )
     }}
     {% for error in form.username.errors %}
@@ -24,7 +25,8 @@
         id='email',
         class_='form-control',
         placeholder='Email',
-        required=True
+        required=True,
+        disabled=True
       )
     }}
     {% for error in form.email.errors %}
@@ -36,7 +38,8 @@
         id='password',
         class_='form-control',
         placeholder='Password',
-        required=True
+        required=True,
+        disabled=True
       )
     }}
     {% for error in form.password.errors %}
@@ -48,13 +51,14 @@
         id='password2',
         class_='form-control',
         placeholder='Repeat password',
-        required=True
+        required=True,
+        disabled=True
       )
     }}
     {% for error in form.password2.errors %}
     <span style='color: red;'>[{{ error }}]</span>
     {% endfor %}
-    {{ form.submit(class_="btn btn-lg btn-outline-primary btn-block") }}
+    {{ form.submit(class_="btn btn-lg btn-outline-primary btn-block", disabled=True) }}
   </form>
 </div>
 {% endblock %}
