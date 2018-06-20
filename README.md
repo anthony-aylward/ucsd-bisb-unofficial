@@ -1,5 +1,5 @@
 # ucsd-bisb-unofficial
-The unofficial information hub for students in the Bioinformatics and Systems Biology graduate program at UCSD.
+The unofficial information hub for students in the Bioinformatics and Systems Biology graduate program at UCSD. If you have any questions about it, contact Tony (aaylward@eng.ucsd.edu).
 
 ## How to contribute
 First, if you haven't yet, spend a few hours getting familiar with [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS), and [Flask](http://flask.pocoo.org). (Optionally, you might also want to look at [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/).) It might seem like a lot, but don't worry - all you need is a very basic understanding of how each of these things works. Most of the heavy lifting is taken care of by frameworks, so there's no need to read about all the details. It's better to just start developing!
