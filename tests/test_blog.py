@@ -10,20 +10,21 @@
 # Imports ======================================================================
 
 import pytest
-from ucsd_bisb_unofficial.db import get_db
+from ucsd_bisb_unofficial.models import get_db, Post
 
 
 
 
 # Functions ====================================================================
 
-def test_index(client, auth):
-    response = client.get('/blog/index')
+def test_index(client, auth, db):
+    response = client.get('/blog/index', follow_redirects=True)
     assert b"Log In" in response.data
     assert b"Register" in response.data
     
     auth.login()
     response = client.get('/blog/index')
+    print(response.data)
     assert b'Log Out' in response.data
     assert b'test title' in response.data
     assert b'by test on 2018-01-01' in response.data
@@ -37,16 +38,15 @@ def test_index(client, auth):
     '/blog/1/delete',
 ))
 def test_login_required(client, path):
-    response = client.post(path)
-    assert response.headers['Location'] == 'http://localhost/auth/login'
+    response = client.post(path, follow_redirects=True)
+    assert b'Please log in to access this page.' in response.data
 
 
-def test_author_required(app, client, auth):
+def test_author_required(app, client, auth, db):
     # change the post author to another user
-    with app.app_context():
-        db = get_db()
-        db.execute('UPDATE post SET author_id = 2 WHERE id = 1')
-        db.commit()
+    post = Post.query.filter_by(user_id=1).first()
+    post.user_id = 2
+    db.session.commit()
     
     auth.login()
     # current user can't modify other user's post
@@ -56,54 +56,49 @@ def test_author_required(app, client, auth):
     assert b'href="/blog/1/update"' not in client.get('/').data
 
 
-@pytest.mark.parametrize('path', (
-    '/blog/2/update',
-    '/blog/2/delete',
-))
+@pytest.mark.parametrize('path', ('/blog/2/update', '/blog/2/delete'))
 def test_exists_required(client, auth, path):
     auth.login()
     assert client.post(path).status_code == 404
 
 
-def test_create(client, auth, app):
+def test_create(client, auth):
     auth.login()
     assert client.get('/blog/create').status_code == 200
-    client.post('/blog/create', data={'title': 'created', 'body': ''})
-    
-    with app.app_context():
-        db = get_db()
-        count = db.execute('SELECT COUNT(id) FROM post').fetchone()[0]
-        assert count == 2
+    response = client.post(
+        '/blog/create',
+        data={'title': 'created', 'body': 'another test'}
+    )
+    print(response.data)
+    posts = Post.query.all()
+    print(posts)
+    count = Post.query.count()
+    assert count == 2
 
 
 def test_update(client, auth, app):
     auth.login()
     assert client.get('/blog/1/update').status_code == 200
     client.post('/blog/1/update', data={'title': 'updated', 'body': ''})
-    
-    with app.app_context():
-       db = get_db()
-       post = db.execute('SELECT * FROM post where ID = 1').fetchone()
-       assert post['title'] == 'updated'
+    post = Post.query.filter_by(id=1).first()
+    assert post.title == 'updated'
 
 
-@pytest.mark.parametrize('path', (
-    '/blog/create',
-    '/blog/1/update',
-))
-def test_create_update_validate(client, auth, path):
+def test_create_validate(client, auth):
     auth.login()
-    response = client.post(path, data={'title': '', 'body': ''})
+    response = client.post('/blog/create', data={'title': '', 'body': ''})
+    assert b'<title>New Post - UCSD BISB Unofficial</title>' in response.data
+
+
+def test_update_validate(client, auth):
+    auth.login()
+    response = client.post('/blog/1/update', data={'title': '', 'body': ''})
     assert b'Title is required.' in response.data
 
 
-def test_delete(client, auth, app):
+def test_delete(client, auth, app, db):
     auth.login()
     response = client.post('/blog/1/delete')
     assert response.headers['Location'] == 'http://localhost/blog/index'
-    
-    with app.app_context():
-        db = get_db()
-        post = db.execute('SELECT * FROM post WHERE id = 1').fetchone()
-        assert post is None
-
+    post = Post.query.filter_by(id=1).first()
+    assert post is None

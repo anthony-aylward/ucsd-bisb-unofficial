@@ -10,38 +10,57 @@
 # Imports ======================================================================
 
 import pytest
-from flask import g, session
-from ucsd_bisb_unofficial.db import get_db
+from flask import session
+from flask_login import current_user
+from ucsd_bisb_unofficial.models import User
 
 
 
 
 # Functions ====================================================================
 
-def test_register(client, app):
+def test_register(client):
     assert client.get('/auth/register').status_code == 200
     response = client.post(
-        '/auth/register', data={'username': 'a', 'password': 'a'}
+        '/auth/register',
+        data={
+            'username': 'a',
+            'email': 'a@a.com',
+            'password': 'a',
+            'password2': 'a'
+        }
     )
     assert 'http://localhost/auth/login' == response.headers['Location']
-    
-    with app.app_context():
-        assert get_db().execute(
-            "select * from user where username = 'a'"
-        ).fetchone() is not None
+    a = User.query.filter_by(username='a').first()
+    assert a is not None
 
 
-@pytest.mark.parametrize(('username', 'password', 'message'), (
-    ('', '', b'Username is required.'),
-    ('a', '', b'Password is required.'),
-    ('test', 'test', b'already registered'),
-))
-def test_register_validate_input(client, username, password, message):
+@pytest.mark.parametrize(
+    ('username', 'email', 'password', 'password2'),
+    (
+        ('', '', '', ''),
+        ('a', 'a@a.com', '', ''),
+        ('test', 'test@test.org', 'test', 'test'),
+    )
+)
+def test_register_validate_input(
+    client,
+    username,
+    email,
+    password,
+    password2
+):
     response = client.post(
         '/auth/register',
-        data={'username': username, 'password': password}
+        data={
+            'username': username,
+            'email': email,
+            'password': password,
+            'password2': password
+        }
     )
-    assert message in response.data
+    print(response.data)
+    assert b'<title>Register - UCSD BISB Unofficial</title>' in response.data
 
 
 def test_login(client, auth):
@@ -51,23 +70,25 @@ def test_login(client, auth):
     
     with client:
         client.get('/')
-        assert session['user_id'] == 1
-        assert g.user['username'] == 'test'
+        assert session['user_id'] == '1'
+        assert current_user.username == 'test'
 
 
-@pytest.mark.parametrize(('username', 'password', 'message'), (
-    ('a', 'test', b'Incorrect username or password.'),
-    ('test','a', b'Incorrect username or password.'),
-))
+@pytest.mark.parametrize(
+    ('username', 'password', 'message'),
+    (
+        ('a', 'test', b'Invalid username or password'),
+        ('test','a', b'Invalid username or password'),
+    )
+)
 def test_login_validate_input(auth, username, password, message):
-    response = auth.login(username, password)
+    response = auth.login(username, password, follow_redirects=True)
+    print(response.data)
     assert message in response.data
 
 
 def test_logout(client, auth):
     auth.login()
-    
     with client:
         auth.logout()
         assert 'user_id' not in session
-
