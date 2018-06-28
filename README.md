@@ -20,6 +20,8 @@ flask run
 ```
 Congratulations! You're now running the Flask development server, and you can view your local version of the site by navigating to [http://localhost:5000](http://localhost:5000) in a web browser. Changes you make to the HTML or Python code will be reflected in the browser window. Changes to the CSS should also be reflected, but you may need to clear your browser's cache to see them.
 
+In general, it's a good idea to keep [security](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Website_security) in mind.
+
 Once you're ready to suggest your changes to the main site, use [pytest](https://docs.pytest.org/en/latest/) to make sure all the unit tests pass. Then push up to your forked repository and send a pull request. Thanks for your help!
 
 ## On the production server
