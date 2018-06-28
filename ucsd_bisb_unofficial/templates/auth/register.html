@@ -12,8 +12,7 @@
         class_='form-control',
         placeholder='Username',
         required=True,
-        autofocus=True,
-        disabled=True
+        autofocus=True
       )
     }}
     {{
@@ -22,8 +21,7 @@
         id='email',
         class_='form-control',
         placeholder='Email',
-        required=True,
-        disabled=True
+        required=True
       )
     }}
     {{
@@ -32,8 +30,7 @@
         id='password',
         class_='form-control',
         placeholder='Password',
-        required=True,
-        disabled=True
+        required=True
       )
     }}
     {{
@@ -42,11 +39,10 @@
         id='password2',
         class_='form-control',
         placeholder='Repeat password',
-        required=True,
-        disabled=True
+        required=True
       )
     }}
-    {{ form.submit(class_="btn btn-lg btn-outline-primary btn-block", disabled=True) }}
+    {{ form.submit(class_="btn btn-lg btn-outline-primary btn-block") }}
   </form>
 </div>
 {% endblock %}

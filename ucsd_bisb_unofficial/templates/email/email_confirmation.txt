@@ -1,0 +1,8 @@
+Your account on ucsd-bisb-unofficial was successfully created.
+Please click the link below to confirm your email address and
+activate your account:
+  
+{{ url_for('auth.confirm_email', token=token, _external=True) }}
+ 
+--
+Questions? Comments? Email aaylward@eng.ucsd.edu

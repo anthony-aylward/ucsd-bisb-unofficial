@@ -40,6 +40,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+    email_confirmation_sent_on = db.Column(db.DateTime, nullable=True)
+    email_confirmed = db.Column(db.Boolean, default=False, nullable=True)
+    email_confirmed_on = db.Column(db.DateTime, nullable=True)
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -68,6 +71,28 @@ class User(UserMixin, db.Model):
                 current_app.config['SECRET_KEY'],
                 algorithms=['HS256']
             )['reset_password']
+        except:
+            return
+        return User.query.get(id)
+    
+    def get_confirm_email_token(self, expires_in=600):
+        return (
+            jwt.encode(
+                {'confirm_email': self.id, 'exp': time() + expires_in},
+                current_app.config['SECRET_KEY'],
+                algorithm='HS256'
+            )
+            .decode('utf-8')
+        )
+    
+    @staticmethod
+    def verify_confirm_email_token(token):
+        try:
+            id = jwt.decode(
+                token,
+                current_app.config['SECRET_KEY'],
+                algorithms=['HS256']
+            )['confirm_email']
         except:
             return
         return User.query.get(id)
