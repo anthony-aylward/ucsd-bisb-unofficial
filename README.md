@@ -30,6 +30,6 @@ source venv/bin/activate
 pip3 install dist/ucsd_bisb_unofficial-0.0.1-py3-none-any.whl
 cd venv/lib/python3.6/site-packages/
 export FLASK_APP=ucsd_bisb_unofficial
-flask upgrade
+flask db upgrade
 python3 configure_secret_key/__init__.py ../../../var/ucsd_bisb_unofficial-instance/
 ```
