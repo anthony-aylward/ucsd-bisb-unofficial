@@ -33,3 +33,4 @@ export FLASK_APP=ucsd_bisb_unofficial
 flask db upgrade
 python3 configure_secret_key/__init__.py ../../../var/ucsd_bisb_unofficial-instance/
 ```
+See also a [neat video on uWSGI](https://www.youtube.com/watch?v=2IeSPvkQEtw)
