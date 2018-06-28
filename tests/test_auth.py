@@ -35,6 +35,22 @@ def test_register(client):
     assert a is not None
 
 
+def test_unapproved_register(client):
+    assert client.get('/auth/register').status_code == 200
+    response = client.post(
+        '/auth/register',
+        data={
+            'username': 'b',
+            'email': 'b@b.com',
+            'password': 'b',
+            'password2': 'b'
+        }
+    )
+    assert 'http://localhost/auth/login' == response.headers['Location']
+    b = User.query.filter_by(username='b').first()
+    assert b is None
+
+
 @pytest.mark.parametrize(
     ('username', 'email', 'password', 'password2'),
     (

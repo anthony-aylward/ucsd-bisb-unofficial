@@ -13,7 +13,8 @@ import functools
 
 from datetime import datetime
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for,
+    current_app
 )
 from flask_login import current_user, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -45,6 +46,13 @@ def register():
         return redirect(url_for('jumbotron.index'))
     form = RegistrationForm()
     if form.validate_on_submit():
+        if form.email.data not in current_app.config['APPROVED_EMAILS']:
+            flash(
+                'Sorry, that email is not on the approved list. If you are a '
+                f'BISB student, contact {current_app.config["ADMINS"][0]} '
+                'to get your email approved for registration.'
+            )
+            return redirect(url_for('auth.login'))
         user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db = get_db()
