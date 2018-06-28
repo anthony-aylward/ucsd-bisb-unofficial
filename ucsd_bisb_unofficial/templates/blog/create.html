@@ -5,21 +5,13 @@
 {% endblock %}
 
 {% block content %}
-  <div class='content-post'>
+  <div class="content-post">
   <form method="post">
     {{ form.hidden_tag() }}
-    <!-- <label for="title">Title</label> -->
     {{ form.title.label }}
-    <!-- <input name="title" id="title" value="{{ request.form['title'] }}" required> -->
     {{ form.title(id='title', required=True) }}
-    <!-- <label for="body">Body</label> -->
-    {{ form.post.label }}
-    <!-- <textarea name="body" id="body">{{ request.form['body'] }}</textarea> -->
-    {{ form.post(cols=32, rows=4, id='body') }}
-    <!-- <input type="submit" value="Save"> -->
-    {% for error in form.post.errors %}
-    <span style="color: red;">[{{ error }}]</span>
-    {% endfor %}
+    {{ form.body.label }}
+    {{ form.body(cols=32, rows=4, id='body') }}
     {{ form.submit() }}
   </form>
 </div>

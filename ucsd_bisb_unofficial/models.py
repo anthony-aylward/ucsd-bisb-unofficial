@@ -2,15 +2,18 @@
 # models.py
 #===============================================================================
 
-"""Miguel Grinberg's Flask Mega-Tutorial"""
+"""Databse models"""
 
 
 
 
 # Imports ======================================================================
 
+import jwt
+
+from time import time
 from datetime import datetime
-from flask import g
+from flask import g, current_app
 from flask_login import UserMixin
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -46,6 +49,28 @@ class User(UserMixin, db.Model):
     
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def get_reset_password_token(self, expires_in=600):
+        return (
+            jwt.encode(
+                {'reset_password': self.id, 'exp': time() + expires_in},
+                current_app.config['SECRET_KEY'],
+                algorithm='HS256'
+            )
+            .decode('utf-8')
+        )
+    
+    @staticmethod
+    def verify_reset_password_token(token):
+        try:
+            id = jwt.decode(
+                token,
+                current_app.config['SECRET_KEY'],
+                algorithms=['HS256']
+            )['reset_password']
+        except:
+            return
+        return User.query.get(id)
 
 
 class Post(db.Model):

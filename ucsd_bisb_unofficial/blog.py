@@ -12,10 +12,9 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
-from flask_login import current_user
+from flask_login import current_user, login_required
 from werkzeug.exceptions import abort
 
-from ucsd_bisb_unofficial.auth import login_required
 from ucsd_bisb_unofficial.forms import PostForm
 from ucsd_bisb_unofficial.models import get_db, Post
 
@@ -47,7 +46,7 @@ def create():
     if form.validate_on_submit():
         post = Post(
             title=form.title.data,
-            body=form.post.data,
+            body=form.body.data,
             author=current_user
         )
         db.session.add(post)

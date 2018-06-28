@@ -16,9 +16,6 @@
         disabled=True
       )
     }}
-    {% for error in form.username.errors %}
-    <span style='color: red;'>[{{ error }}]</span>
-    {% endfor %}
     {{
       form.email(
         type='email',
@@ -29,9 +26,6 @@
         disabled=True
       )
     }}
-    {% for error in form.email.errors %}
-    <span style='color: red;'>[{{ error }}]</span>
-    {% endfor %}
     {{
       form.password(
         type='password',
@@ -42,9 +36,6 @@
         disabled=True
       )
     }}
-    {% for error in form.password.errors %}
-    <span style='color: red;'>[{{ error }}]</span>
-    {% endfor %}
     {{
       form.password2(
         type='password',
@@ -55,9 +46,6 @@
         disabled=True
       )
     }}
-    {% for error in form.password2.errors %}
-    <span style='color: red;'>[{{ error }}]</span>
-    {% endfor %}
     {{ form.submit(class_="btn btn-lg btn-outline-primary btn-block", disabled=True) }}
   </form>
 </div>

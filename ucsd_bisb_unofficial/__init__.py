@@ -47,6 +47,9 @@ def create_app(test_config=None):
     from .login import login
     login.init_app(app)
     login.login_view = 'auth.login'
+
+    from .email import mail
+    mail.init_app(app)
     
     from . import auth
     app.register_blueprint(auth.bp)

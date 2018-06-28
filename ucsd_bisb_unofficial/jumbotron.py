@@ -12,9 +12,8 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
+from flask_login import login_required
 from werkzeug.exceptions import abort
-
-from ucsd_bisb_unofficial.auth import login_required
 
 
 
