@@ -17,7 +17,7 @@ coverage run -m pytest
 coverage report
 export FLASK_APP=ucsd_bisb_unofficial
 export FLASK_ENV=development
-flask init-db
+flask db upgrade
 flask run
 ```
 Congratulations! You're now running the Flask development server, and you can view your local version of the site by navigating to [http://localhost:5000](http://localhost:5000) in a web browser. Changes you make to the HTML or Python code will be reflected in the browser window. Changes to the CSS should also be reflected, but you may need to clear your browser's cache to see them.
