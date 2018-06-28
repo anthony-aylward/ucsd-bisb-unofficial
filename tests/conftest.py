@@ -45,6 +45,7 @@ def testing_config():
         'SQLALCHEMY_DATABASE_URI': 'sqlite://',
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
         'MAIL_SERVER': None,
+        'ADMINS': ['ucsd.bisb.unofficial@gmail.com'],
         'SECRET_KEY': 'you-will-never-guess',
         'WTF_CSRF_ENABLED': False
     }
@@ -56,7 +57,8 @@ def non_testing_config():
         'TESTING': False,
         'SQLALCHEMY_DATABASE_URI': 'sqlite://',
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
-        'MAIL_SERVER': None
+        'MAIL_SERVER': None,
+        'ADMINS': ['ucsd.bisb.unofficial@gmail.com']
     }
 
 
@@ -78,7 +80,11 @@ def db(app, request):
     db = get_db()
     db.create_all()
 
-    test_user = User(username='test', email='test@test.org')
+    test_user = User(
+        username='test',
+        email='test@test.org',
+        email_confirmed=True
+    )
     other_user = User(username='other', email='other@other.org')
     test_user.set_password('test')
     other_user.set_password('other')

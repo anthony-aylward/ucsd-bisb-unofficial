@@ -63,7 +63,7 @@ def test_register_validate_input(
     assert b'<title>Register - UCSD BISB Unofficial</title>' in response.data
 
 
-def test_login(client, auth):
+def test_login(client, auth, db):
     assert client.get('/auth/login').status_code == 200
     response = auth.login()
     assert response.headers['Location'] == 'http://localhost/'
