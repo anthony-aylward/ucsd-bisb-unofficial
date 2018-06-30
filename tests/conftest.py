@@ -47,7 +47,8 @@ def testing_config():
         'MAIL_SERVER': None,
         'ADMINS': ['ucsd.bisb.unofficial@gmail.com'],
         'SECRET_KEY': 'you-will-never-guess',
-        'WTF_CSRF_ENABLED': False
+        'WTF_CSRF_ENABLED': False,
+        'APPROVED_EMAILS': ['a@a.com', 'test@test.org', 'other@other.org']
     }
 
 
@@ -58,7 +59,8 @@ def non_testing_config():
         'SQLALCHEMY_DATABASE_URI': 'sqlite://',
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
         'MAIL_SERVER': None,
-        'ADMINS': ['ucsd.bisb.unofficial@gmail.com']
+        'ADMINS': ['ucsd.bisb.unofficial@gmail.com'],
+        'APPROVED_EMAILS': ['a@a.com', 'test@test.org', 'other@other.org']
     }
 
 
