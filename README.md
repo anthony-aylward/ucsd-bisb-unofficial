@@ -27,7 +27,7 @@ Once you're ready to suggest your changes to the main site, use [pytest](https:/
 python3 setup.py bdist_wheel
 python3 -m venv venv
 source venv/bin/activate
-pip3 install dist/ucsd_bisb_unofficial-0.0.1-py3-none-any.whl
+pip3 install dist/ucsd_bisb_unofficial-[latest]-py3-none-any.whl
 cd venv/lib/python3.6/site-packages/
 export FLASK_APP=ucsd_bisb_unofficial
 flask db upgrade
