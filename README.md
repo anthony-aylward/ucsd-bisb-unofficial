@@ -25,7 +25,6 @@ Once you're ready to suggest your changes to the main site, use [pytest](https:/
 ## On the production server
 ```
 python3 setup.py bdist_wheel
-python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt dist/ucsd_bisb_unofficial-[latest]-py3-none-any.whl
 export FLASK_APP=ucsd_bisb_unofficial
