@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+<<<<<<< HEAD
 
 {% block header %}
   <h1>
@@ -28,4 +29,37 @@
       <input type="submit" value="Log In">
     </form>
   {% endif %}
+=======
+{% block title %}Log in{% endblock %}
+{% block header %}{% endblock %}
+
+{% block content %}
+<div class="content-login">
+  <form class="form-login" method="post">
+    {{ form.hidden_tag() }}
+    {{
+      form.username(
+        id='username',
+        class_='form-control',
+        placeholder='Username',
+        required=True,
+        autofocus=True
+      )
+    }}
+    {{
+      form.password(
+        type='password',
+        id='password',
+        class_='form-control',
+        placeholder='Password',
+        required=True
+      )
+    }}
+    {{ form.submit(class_="btn btn-lg btn-outline-primary btn-block") }}
+  </form>
+  <p>
+    <a href="{{ url_for('auth.reset_password_request', filename='bisb-bmi-town-hall-survey-summary.pdf') }}">Reset Password</a>
+  </p>
+</div>
+>>>>>>> a62fd1ed4d565c47afbb4ce7ca25dfdbcdc83087
 {% endblock %}
