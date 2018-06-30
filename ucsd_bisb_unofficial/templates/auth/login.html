@@ -1,4 +1,35 @@
 {% extends 'base.html' %}
+<<<<<<< HEAD
+
+{% block header %}
+  <h1>
+    {% block title %}
+      {% if g.user %}
+        Logged In
+      {% else %}
+        Log In
+      {% endif %}
+    {% endblock %}
+  </h1>
+{% endblock %}
+
+{% block content %}
+  {% if g.user %}
+    <p>
+      Welcome to the unnoficial information hub for students in the
+      Bioinformatics and Systems Biology graduate program at UCSD. Please
+      proceed to the <a href='{{ url_for('blog.index') }}'>index page</a.>
+    </p>
+  {% else %}
+    <form method="post">
+      <label for="username">Username</label>
+      <input name="username" id="username" required>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required>
+      <input type="submit" value="Log In">
+    </form>
+  {% endif %}
+=======
 {% block title %}Log in{% endblock %}
 {% block header %}{% endblock %}
 
@@ -30,4 +61,5 @@
     <a href="{{ url_for('auth.reset_password_request', filename='bisb-bmi-town-hall-survey-summary.pdf') }}">Reset Password</a>
   </p>
 </div>
+>>>>>>> a62fd1ed4d565c47afbb4ce7ca25dfdbcdc83087
 {% endblock %}

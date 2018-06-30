@@ -1,48 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}Register{% endblock %}
-{% block header %}{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
 
 {% block content %}
-<div class='content-login'>
-  <form class="form-login" method="post">
-    {{ form.hidden_tag() }}
-    {{
-      form.username(
-        id='username',
-        class_='form-control',
-        placeholder='Username',
-        required=True,
-        autofocus=True
-      )
-    }}
-    {{
-      form.email(
-        type='email',
-        id='email',
-        class_='form-control',
-        placeholder='Email',
-        required=True
-      )
-    }}
-    {{
-      form.password(
-        type='password',
-        id='password',
-        class_='form-control',
-        placeholder='Password',
-        required=True
-      )
-    }}
-    {{
-      form.password2(
-        type='password',
-        id='password2',
-        class_='form-control',
-        placeholder='Repeat password',
-        required=True
-      )
-    }}
-    {{ form.submit(class_="btn btn-lg btn-outline-primary btn-block") }}
+  <form method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Register">
   </form>
-</div>
 {% endblock %}
+

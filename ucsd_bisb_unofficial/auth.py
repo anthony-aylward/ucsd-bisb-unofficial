@@ -11,29 +11,19 @@
 
 import functools
 
-from datetime import datetime
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for,
-    current_app
+    Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
-from flask_login import current_user, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
-from werkzeug.urls import url_parse
 
-from ucsd_bisb_unofficial.forms import (
-    LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm
-)
-from ucsd_bisb_unofficial.models import get_db, User
-from ucsd_bisb_unofficial.email import (
-    send_password_reset_email, send_confirmation_email
-)
+from ucsd_bisb_unofficial.db import get_db
 
 
 
 
 # Blueprint assignment =========================================================
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+bp = Blueprint('auth', __name__)
 
 
 
@@ -42,118 +32,90 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('jumbotron.index'))
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        if form.email.data not in current_app.config['APPROVED_EMAILS']:
-            flash(
-                'Sorry, that email is not on the approved list. If you are a '
-                f'BISB student, contact {current_app.config["ADMINS"][0]} '
-                'to get your email approved for registration.'
-            )
-            return redirect(url_for('auth.login'))
-        user = User(username=form.username.data, email=form.email.data)
-        user.set_password(form.password.data)
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
         db = get_db()
-        db.session.add(user)
-        db.session.commit()
-        send_confirmation_email(user)
-        flash(
-            'Thanks for registering!  Please check your email to '
-            'confirm your email address.'
-        )
-        return redirect(url_for('auth.login'))
-    return render_template(
-        'auth/register.html',
-        title='Register',
-        form=form
-    )
-
-
-@bp.route('/login', methods=('GET', 'POST'))
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('jumbotron.index'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user is None or any(
-            (
-                not user.check_password(form.password.data),
-                not user.email_confirmed
+        error = None
+        
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'
+        elif (
+            db
+            .execute('SELECT id FROM user WHERE username = ?', (username,))
+            .fetchone()
+        ) is not None:
+            error = 'User {} is already registered.'.format(username)
+        
+        if error is None:
+            db.execute(
+                'INSERT INTO user (username, password) VALUES (?, ?)',
+                (username, generate_password_hash(password))
             )
-        ):
-            flash('Invalid username or password', 'error')
+            db.commit()
             return redirect(url_for('auth.login'))
-        login_user(user, remember=form.remember_me.data)
-        next_page = request.args.get('next')
-        if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('jumbotron.index')
-        return redirect(next_page)
-    return render_template('auth/login.html', title='Sign In', form=form)
+        
+        flash(error)
+    
+    return render_template('auth/register.html')
+
+
+@bp.route('/', methods=('GET', 'POST'))
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        db = get_db()
+        error = None
+        user = (
+            db
+            .execute('SELECT * FROM user WHERE username = ?', (username,))
+            .fetchone()
+        )
+        
+        if user is None:
+            error = 'Incorrect username.'
+        elif not check_password_hash(user['password'], password):
+            error = 'Incorrect password.'
+        
+        if error is None:
+            session.clear()
+            session['user_id'] = user['id']
+            return redirect(url_for('blog.index'))
+        
+        flash(error)
+    
+    return render_template('auth/login.html')
+
+
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = (
+            get_db()
+            .execute('SELECT * FROM user WHERE id = ?', (user_id,))
+            .fetchone()
+        )
 
 
 @bp.route('/logout')
 def logout():
-    logout_user()
-    return redirect(url_for('auth.login'))
+    session.clear()
+    return redirect(url_for('login'))
 
 
-@bp.route('/reset_password_request', methods=('GET', 'POST'))
-def reset_password_request():
-    if current_user.is_authenticated:
-        return redirect(url_for('jumbotron.index'))
-    form = ResetPasswordRequestForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user and user.email == form.email.data:
-            send_password_reset_email(user)
-            flash(
-                'Check your email for the instructions to reset your password'
-            )
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
             return redirect(url_for('auth.login'))
-        else:
-            flash('Invalid username/email pair')
-            return redirect(url_for('auth.reset_password_request'))
-    return render_template(
-        'auth/reset_password_request.html',
-        title='Reset Password',
-        form=form
-    )
-
-
-@bp.route('/reset_password/<token>', methods=('GET', 'POST'))
-def reset_password(token):
-    if current_user.is_authenticated:
-        return redirect(url_for('jumbotron.index'))
-    user = User.verify_reset_password_token(token)
-    if not user:
-        return redirect(url_for('auth.login'))
-    form = ResetPasswordForm()
-    if form.validate_on_submit():
-        user.set_password(form.password.data)
-        db = get_db()
-        db.session.commit()
-        flash('Your password has been reset.')    
-        return redirect(url_for('auth.login'))
-    return render_template('auth/reset_password.html', form=form)
-
-
-@bp.route('/confirm/<token>')
-def confirm_email(token):
-    if current_user.is_authenticated:
-        return redirect(url_for('jumbotron.index'))
-    user = User.verify_confirm_email_token(token)
-    if not user:
-        flash('Strange, no account found.', 'error')
-    if user.email_confirmed:
-        flash('Account already confirmed. Please login.', 'info')
-    else:
-        user.email_confirmed = True
-        user.email_confirmed_on = datetime.utcnow()
-        db = get_db()
-        db.session.add(user)
-        db.session.commit()
-        flash('Thank you for confirming your email address!')
-    return redirect(url_for('auth.login'))
+        
+        return view(**kwargs)
+    
+    return wrapped_view

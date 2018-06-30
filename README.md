@@ -11,16 +11,16 @@ Once you're ready, create your own fork of this repository, clone the fork to yo
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -e .
-pip3 install pytest coverage
-pytest
-coverage run -m pytest
-coverage report
+pip3 install pytest
 export FLASK_APP=ucsd_bisb_unofficial
 export FLASK_ENV=development
-flask init-db
+flask db upgrade
+pytest
 flask run
 ```
 Congratulations! You're now running the Flask development server, and you can view your local version of the site by navigating to [http://localhost:5000](http://localhost:5000) in a web browser. Changes you make to the HTML or Python code will be reflected in the browser window. Changes to the CSS should also be reflected, but you may need to clear your browser's cache to see them.
+
+In general, it's a good idea to keep [security](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Website_security) in mind.
 
 Once you're ready to suggest your changes to the main site, use [pytest](https://docs.pytest.org/en/latest/) to make sure all the unit tests pass. Then push up to your forked repository and send a pull request. Thanks for your help!
 
@@ -32,6 +32,7 @@ source venv/bin/activate
 pip3 install dist/ucsd_bisb_unofficial-0.0.1-py3-none-any.whl
 cd venv/lib/python3.6/site-packages/
 export FLASK_APP=ucsd_bisb_unofficial
-flask init-db
+flask db upgrade
 python3 configure_secret_key/__init__.py ../../../var/ucsd_bisb_unofficial-instance/
 ```
+See also a [neat video on uWSGI](https://www.youtube.com/watch?v=2IeSPvkQEtw)

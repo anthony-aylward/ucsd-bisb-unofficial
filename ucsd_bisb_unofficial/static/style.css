@@ -6,6 +6,10 @@
   --anchor-nav: paleturquoise;
 }
 
+<<<<<<< HEAD
+html { background: var(--dark); padding: 1rem; }
+body { max-width: 960px; margin: 0 auto; border-radius: 5px}
+=======
 .btn-outline-primary {
   color: var(--primary) !important;
   border-color: var(--primary) !important;
@@ -30,6 +34,7 @@ body {
   border-radius: 5px
 }
 
+>>>>>>> a62fd1ed4d565c47afbb4ce7ca25dfdbcdc83087
 h1 { color: var(--primary); margin: 1rem 0; }
 a { color: var(--anchor); }
 a:hover { text-decoration: none; color: var(--anchor-hover) }
@@ -46,11 +51,17 @@ nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
 nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
 nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 
+<<<<<<< HEAD
+.content { padding: 0 1rem 1rem; }
+.content > header {
+  border-bottom: 1px solid var(--secondary); display: flex;
+=======
 .content {
   padding: 0 1rem 1rem;
 }
 .content > header {
   display: flex;
+>>>>>>> a62fd1ed4d565c47afbb4ce7ca25dfdbcdc83087
   align-items: flex-end;
 }
 .content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
@@ -64,13 +75,19 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 .post .about { color: var(--secondary); font-style: italic; }
 .post .body { white-space: pre-line; }
 .content:last-child { margin-bottom: 0; }
+<<<<<<< HEAD
+.content form { margin: 1em 0; display: flex; flex-direction: column; }
+=======
 .content form { margin: 1em 0; }
+>>>>>>> a62fd1ed4d565c47afbb4ce7ca25dfdbcdc83087
 .content label { font-weight: bold; margin-bottom: 0.5em; }
 .content input, .content textarea { margin-bottom: 1em; }
 .content textarea { min-height: 12em; resize: vertical; }
 
 input.danger { color: var(--danger); }
 input[type=submit] { align-self: start; min-width: 10em; }
+<<<<<<< HEAD
+=======
 
 .content-post form {
   display: flex;
@@ -90,3 +107,4 @@ input[type=submit] { align-self: start; min-width: 10em; }
   padding: 10px;
   font-size: 16px;
 }
+>>>>>>> a62fd1ed4d565c47afbb4ce7ca25dfdbcdc83087
