@@ -1,9 +1,9 @@
 #!/user/bin/env python3
 #===============================================================================
-# configure_secret_key.py
+# production_config
 #===============================================================================
 
-"""Configure the secret key for a flask instance"""
+"""Create the production config file"""
 
 
 
@@ -17,11 +17,39 @@ import os.path
 
 
 
+# Constants ====================================================================
+
+CONFIG_DATA = (
+'''
+import os
+import os.path
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+SECRET_KEY = os.environ.get('SECRET_KEY') or {}
+SQLALCHEMY_DATABASE_URI = (
+    os.environ.get('DATABASE_URL')
+    or
+    'sqlite:///' + os.path.join(basedir, 'app.db')
+)
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.googlemail.com'
+MAIL_PORT = int(os.environ.get('MAIL_PORT') or 587)
+MAIL_USE_TLS = True
+MAIL_USERNAME = 'ucsd.bisb.unofficial'
+MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+ADMINS = ['ucsd.bisb.unofficial@gmail.com']
+APPROVED_EMAILS = ['ucsd.bisb.unofficial@gmail.com']
+'''
+).format(os.urandom(16))
+
+
+
 # Functions ====================================================================
 
 def main(args):
     with open(os.path.join(args.instance, 'config.py'), 'w') as f:
-        f.write('SECRET_KEY = {}\n'.format(os.urandom(16)))
+        f.write(CONFIG_DATA)
 
 
 def parse_arguments():
@@ -43,4 +71,3 @@ def parse_arguments():
 if __name__ == '__main__':
     args = parse_arguments()
     main(args)
-
