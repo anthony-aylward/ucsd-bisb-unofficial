@@ -33,11 +33,11 @@ SQLALCHEMY_DATABASE_URI = (
     'sqlite:///' + os.path.join(basedir, 'app.db')
 )
 SQLALCHEMY_TRACK_MODIFICATIONS = False
-MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.googlemail.com'
+MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.gmail.com'
 MAIL_PORT = int(os.environ.get('MAIL_PORT') or 465)
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
-MAIL_USERNAME = 'ucsd.bisb.unofficial'
+MAIL_USERNAME = 'ucsd.bisb.unofficial@gmail.com'
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 ADMINS = ['ucsd.bisb.unofficial@gmail.com']
 APPROVED_EMAILS = [
