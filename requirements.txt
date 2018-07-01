@@ -23,6 +23,5 @@ python-dateutil==2.7.3
 python-editor==1.0.3
 six==1.11.0
 SQLAlchemy==1.2.8
--e git+https://github.com/anthony-aylward/ucsd-bisb-unofficial.git@5a4bdfce744f770c72ae124b697718046d281040#egg=ucsd_bisb_unofficial
 Werkzeug==0.14.1
 WTForms==2.2.1
