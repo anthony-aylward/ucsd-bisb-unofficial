@@ -27,8 +27,10 @@ Once you're ready to suggest your changes to the main site, use [pytest](https:/
 python3 setup.py bdist_wheel
 source venv/bin/activate
 pip3 install -r requirements.txt dist/ucsd_bisb_unofficial-[latest]-py3-none-any.whl
+python3 production_config/__init__.py venv/var/ucsd_bisb_unofficial-instance/
+cd venv/var/ucsd_bisb_unofficial-instance/
 export FLASK_APP=ucsd_bisb_unofficial
-python3 venv/lib/python3.6/site-packages/production_config/__init__.py venv/var/ucsd_bisb_unofficial-instance/
 flask db upgrade
+uwsgi --socket 127.0.0.1:[port] --wsgi-file ../../lib/python3.6/site-packages/ucsd_bisb_unofficial_uwsgi --callable app --processes 2 --threads 2 --env MAIL_PASSWORD=[mail server password]
 ```
 See also a [neat video on uWSGI](https://www.youtube.com/watch?v=2IeSPvkQEtw)
