@@ -31,5 +31,6 @@ python3 production_config/__init__.py venv/var/ucsd_bisb_unofficial-instance/
 cd venv/var/ucsd_bisb_unofficial-instance/
 export FLASK_APP=ucsd_bisb_unofficial
 flask db upgrade
+uwsgi --socket 127.0.0.1:[port] --wsgi-file ../../lib/python3.6/site-packages/ucsd_bisb_unofficial_uwsgi --callable app --processes 2 --threads 2 --env MAIL_PASSWORD=[mail server password]
 ```
 See also a [neat video on uWSGI](https://www.youtube.com/watch?v=2IeSPvkQEtw)
