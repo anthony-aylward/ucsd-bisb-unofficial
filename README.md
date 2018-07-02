@@ -28,7 +28,8 @@ python3 setup.py bdist_wheel
 source venv/bin/activate
 pip3 install -r requirements.txt dist/ucsd_bisb_unofficial-[latest]-py3-none-any.whl
 export FLASK_APP=ucsd_bisb_unofficial
-python3 venv/lib/python3.6/site-packages/production_config/__init__.py venv/var/ucsd_bisb_unofficial-instance/
+python3 production_config/__init__.py venv/var/ucsd_bisb_unofficial-instance/
+cd venv/var/ucsd_bisb_unofficial-instance/
 flask db upgrade
 ```
 See also a [neat video on uWSGI](https://www.youtube.com/watch?v=2IeSPvkQEtw)
