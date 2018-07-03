@@ -30,7 +30,14 @@ pip3 install -r requirements.txt dist/ucsd_bisb_unofficial-[latest]-py3-none-any
 python3 production_config/__init__.py venv/var/ucsd_bisb_unofficial-instance/
 cd venv/lib/python3.6/site-packages/
 export FLASK_APP=ucsd_bisb_unofficial
-flask db upgrade --directory ucsd_bisb_unofficial/migrations
+flask db upgrade --directory ../../../../migrations
 uwsgi --socket 127.0.0.1:[port] --wsgi-file ucsd_bisb_unofficial_uwsgi --callable app --processes 2 --threads 2 --env MAIL_PASSWORD=[mail server password]
 ```
 See also a [neat video on uWSGI](https://www.youtube.com/watch?v=2IeSPvkQEtw)
+
+Managing the backup drive:
+```
+udisksctl mount -b /dev/sda1
+udisksctl unmount -b /dev/sda1
+udisksctl power-off -b /dev/sda1
+```
