@@ -2,7 +2,10 @@
 # __init__.py
 #===============================================================================
 
-"""Initialization"""
+"""Initialization
+
+This file contains the application factory for the ucsd_bisb_unofficial app.
+"""
 
 
 
@@ -19,6 +22,21 @@ from flask import Flask
 # Functions ====================================================================
 
 def create_app(test_config=None):
+    """The application factory function
+
+    Parameters
+    ----------
+    test_config : dict
+        A dictionary containing configuration parameters for use during unit
+        testing. If this parameter is `None`, the configuration will be loaded
+        from `config.py` in the instance folder.
+
+    Returns
+    -------
+    Flask
+        The flask app
+    """
+
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
 
@@ -66,4 +84,3 @@ def create_app(test_config=None):
     app.add_url_rule('/', endpoint='auth.login')
     
     return app
-
