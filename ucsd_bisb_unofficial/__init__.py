@@ -24,6 +24,13 @@ from flask import Flask
 def create_app(test_config=None):
     """The application factory function
 
+    This function creates and configures the Flask application object. For
+    more on application factories, see the Flask documentation/tutorial:
+
+    http://flask.pocoo.org/docs/1.0/tutorial/factory/
+
+    http://flask.pocoo.org/docs/1.0/patterns/appfactories/
+
     Parameters
     ----------
     test_config : dict
@@ -34,7 +41,7 @@ def create_app(test_config=None):
     Returns
     -------
     Flask
-        The flask app
+        A flask app
     """
 
     # create and configure the app

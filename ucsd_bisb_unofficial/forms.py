@@ -2,7 +2,9 @@
 # forms.py
 #===============================================================================
 
-"""Forms """
+"""Forms (subclasses of FlaskForm, see Flask-WTF:
+http://flask-wtf.readthedocs.io/en/stable/ )
+"""
 
 
 
@@ -26,6 +28,16 @@ from ucsd_bisb_unofficial.models import User
 # Forms ------------------------------------------------------------------------
 
 class LoginForm(FlaskForm):
+    """A form for user login credentials
+
+    Attributes
+    ----------
+    username : StringField
+    password : PasswordField
+    remember_me : BooleanField
+    submit : SubmitField
+    """
+
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
@@ -33,6 +45,17 @@ class LoginForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
+    """A form for user registration info
+
+    Attributes
+    ----------
+    username : StringField
+    email : StringField
+    password : PasswordField
+    password2 : PasswordField
+    submit : SubmitField
+    """
+
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -54,6 +77,14 @@ class RegistrationForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
+    """A form for post data
+    
+    Attributes
+    ----------
+    title : StringField
+    body : TextAreaField
+    """
+
     title = StringField('Title', validators=[DataRequired()])
     body = TextAreaField(
         'Say something',
@@ -66,12 +97,29 @@ class PostForm(FlaskForm):
 
 
 class ResetPasswordRequestForm(FlaskForm):
+    """A form for a password reset request
+
+    Attributes
+    ----------
+    username : StringField
+    email : StringField
+    submit : SubmitField
+    """
+
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password Reset')
 
 
 class ResetPasswordForm(FlaskForm):
+    """A form for providing a new password
+
+    Attributes
+    ----------
+    password : PasswordField
+    password2 : PasswordField
+    """
+
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField(
         'Repeat Password',

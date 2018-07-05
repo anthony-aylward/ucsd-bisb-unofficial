@@ -2,7 +2,17 @@
 # blog.py
 #===============================================================================
 
-"""Blog blueprint"""
+"""Blog blueprint
+
+Attributes
+----------
+bp : Blueprint
+    blueprint object, see the flask tutorial/documentation:
+
+    http://flask.pocoo.org/docs/1.0/tutorial/views/
+
+    http://flask.pocoo.org/docs/1.0/blueprints/
+"""
 
 
 
@@ -33,6 +43,11 @@ bp = Blueprint('blog', __name__, url_prefix='/blog')
 @bp.route('/index')
 @login_required
 def index():
+    """Render the blog index
+
+    This page collects all posts from the database and displays them.
+    """
+
     db = get_db()
     posts = Post.query.all()
     return render_template('blog/index.html', posts=posts)
@@ -41,6 +56,12 @@ def index():
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
+    """Create a new post
+    
+    This page includes a PostForm (see `forms.py`). A new post will be added to
+    the database based on the form data.
+    """
+
     db = get_db()
     form = PostForm()
     if form.validate_on_submit():
@@ -57,6 +78,23 @@ def create():
 
 
 def get_post(id, check_author=True):
+    """Retrieve a post from the database
+    
+    Parameters
+    ----------
+    id : int
+        A post ID.
+    check_author : bool
+        If True, the ID of the current user will be compared to the ID of the
+        post's author. If the current user is not the author of the post, the
+        retrieval is aborted.
+    
+    Returns
+    -------
+    Post or NoneType
+        The post with the given post ID.
+    """
+
     post = Post.query.filter_by(id=id).first()
     
     if post is None:
@@ -71,6 +109,17 @@ def get_post(id, check_author=True):
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
+    """Update a post
+
+    Retrieves the post with the provided ID and provides a PostForm that can
+    be used to edit it.
+
+    Parameters
+    ----------
+    id : int
+        The id of the post to be updated
+    """
+
     post = get_post(id)
     form = PostForm()
     if request.method == 'POST':
@@ -96,6 +145,14 @@ def update(id):
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
+    """Delete a post
+
+    Parameters
+    ----------
+    id : int
+        The ID no. of the post to be deleted
+    """
+
     post = get_post(id)
     db = get_db()
     db.session.delete(post)

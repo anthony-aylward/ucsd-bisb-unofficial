@@ -2,7 +2,17 @@
 # protected.py
 #===============================================================================
 
-"""Serve protected files"""
+"""Serve protected files
+
+Attributes
+----------
+bp : Blueprint
+    blueprint object, see the flask tutorial/documentation:
+
+    http://flask.pocoo.org/docs/1.0/tutorial/views/
+
+    http://flask.pocoo.org/docs/1.0/blueprints/
+"""
 
 
 
@@ -28,6 +38,14 @@ bp = Blueprint('protected', __name__, url_prefix='/protected')
 @bp.route('/<path:filename>')
 @login_required
 def protected(filename):
+    """Serve a protected file
+    
+    Parameters
+    ----------
+    filename
+        Location of the file to serve on disk
+    """
+
     return send_from_directory(
         os.path.join(current_app.instance_path, 'protected'),
         filename

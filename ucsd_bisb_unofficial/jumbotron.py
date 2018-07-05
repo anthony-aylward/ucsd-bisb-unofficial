@@ -2,7 +2,17 @@
 # jumbotron.py
 #===============================================================================
 
-"""Jumbotron blueprint"""
+"""Jumbotron blueprint
+
+Attributes
+----------
+bp : Blueprint
+    blueprint object, see the flask tutorial/documentation:
+
+    http://flask.pocoo.org/docs/1.0/tutorial/views/
+
+    http://flask.pocoo.org/docs/1.0/blueprints/
+"""
 
 
 
@@ -30,4 +40,6 @@ bp = Blueprint('jumbotron', __name__)
 @bp.route('/')
 @login_required
 def index():
+    """Render the index page"""
+
     return render_template('jumbotron/index.html')
