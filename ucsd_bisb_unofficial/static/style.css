@@ -6,6 +6,23 @@
   --anchor-nav: paleturquoise;
 }
 
+blockquote {
+  /* background: var(--light); */
+  /* border-left: 10px solid var(--gray); */
+  /* border-radius: 5px; */
+  padding: 0.5em 10px;
+  color: var(--gray);
+  font-family: serif;
+  font-style: italic;
+}
+blockquote p {
+  display: inline;
+}
+blockquote footer {
+  font-family: sans-serif;
+  font-style: normal;
+}
+
 .btn-outline-primary {
   color: var(--primary) !important;
   border-color: var(--primary) !important;

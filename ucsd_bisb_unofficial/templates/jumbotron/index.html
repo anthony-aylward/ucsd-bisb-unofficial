@@ -6,16 +6,28 @@
 <div class="jumbotron">
   <div class="container">
     <h1 class="display-3">It takes a village</h1>
-    <p>
+    </p>
+    <p class="lead">
       This is the unofficial information hub for graduate students in the
       Bioinformatics and Systems Biology program at UCSD.
     </p>
-    <p>
+    <p class="lead">
       Sometimes the <a href="http://bioinformatics.ucsd.edu">official resources</a>
       are inadequate. Even dedicated lab websites are often out of date. This is
       where we fill in the gaps.
     </p>
     <p><button class="btn btn-outline-primary" disabled>Latest news</button></p>
+    <blockquote class="blockquote">
+      Current graduate students are the only reliable source of advice on how 
+      to succeed in graduate school.
+      <footer class="blockquote-footer text-right">Tony</footer>
+    </blockquote>
+    <blockquote class="blockquote">
+        This site still needs a lot of work, but I think if even just a few of 
+        us contribute some time to it then it has the potential to make a lot
+        of things a little easier for most of us.
+        <footer class="blockquote-footer text-right">Tony</footer>
+      </blockquote>
   </div>
 </div>
 <div class="container">
@@ -26,7 +38,7 @@
         ones are hiring new students. Examples of past rotation reports are also
         found here.
       </p>
-      <p><button class="btn btn-outline-primary" disabled>Learn about labs</button></p>
+      <a href="{{ url_for('lab.index') }}" class="btn btn-outline-primary">Learn about labs</a>
     </div>
     <div class="col-md-4">
       <h2>Committee</h2>
@@ -41,7 +53,7 @@
     <div class="col-md-4">
       <h2>Career</h2>
       <p>Learn how to make the most of job hunting before and after defending your thesis.</p>
-      <p><button class="btn btn-outline-primary" disabled>Learn about jobs</button></p>
+      <a href="{{ url_for('career.index') }}" class="btn btn-outline-primary">Learn about jobs</a>
     </div>
     <div class="col-md-4">
       <h2>Outreach</h2>

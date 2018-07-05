@@ -88,6 +88,12 @@ def create_app(test_config=None):
     from . import protected
     app.register_blueprint(protected.bp)
 
+    from . import lab
+    app.register_blueprint(lab.bp)
+
+    from . import career
+    app.register_blueprint(career.bp)
+
     app.add_url_rule('/', endpoint='auth.login')
     
     return app
