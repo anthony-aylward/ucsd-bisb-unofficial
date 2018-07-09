@@ -1,4 +1,3 @@
-include ucsd_bisb_unofficial/schema.sql
 graft ucsd_bisb_unofficial/static
 graft ucsd_bisb_unofficial/templates
 global-exclude *.pyc
