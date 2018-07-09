@@ -65,34 +65,18 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
     
-    from .models import db, migrate, User
-    db.init_app(app)
-    migrate.init_app(app, db)
-
-    from .login import login
-    login.init_app(app)
+    from ucsd_bisb_unofficial.models import db, migrate, User
+    from ucsd_bisb_unofficial.login import login
+    from ucsd_bisb_unofficial.email import mail
+    for ext in db, migrate, login, mail:
+        ext.init_app(app)
     login.login_view = 'auth.login'
-
-    from .email import mail
-    mail.init_app(app)
     
-    from . import auth
-    app.register_blueprint(auth.bp)
-    
-    from . import blog
-    app.register_blueprint(blog.bp)
-    
-    from . import jumbotron
-    app.register_blueprint(jumbotron.bp)
-
-    from . import protected
-    app.register_blueprint(protected.bp)
-
-    from . import lab
-    app.register_blueprint(lab.bp)
-
-    from . import career
-    app.register_blueprint(career.bp)
+    from ucsd_bisb_unofficial import (
+        auth, blog, jumbotron, protected, lab, career
+    )
+    for bp in auth.bp, blog.bp, jumbotron.bp, protected.bp, lab.bp, career.bp:
+        app.register_blueprint(bp)
 
     app.add_url_rule('/', endpoint='auth.login')
     
