@@ -19,8 +19,6 @@ bp : Blueprint
 
 # Imports ======================================================================
 
-import functools
-
 from datetime import datetime
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for,
