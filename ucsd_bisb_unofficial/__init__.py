@@ -60,11 +60,6 @@ def create_app(test_config=None):
     except OSError:
         pass
     
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-    
     from ucsd_bisb_unofficial.models import db, migrate, User
     from ucsd_bisb_unofficial.login import login
     from ucsd_bisb_unofficial.email import mail
