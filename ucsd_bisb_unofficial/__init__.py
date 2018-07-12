@@ -68,9 +68,17 @@ def create_app(test_config=None):
     login.login_view = 'auth.login'
     
     from ucsd_bisb_unofficial import (
-        auth, blog, jumbotron, protected, lab, career
+        auth, blog, jumbotron, protected, lab, career, tech
     )
-    for bp in auth.bp, blog.bp, jumbotron.bp, protected.bp, lab.bp, career.bp:
+    for bp in (
+        auth.bp,
+        blog.bp,
+        jumbotron.bp,
+        protected.bp,
+        lab.bp,
+        career.bp,
+        tech.bp
+    ):
         app.register_blueprint(bp)
 
     app.add_url_rule('/', endpoint='auth.login')
