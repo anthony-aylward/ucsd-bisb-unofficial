@@ -60,7 +60,7 @@ def create_app(test_config=None):
     except OSError:
         pass
     
-    from ucsd_bisb_unofficial.models import db, migrate, User
+    from ucsd_bisb_unofficial.models import db, migrate, Role, get_db
     from ucsd_bisb_unofficial.login import login
     from ucsd_bisb_unofficial.email import mail
     for ext in db, login, mail:
@@ -83,5 +83,22 @@ def create_app(test_config=None):
         app.register_blueprint(bp)
 
     app.add_url_rule('/', endpoint='auth.login')
+
+    @app.before_first_request
+    def populate_databse():
+        with app.app_context():
+            db = get_db()
+            db.create_all()
+            commit = False
+            for name, description in (
+                ('admin', 'site administrator'),
+                ('whisper_user', 'whisper app user')
+            ):
+                if not Role.query.filter_by(name=name).first():
+                    role = Role(name=name, description=description)
+                    db.session.add(role)
+                    commit = True
+            if commit:
+                db.session.commit()
     
     return app

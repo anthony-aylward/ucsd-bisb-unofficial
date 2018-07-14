@@ -40,6 +40,17 @@ migrate = Migrate()
 
 
 
+# Auxiliary tables =============================================================
+
+roles_users = db.Table(
+    'roles_users',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('role_id', db.Integer, db.ForeignKey('role.id'))
+)
+
+
+
+
 # Classes ======================================================================
 
 # Models -----------------------------------------------------------------------
@@ -67,6 +78,12 @@ class User(UserMixin, db.Model):
     email_confirmation_sent_on = db.Column(db.DateTime, nullable=True)
     email_confirmed = db.Column(db.Boolean, default=False, nullable=True)
     email_confirmed_on = db.Column(db.DateTime, nullable=True)
+    roles = db.relationship(
+        'Role',
+        secondary=roles_users,
+        backref=db.backref('users', lazy='dynamic'),
+        lazy='dynamic'
+    )
 
     def __repr__(self):
         """String representation of the user
@@ -203,6 +220,19 @@ class User(UserMixin, db.Model):
         except:
             return
         return User.query.get(id)
+    
+    def add_role(self, role):
+        if not self.has_role(role):
+            self.roles.append(role)
+    
+    def remove_role(self, role):
+        if self.has_role(role):
+            self.roles.remove(role)
+    
+    def has_role(self, role):
+            return self.roles.filter(
+                roles_users.c.role_id == role.id
+            ).count() > 0
 
 
 class Post(db.Model):
@@ -233,6 +263,32 @@ class Post(db.Model):
         """
 
         return f'<Post {self.body}>'
+
+
+class Role(db.Model):
+    """A role
+
+    Attributes
+    ----------
+    id : int
+    name : str
+    description : str
+    """
+
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    description = db.Column(db.String(255))
+
+    def __repr__(self):
+        """String representation of the role
+        
+        Returns
+        -------
+        str
+            String representation of the role
+        """
+
+        return f'<Post {self.name}>'
 
 
 
