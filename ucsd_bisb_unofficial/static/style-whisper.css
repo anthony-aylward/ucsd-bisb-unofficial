@@ -1,10 +1,10 @@
 :root {
-  --primary: var(--cyan);
+  --primary: var(--yellow);
   --info: var(--blue);
-  --anchor: var(--teal);
-  --anchor-hover: var(--yellow);
-  --anchor-nav: paleturquoise;
-  --warning-outline: goldenrod;
+  --anchor: goldenrod;
+  --anchor-hover: var(--teal);
+  --anchor-nav: var(--gray);
+  --warning: var(--orange);
 }
 
 blockquote {
@@ -25,12 +25,13 @@ blockquote footer {
 }
 
 .btn-outline-primary {
-  color: var(--primary) !important;
-  border-color: var(--primary) !important;
+  color: goldenrod !important;
+  border-color: goldenrod !important;
 }
 .btn-outline-primary:hover:not(:disabled) {
-  color: var(--white) !important;
+  color: black !important;
   background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
 }
 .btn-outline-info {
   color: var(--info) !important;
@@ -41,8 +42,12 @@ blockquote footer {
   background-color: var(--info) !important;
 }
 .btn-outline-warning:not(:hover) {
-  color: var(--warning-outline) !important;
-  border-color: var(--warning-outline) !important;
+  color: var(--warning) !important;
+  border-color: var(--warning) !important;
+}
+.btn-outline-warning:hover:not(:disabled) {
+  color: var(--black) !important;
+  background-color: var(--warning) !important;
 }
 
 html { background: var(--dark); padding: 1rem; }
@@ -52,18 +57,18 @@ body {
   border-radius: 5px
 }
 
-h1 { color: var(--primary); margin: 1rem 0; }
+h1 { margin: 1rem 0; }
 a { color: var(--anchor); }
 a:hover { text-decoration: none; color: var(--anchor-hover) }
 hr { border: none; border-top: 1px solid var(--secondary); }
 
 nav {
-  color: var(--white); background: var(--primary); display: flex;
+  color: black; background: var(--primary); display: flex;
   align-items: center; padding: 0 0.5rem;
 }
 nav a { color: var(--anchor-nav); }
-nav a:hover { color: var(--white); }
-nav h1 { flex: auto; margin: 0; color: var(--white)}
+nav a:hover { color: black; }
+nav h1 { flex: auto; margin: 0; color: black}
 nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
 nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
 nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }

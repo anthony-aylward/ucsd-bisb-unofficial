@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Whisper login{% endblock %}
+{% block header %}{% endblock %}
+
+{% block content %}
+<div class="content-login">
+  <form class="form-login" method="post">
+      {{ whisper_login_form.hidden_tag() }}
+      {{
+        whisper_login_form.username(
+          id='username',
+          class_='form-control',
+          placeholder='Username',
+          required=True,
+          autofocus=True
+        )
+      }}
+      {{
+        whisper_login_form.password(
+          type='password',
+          id='password',
+          class_='form-control',
+          placeholder='Password',
+          required=True
+        )
+      }}
+      {{ whisper_login_form.submit(class_="btn btn-lg btn-outline-warning btn-block") }}
+    </form>
+  <p class="lead" align="center">OR</p>
+  <form class="form-login" method="post">
+    {{ send_whisper_email_form.hidden_tag() }}
+    {{ send_whisper_email_form.submit(class_="btn btn-lg btn-outline-warning btn-block") }}
+  </form>
+</div>
+{% endblock %}

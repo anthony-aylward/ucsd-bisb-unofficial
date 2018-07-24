@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block header %}
+{% extends "base.html" %} {% block header %}
 <h1>{% block title %}Career{% endblock %}</h1>
 {% endblock %} {% block content %}
 <hr>
@@ -27,4 +27,5 @@
   via emails, the slack channel, etc. would be nice to have on this page
   <footer class="blockquote-footer text-right">Tony</footer>
 </blockquote>
+<hr>See a recent example of a job opening for a <a href="{{ url_for('career.example_position') }}">computational biologist</a>.</hr>
 {% endblock %}

@@ -141,3 +141,33 @@ def send_confirmation_email(user):
             token=token
         )
     )
+
+
+def send_whisper_email(user):
+    """Send a whisper email
+
+    A JSON web token is created, then included in an email to the account for
+    which the email is to be confirmed
+
+    Parameters
+    ----------
+    user : User
+        The user whose email is to be confirmed for whisper
+    """
+
+    token = user.get_whisper_token()
+    send_email(
+        '[ucsd-bisb-unofficial] Whisper',
+        sender=current_app.config['ADMINS'][0],
+        recipients=[user.email],
+        text_body=render_template(
+            'email/whisper.txt',
+            user=user,
+            token=token
+        ),
+        html_body=render_template(
+            'email/whisper.html',
+            user=user,
+            token=token
+        )
+    )

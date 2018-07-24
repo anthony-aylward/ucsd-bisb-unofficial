@@ -118,6 +118,7 @@ class ResetPasswordForm(FlaskForm):
     ----------
     password : PasswordField
     password2 : PasswordField
+    submit : SubmitField
     """
 
     password = PasswordField('Password', validators=[DataRequired()])
@@ -126,3 +127,25 @@ class ResetPasswordForm(FlaskForm):
         validators=[DataRequired(), EqualTo('password')]
     )
     submit = SubmitField('Request Password Reset')
+
+
+class SendWhisperEmailForm(FlaskForm):
+    """A form for generating an email confirmation for a new whisper user
+    
+    Attributes
+    ----------
+    submit : SubmitField
+    """
+
+    submit = SubmitField('New Whisper Account')
+
+
+class NewWhisperUserForm(FlaskForm):
+    """A form for generating a new whisper user
+    
+    Attributes
+    ----------
+    submit : SubmitField
+    """
+
+    submit = SubmitField('Activate')

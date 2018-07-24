@@ -24,6 +24,8 @@ import os
 from flask import Blueprint, send_from_directory, current_app
 from flask_login import login_required
 
+from ucsd_bisb_unofficial.principals import named_permission
+
 
 
 # Blueprint assignment =========================================================
@@ -37,6 +39,7 @@ bp = Blueprint('protected', __name__, url_prefix='/protected')
 
 @bp.route('/<path:filename>')
 @login_required
+@named_permission.require(http_exception=403)
 def protected(filename):
     """Serve a protected file
     

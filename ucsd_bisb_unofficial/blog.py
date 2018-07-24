@@ -27,6 +27,7 @@ from werkzeug.exceptions import abort
 
 from ucsd_bisb_unofficial.forms import PostForm
 from ucsd_bisb_unofficial.models import get_db, Post
+from ucsd_bisb_unofficial.principals import named_permission
 
 
 
@@ -42,6 +43,7 @@ bp = Blueprint('blog', __name__, url_prefix='/blog')
 
 @bp.route('/index')
 @login_required
+@named_permission.require(http_exception=403)
 def index():
     """Render the blog index
 
@@ -55,6 +57,7 @@ def index():
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
+@named_permission.require(http_exception=403)
 def create():
     """Create a new post
     
@@ -108,6 +111,7 @@ def get_post(id, check_author=True):
 
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
+@named_permission.require(http_exception=403)
 def update(id):
     """Update a post
 
@@ -144,6 +148,7 @@ def update(id):
 
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
+@named_permission.require(http_exception=403)
 def delete(id):
     """Delete a post
 

@@ -15,7 +15,7 @@
     crossorigin="anonymous">
   
   <!-- Local CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style-whisper.css') }}">
   
   <title>{% block title %}{% endblock %} - UCSD BISB Unofficial</title>
 </head>
@@ -23,14 +23,9 @@
 <nav class='rounded-top'>
   <h1>UCSD BISB Unofficial</h1>
   <ul>
-    {% if current_user.is_anonymous %}
-      <li><a href="{{ url_for('auth.register') }}">Register</a>
-      <li><a href="{{ url_for('auth.login') }}">Log In</a>
-    {% else %}
-      <li><span>{{ current_user.username }}</span>
-      <li><a href="{{ url_for('jumbotron.index') }}">Home</a>
-      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-    {% endif %}
+    <li><span>{{ current_user.username }}</span>
+    <li><a href="{{ url_for('whisper.index') }}">Main</a>
+    <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
   </ul>
 </nav>
 <section class="content">

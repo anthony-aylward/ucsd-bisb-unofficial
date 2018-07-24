@@ -1,8 +1,8 @@
 #===============================================================================
-# career.py
+# tech.py
 #===============================================================================
 
-"""Career blueprint
+"""Tech blueprint
 
 Attributes
 ----------
@@ -22,6 +22,8 @@ bp : Blueprint
 from flask import Blueprint, render_template
 from flask_login import login_required
 
+from ucsd_bisb_unofficial.principals import named_permission
+
 
 
 
@@ -36,6 +38,7 @@ bp = Blueprint('tech', __name__, url_prefix='/tech')
 
 @bp.route('/index')
 @login_required
+@named_permission.require(http_exception=403)
 def index():
     """Render the tech index"""
 

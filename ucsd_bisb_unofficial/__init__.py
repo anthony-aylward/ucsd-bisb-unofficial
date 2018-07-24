@@ -63,13 +63,19 @@ def create_app(test_config=None):
     from ucsd_bisb_unofficial.models import db, migrate, Role, get_db
     from ucsd_bisb_unofficial.login import login
     from ucsd_bisb_unofficial.email import mail
-    for ext in db, login, mail:
+    from ucsd_bisb_unofficial.principals import principals
+    from ucsd_bisb_unofficial.errors import forbidden
+    
+    for ext in db, login, mail, principals:
         ext.init_app(app)
     migrate.init_app(app, db)
     login.login_view = 'auth.login'
+
+    for error, handler in ((403, forbidden),):
+        app.register_error_handler(403, forbidden)
     
     from ucsd_bisb_unofficial import (
-        auth, blog, jumbotron, protected, lab, career, tech
+        auth, blog, jumbotron, protected, lab, career, tech, whisper
     )
     for bp in (
         auth.bp,
@@ -78,7 +84,8 @@ def create_app(test_config=None):
         protected.bp,
         lab.bp,
         career.bp,
-        tech.bp
+        tech.bp,
+        whisper.bp
     ):
         app.register_blueprint(bp)
 
@@ -92,7 +99,8 @@ def create_app(test_config=None):
             commit = False
             for name, description in (
                 ('admin', 'site administrator'),
-                ('whisper_user', 'whisper app user')
+                ('whisper_user', 'whisper app user'),
+                ('named_user', 'named user')
             ):
                 if not Role.query.filter_by(name=name).first():
                     role = Role(name=name, description=description)

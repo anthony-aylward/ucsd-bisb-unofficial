@@ -17,7 +17,7 @@ login : LoginManager
 # Imports ======================================================================
 
 from flask_login import LoginManager
-from ucsd_bisb_unofficial.models import User
+from ucsd_bisb_unofficial.models import User, WhisperUser
 
 
 
@@ -49,4 +49,4 @@ def load_user(id):
         The user to be loaded
     """
     
-    return User.query.get(int(id))
+    return User.query.get(int(id)) or WhisperUser.query.get(int(id))

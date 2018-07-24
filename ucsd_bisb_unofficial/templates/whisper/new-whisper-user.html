@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}New whisper user{% endblock %}
+{% block header %}{% endblock %}
+
+{% block content %}
+<div class="content-login">
+  <form class="form-login" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.submit(class_="btn btn-lg btn-outline-warning btn-block") }}
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base-whisper.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Post{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="content-post">
+  <form method="post">
+    {{ form.hidden_tag() }}
+    {{ form.title.label }}
+    {{ form.title(id='title', required=True) }}
+    {{ form.body.label }}
+    {{ form.body(cols=32, rows=4, id='body') }}
+    {{ form.submit() }}
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block header %}<h1>{% block title %}403 Forbidden{% endblock %}</h1>{% endblock %}
+{% block content %}
+  <p>If you are logged in with a named account, you need to <a href="{{ url_for('whisper.confidentiality') }}">anonymize</a> before viewing this page.</p>
+  <p>
+    If you are logged in with an anonymous account, you need to
+    <a href="{{ url_for('auth.logout') }}">log out</a> and log back in with a
+    named account before viewing this page. If you don't want to do that, you
+    can go back to the <a href="{{ url_for('whisper.index') }}">whisper</a> app.
+  </p>
+{% endblock %}

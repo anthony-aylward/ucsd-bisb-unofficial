@@ -12,8 +12,7 @@
 from datetime import datetime
 import pytest
 from ucsd_bisb_unofficial import create_app
-from ucsd_bisb_unofficial.models import get_db, User, Post
-
+from ucsd_bisb_unofficial.models import get_db, User, Post, Role
 
 
 
@@ -82,6 +81,15 @@ def db(app, request):
     db = get_db()
     db.create_all()
 
+    for name, description in (
+        ('admin', 'site administrator'),
+        ('whisper_user', 'whisper app user'),
+        ('named_user', 'named user')
+    ):
+        if not Role.query.filter_by(name=name).first():
+            role = Role(name=name, description=description)
+            db.session.add(role)
+
     test_user = User(
         username='test',
         email='test@test.org',
@@ -100,6 +108,8 @@ def db(app, request):
 
     db.session.add(test_user)
     db.session.add(other_user)
+    test_user.add_role(Role.query.filter_by(name='named_user').first())
+    other_user.add_role(Role.query.filter_by(name='named_user').first())
     db.session.add(test_post)
     db.session.commit()
 

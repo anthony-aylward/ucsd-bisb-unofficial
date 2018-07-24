@@ -19,14 +19,10 @@ bp : Blueprint
 
 # Imports ======================================================================
 
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
-)
-from flask_login import current_user, login_required
-from werkzeug.exceptions import abort
+from flask import Blueprint, render_template
+from flask_login import login_required
 
-from ucsd_bisb_unofficial.forms import PostForm
-from ucsd_bisb_unofficial.models import get_db, Post
+from ucsd_bisb_unofficial.principals import named_permission
 
 
 
@@ -42,6 +38,7 @@ bp = Blueprint('lab', __name__, url_prefix='/lab')
 
 @bp.route('/index')
 @login_required
+@named_permission.require(http_exception=403)
 def index():
     """Render the lab index"""
 

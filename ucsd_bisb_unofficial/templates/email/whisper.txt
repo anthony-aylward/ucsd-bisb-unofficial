@@ -1,0 +1,8 @@
+Your account on ucsd-bisb-unofficial was successfully created.
+Please click the link below to confirm your email address and
+generate a whisper account:
+  
+{{ url_for('whisper.new_whisper_user', token=token, _external=True) }}
+ 
+--
+Questions? Comments? Email aaylward@eng.ucsd.edu

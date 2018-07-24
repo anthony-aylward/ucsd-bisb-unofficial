@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Whisper{% endblock %}</h1>
+{% endblock %} {% block content %}
+<hr>
+<p class="lead">
+  The purpose of this feature is to provide a space for students to share information
+  which they believe is important for other students to know, but which they are
+  only comfortable sharing under conditions of anonymity and confidentiality.
+</p>
+<p class="lead">
+  To view this content, you must accept the confidentiality agreement below. You
+  will then be directed to the Whisper login page, where you can create or log in to
+  your anonymous account.
+</p>
+<hr>
+<p>Insert confidentiality agreement here</p>
+<a href="{{ url_for('whisper.anonymize') }}" class="btn btn-outline-warning">Accept</a>
+<a href="{{ url_for('jumbotron.index') }}" class="btn btn-outline-secondary">Decline</a>
+{% endblock %}
