@@ -3,17 +3,44 @@
 {% endblock %} {% block content %}
 <hr>
 <p class="lead">
-  The purpose of this feature is to provide a space for students to share information
-  which they believe is important for other students to know, but which they are
-  only comfortable sharing under conditions of anonymity and confidentiality.
+  The purpose of this feature is to provide a space for students to share information which they believe is important for other
+  students to know, but which they are only comfortable sharing under conditions of anonymity and confidentiality.
 </p>
 <p class="lead">
-  To view this content, you must accept the confidentiality agreement below. You
-  will then be directed to the Whisper login page, where you can create or log in to
-  your anonymous account.
+  To view this content, you must accept the confidentiality agreement below. You will then be directed to the Whisper login
+  page, where you can create or log in to your anonymous account.
 </p>
 <hr>
-<p>Insert confidentiality agreement here</p>
+<p>DRAFT</p>
+<p>CONFIDENTIALITY AGREEMENT</p>
+<p>
+  In connection with your participation and use of
+  <code>ucsd-bisb-unofficial.info/whisper</code> (“Website”), it is expected that the Website and its Representatives (as defined below) will grant you access to or otherwise
+  make available to you certain information on the Website that will be subject to this confidentiality agreement. Such information
+  (whether oral, written, electronic or otherwise), regardless of the form in which it is provided or maintained, includes
+  but is not limited to, information provided by you or other users of this website, which could be provided by you or other
+  users of this Website, which will be hereinafter referred to as “Confidential Information,”
+</p>
+<p>---</p>
+<p>
+  This Confidentiality Agreement is entered into by and between You (hereinafter “User”) and your Representatives (as defined
+  below) and this website (“Website”), including any person affiliated with the Website and Representatives of the Website.
+  In this agreement, a “person” means any individual or entity, and a “Representative” include but is not limited to an affiliate
+  of the Website and the administrator, agents, employees, attorneys, accountants, and other representatives of the Website
+  and its affiliates.
+</p>
+<p>
+  WHEREAS Discloser possesses certain ideas and information relating to <a href="http://bioinformatics.ucsd.edu">UCSD Bioinformatics and Systems Biology that is confidential and proprietary
+  to Discloser (hereinafter "Confidential Information"); and
+</p>
+<p>
+  WHEREAS the Recipient is willing to receive disclosure of the Confidential Information pursuant to the terms of this Agreement
+  for the purpose of supporting Recipient's progress towards Ph.D;
+</p>
+<p>
+  NOW THEREFORE, in consideration for the mutual undertakings of the Discloser and the Recipient under this Agreement, the
+  parties agree as follows:
+</p>
 <a href="{{ url_for('whisper.anonymize') }}" class="btn btn-outline-warning">Accept</a>
 <a href="{{ url_for('jumbotron.index') }}" class="btn btn-outline-secondary">Decline</a>
 {% endblock %}
