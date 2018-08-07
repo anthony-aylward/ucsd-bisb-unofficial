@@ -196,7 +196,7 @@ def get_post(id, check_author=True):
     if post is None:
         abort(404, f"WhisperPost id {id} doesn't exist.")
     
-    if check_author and post.user_id != current_user.id:
+    if check_author and post.whisper_user_id != current_user.id:
         abort(403)
     
     return post
