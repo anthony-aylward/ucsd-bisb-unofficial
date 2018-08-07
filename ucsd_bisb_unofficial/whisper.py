@@ -84,10 +84,6 @@ def anonymize():
 
     send_whisper_email_form = SendWhisperEmailForm()
     whisper_login_form = LoginForm()
-    if send_whisper_email_form.validate_on_submit():
-        send_whisper_email(current_user)
-        flash('Please check your email to confirm and continue.')
-        return redirect(url_for('whisper.anonymize'))
     if whisper_login_form.validate_on_submit():
         whisper_user = (
             WhisperUser
@@ -95,12 +91,18 @@ def anonymize():
             .filter_by(username=whisper_login_form.username.data)
             .first()
         )
-        if user is None or not user.check_password(form.password.data):
+        if whisper_user is None or not whisper_user.check_password(
+            whisper_login_form.password.data
+        ):
             flash('Invalid username or password', 'error')
             return redirect(url_for('whisper.anonymize'))
         logout_user()
         login_user(whisper_user)
         return redirect(url_for('whisper.index'))
+    elif send_whisper_email_form.validate_on_submit():
+        send_whisper_email(current_user)
+        flash('Please check your email to confirm and continue.')
+        return redirect(url_for('whisper.anonymize'))
     return render_template(
         'whisper/anonymize.html',
         title='Anonymize',
