@@ -90,7 +90,7 @@ class PostForm(FlaskForm):
         'Say something',
         validators=[
             DataRequired(),
-            Length(min=1, max=140)
+            Length(min=1, max=80000)
         ]
     )
     submit = SubmitField('Submit')
