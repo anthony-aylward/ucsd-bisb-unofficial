@@ -41,7 +41,30 @@ MAIL_USERNAME = 'ucsd.bisb.unofficial'
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 ADMINS = ['ucsd.bisb.unofficial@gmail.com']
 APPROVED_EMAILS = [
-    'ucsd.bisb.unofficial@gmail.com'
+    'ucsd.bisb.unofficial@gmail.com',
+    'aaylward@eng.ucsd.edu',
+    'amraman@ucsd.edu',
+    'bkellman@eng.ucsd.edu',
+    'bbehsaz@eng.ucsd.edu',
+    'billgreenwald@eng.ucsd.edu',
+    'dnachman@eng.ucsd.edu',
+    'jenhantao@gmail.com',
+    'jensluebeck@gmail.com',
+    'jeyuan@eng.ucsd.edu',
+    'jil340@eng.ucsd.edu',
+    'jmccorri@eng.ucsd.edu',
+    'jsauls@eng.ucsd.edu',
+    'justin.k.huang@gmail.com',
+    'kasthana@eng.ucsd.edu',
+    'mdow@eng.ucsd.edu',
+    'mkrdonovan@gmail.com',
+    'najami@eng.ucsd.edu',
+    'niemamoshiri@gmail.com',
+    'ochapman@eng.ucsd.edu',
+    'ramarty@eng.ucsd.edu',
+    'sjroth@eng.ucsd.edu',
+    'r3fang@eng.ucsd.edu',
+    'yuq003@eng.ucsd.edu'
 ]
 '''
 ).format(os.urandom(16))
