@@ -264,14 +264,52 @@ def delete(id):
 # Other ------------------------------------------------------------------------
 
 def random_words(k):
+    """Randomly sample words from the Unix word list
+
+    Parameters
+    ----------
+    k : int
+        The sample size / number of words
+    
+    Returns
+    -------
+    list
+        The sample of words
+
+    """
     with open('/usr/share/dict/words', 'r') as f:
         words = f.read().splitlines()
     return random.sample(words, k)
 
 
 def random_username():
+    """Generate a username by concatenating two random words
+    
+    Returns
+    -------
+    str
+        The random username
+    """
+    
     return ''.join(random_words(2))
 
 
 def random_password(size=16, chars=string.ascii_letters + string.digits):
+    """Generate a random password
+
+    Parameters
+    ----------
+    size : int
+        Length of the password
+    chars : str
+        The character set to use, by default:
+        (string.ascii_letters + string.digits)
+    
+    Returns
+    -------
+    str
+        A password of the provided length generated from the provided character
+        set
+    """
+
     return ''.join(random.SystemRandom().choice(chars) for _ in range(size))
