@@ -3,6 +3,9 @@
 * Add link to BISB student slack
 * Alum page
 * Disclaimer indicating the site is not associated with UCSD in any official capacity
+
+# Other suggestions
+
 * Modernize layout/styling
 * Pick 2-3 features to keep on the front page, move the rest to an "and more..." page or something like that.
 * Provide an explanation / tutorial for the Whisper app.
