@@ -3,6 +3,8 @@
 * Add link to BISB student slack
 * Alum page
 * Disclaimer indicating the site is not associated with UCSD in any official capacity
+* Modernize layout/styling
+* Pick 2-3 features to keep on the front page, move the rest to an "and more..." page or something like that.
 
 # ucsd-bisb-unofficial
 The unofficial information hub for students in the Bioinformatics and Systems Biology graduate program at UCSD. If you have any questions about it, contact Tony (aaylward@eng.ucsd.edu).
