@@ -8,7 +8,6 @@
 # Other suggestions
 
 * Modernize layout/styling
-* Pick 2-3 features to keep on the front page, move the rest to an "and more..." page or something like that.
 * Provide an explanation / tutorial for the Whisper app.
 * Remove clutter above the fold on the front page, replace it with a call to action.
 
