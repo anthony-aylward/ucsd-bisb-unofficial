@@ -30,55 +30,17 @@
       <a href="{{ url_for('lab.index') }}" class="btn btn-outline-primary">Learn about labs</a>
     </div>
     <div class="col-md-4">
-      <h2>Committee</h2>
-      <p>View the makeup of doctoral committees previously accepted by the graduate division.</p>
-      <p><button class="btn btn-outline-primary" disabled>Browse committees</button></p>
-    </div>
-    <div class="col-md-4">
-      <h2>Exam</h2>
-      <p>See materials presented by students who passed qualifying and senate exams.</p>
-      <p><button class="btn btn-outline-primary" disabled>View exam materials</button></p>
-    </div>
-    <div class="col-md-4">
       <h2>Career</h2>
       <p>Learn how to make the most of job hunting before and after defending your thesis.</p>
       <a href="{{ url_for('career.index') }}" class="btn btn-outline-primary">Learn about jobs</a>
     </div>
+    {% block otherfeatures %}
     <div class="col-md-4">
-      <h2>Tech</h2>
-      <p>Bioinformatics is a discipline with many established best practices and standard technologies.</p>
-      <a href="{{ url_for('tech.index') }}" class="btn btn-outline-primary">Learn about tech</a>
+      <h2>More...</h2>
+      <p>See the rest of this site's features.</p>
+      <p><a href="{{ url_for('jumbotron.full') }}" class="btn btn-outline-primary">See more</a></p>
     </div>
-    <div class="col-md-4">
-      <h2>Outreach</h2>
-      <p>Learn how students are working to improve the diversity and profile of the program.</p>
-      <p><button class="btn btn-outline-primary" disabled>Reach out</button></p>
-    </div>
-    <div class="col-md-4">
-      <h2>Fellowship</h2>
-      <p>Learn what fellowships to apply for and how to maximize your chances.</p>
-      <p><button class="btn btn-outline-primary" disabled>Apply for fellowships</button></p>
-    </div>
-    <div class="col-md-4">
-      <h2>Survey</h2>
-      <p>View the results of a 2018 survey undertaken by GBIC to identify problems faced by students in the program.</p>
-      <a href="{{ url_for('protected.protected', filename='bisb-bmi-town-hall-survey-summary.pdf') }}" class="btn btn-outline-primary">View results</a>
-    </div>
-    <div class="col-md-4">
-      <h2>Whisper</h2>
-      <p>Share important but sensitive information anonymously and confidentially.</p>
-      <a href="{{ url_for('whisper.confidentiality') }}" class="btn btn-outline-primary">Whisper</a>
-    </div>
-    <div class="col-md-4">
-      <h2>Development</h2>
-      <p>This website still needs a lot of work! Contributions to development are welcomed, and it's easy to get started.</p>
-      <a href="https://github.com/anthony-aylward/ucsd-bisb-unofficial" class="btn btn-outline-secondary">Develop the site</a>
-    </div>
-    <div class="col-md-4">
-      <h2>Blog</h2>
-      <p>Simple Flask app for testing during development of the site.</p>
-      <a href="{{ url_for('blog.index') }}" class="btn btn-outline-secondary">View blog app</a>
-    </div>
+    {% endblock otherfeatures %}
   </div>
   <hr>
     <blockquote class="blockquote">
@@ -89,8 +51,8 @@
     <blockquote class="blockquote">
         This site still needs a lot of work, but I think if even just a few of 
         us contribute some time to it then it has the potential to make a lot
-        of things a little easier for most of us.
+        of things easier for most of us.
         <footer class="blockquote-footer text-right">Tony</footer>
       </blockquote>
 </div> 
-{% endblock %}
+{% endblock content %}
