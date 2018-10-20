@@ -1,0 +1,20 @@
+{% macro feature(title, description, button_text, href=none) %}
+<div class="col-md-4">
+  <h2>{{ title }}</h2>
+  <p>{{ description }}</p>
+  <p>
+    {% if href %}
+    <a href="{{ href }}" class="btn btn-outline-primary">{{ button_text }}</a>
+    {% else %}
+    <button class="btn btn-outline-primary" disabled>{{ button_text }}</button>
+    {% endif %}
+  </p>
+</div>
+{% endmacro %}
+
+{% macro quote(body, citation) %}
+<blockquote class="blockquote">
+  {{ body }}
+  <footer class="blockquote-footer text-right">{{ citation }}</footer>
+</blockquote>
+{% endmacro %}

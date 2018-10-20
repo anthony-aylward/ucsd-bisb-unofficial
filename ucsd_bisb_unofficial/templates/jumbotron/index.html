@@ -1,28 +1,6 @@
 {% extends 'base.html' %}
-
-{% macro feature(title, description, button_text, href=False) %}
-<div class="col-md-4">
-  <h2>{{ title }}</h2>
-  <p>{{ description }}</p>
-  <p>
-    {% if href %}
-    <a href="{{ href }}" class="btn btn-outline-primary">{{ button_text }}</a>
-    {% else %}
-    <button class="btn btn-outline-primary" disabled>{{ button_text }}</button>
-    {% endif %}
-  </p>
-</div>
-{% endmacro %}
-
-{% macro quote(body, citation) %}
-<blockquote class="blockquote">
-  {{ body }}
-  <footer class="blockquote-footer text-right">{{ citation }}</footer>
-</blockquote>
-{% endmacro %}
-
+{% import 'jumbotron/macros.html' as macros %}
 {% block title %}Index{% endblock %}
-
 {% block header %}{% endblock %}
 
 {% block content %}
@@ -45,7 +23,7 @@
 <div class="container">
   <div class="row">
     {{
-      feature(
+      macros.feature(
         'Lab',
         'Learn about the organizational styles of various labs, and about which
          ones are hiring new students. Examples of past rotation reports are
@@ -55,7 +33,7 @@
       )
     }}
     {{
-      feature(
+      macros.feature(
         'Career',
         'Learn how to make the most of job hunting before and after defending your thesis.',
         'Learn about jobs',
@@ -64,7 +42,7 @@
     }}
     {% block otherfeatures %}
     {{
-      feature(
+      macros.feature(
         'More...',
         'See the rest of this site\'s features.',
         'See more',
@@ -75,14 +53,14 @@
   </div>
   <hr>
     {{
-      quote(
+      macros.quote(
         'Current graduate students are the only reliable source of advice on
         how to succeed in graduate school.',
         'Tony'
       )
     }}
     {{
-      quote(
+      macros.quote(
         'This site still needs a lot of work, but I think if even just a few of 
         us contribute some time to it then it has the potential to make a lot
         of things easier for most of us.',

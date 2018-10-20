@@ -1,18 +1,5 @@
 {% extends 'jumbotron/index.html' %}
-
-{% macro feature(title, description, button_text, href=False) %}
-<div class="col-md-4">
-  <h2>{{ title }}</h2>
-  <p>{{ description }}</p>
-  <p>
-    {% if href %}
-    <a href="{{ href }}" class="btn btn-outline-primary">{{ button_text }}</a>
-    {% else %}
-    <button class="btn btn-outline-primary" disabled>{{ button_text }}</button>
-    {% endif %}
-  </p>
-</div>
-{% endmacro %}
+{% from 'jumbotron/macros.html' import feature as feature %}
 
 {% block otherfeatures %}
 {{
