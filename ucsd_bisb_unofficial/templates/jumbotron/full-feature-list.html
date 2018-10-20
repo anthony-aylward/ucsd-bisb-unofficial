@@ -1,48 +1,84 @@
 {% extends 'jumbotron/index.html' %}
+{% macro feature(title, description, button_text, href=False) %}
+<div class="col-md-4">
+  <h2>{{ title }}</h2>
+  <p>{{ description }}</p>
+  <p>
+    {% if href %}
+    <a href="{{ href }}" class="btn btn-outline-primary">{{ button_text }}</a>
+    {% else %}
+    <button class="btn btn-outline-primary" disabled>{{ button_text }}</button>
+    {% endif %}
+  </p>
+</div>
+{% endmacro %}
 {% block otherfeatures %}
-<div class="col-md-4">
-  <h2>Committee</h2>
-  <p>View the makeup of doctoral committees previously accepted by the graduate division.</p>
-  <p><button class="btn btn-outline-primary" disabled>Browse committees</button></p>
-</div>
-<div class="col-md-4">
-  <h2>Exam</h2>
-  <p>See materials presented by students who passed qualifying and senate exams.</p>
-  <p><button class="btn btn-outline-primary" disabled>View exam materials</button></p>
-</div>
-<div class="col-md-4">
-  <h2>Tech</h2>
-  <p>Bioinformatics is a discipline with many established best practices and standard technologies.</p>
-  <a href="{{ url_for('tech.index') }}" class="btn btn-outline-primary">Learn about tech</a>
-</div>
-<div class="col-md-4">
-  <h2>Outreach</h2>
-  <p>Learn how students are working to improve the diversity and profile of the program.</p>
-  <p><button class="btn btn-outline-primary" disabled>Reach out</button></p>
-</div>
-<div class="col-md-4">
-  <h2>Fellowship</h2>
-  <p>Learn what fellowships to apply for and how to maximize your chances.</p>
-  <p><button class="btn btn-outline-primary" disabled>Apply for fellowships</button></p>
-</div>
-<div class="col-md-4">
-  <h2>Survey</h2>
-  <p>View the results of a 2018 survey undertaken by GBIC to identify problems faced by students in the program.</p>
-  <a href="{{ url_for('protected.protected', filename='bisb-bmi-town-hall-survey-summary.pdf') }}" class="btn btn-outline-primary">View results</a>
-</div>
-<div class="col-md-4">
-  <h2>Whisper</h2>
-  <p>Share important but sensitive information anonymously and confidentially.</p>
-  <a href="{{ url_for('whisper.confidentiality') }}" class="btn btn-outline-primary">Whisper</a>
-</div>
-<div class="col-md-4">
-  <h2>Development</h2>
-  <p>This website still needs a lot of work! Contributions to development are welcomed, and it's easy to get started.</p>
-  <a href="https://github.com/anthony-aylward/ucsd-bisb-unofficial" class="btn btn-outline-secondary">Develop the site</a>
-</div>
-<div class="col-md-4">
-  <h2>Blog</h2>
-  <p>Simple Flask app for testing during development of the site.</p>
-  <a href="{{ url_for('blog.index') }}" class="btn btn-outline-secondary">View blog app</a>
-</div>
+{{
+  feature(
+    'Committee',
+    'View the makeup of doctoral committees previously accepted by the graduate division.',
+    'Browse committees'
+  )
+}}
+{{
+  feature(
+    'Exam',
+    'See materials presented by students who passed qualifying and senate exams.',
+    'View exam materials'
+  )
+}}
+{{
+  feature(
+    'Tech',
+    'Bioinformatics is a discipline with many established best practices and standard technologies.',
+    'Learn about tech',
+    href=url_for('tech.index')
+  )
+}}
+{{
+  feature(
+    'Outreach',
+    'Learn how students are working to improve the diversity and profile of the program.',
+    'Reach out'
+  )
+}}
+{{
+  feature(
+    'Fellowship',
+    'Learn what fellowships to apply for and how to maximize your chances.',
+    'Apply for fellowships'
+  )
+}}
+{{
+  feature(
+    'Survey',
+    'View the results of a 2018 survey undertaken by GBIC to identify problems faced by students in the program.',
+    'View results',
+    href=url_for('protected.protected', filename='bisb-bmi-town-hall-survey-summary.pdf')
+  )
+}}
+{{
+  feature(
+    'Whisper',
+    'Share important but sensitive information anonymously and confidentially.',
+    'Whisper',
+    href=url_for('whisper.confidentiality')
+  )
+}}
+{{
+  feature(
+    'Development',
+    'This website still needs a lot of work! Contributions to development are welcomed, and it\'s easy to get started.',
+    'Develop the site',
+    href='https://github.com/anthony-aylward/ucsd-bisb-unofficial'
+  )
+}}
+{{
+  feature(
+    'Blog',
+    'Simple Flask app for testing during development of the site.',
+    'View blog app',
+    href=url_for('blog.index')
+  )
+}}
 {% endblock otherfeatures %}
