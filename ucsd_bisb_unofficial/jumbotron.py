@@ -46,3 +46,12 @@ def index():
     """Render the index page"""
 
     return render_template('jumbotron/index.html')
+
+
+@bp.route('/full')
+@login_required
+@named_permission.require(http_exception=403)
+def full():
+    """Render the full feature list page"""
+
+    return render_template('jumbotron/full-feature-list.html')

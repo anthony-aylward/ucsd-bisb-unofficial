@@ -28,7 +28,7 @@
       <li><a href="{{ url_for('auth.login') }}">Log In</a>
     {% else %}
       <li><span>{{ current_user.username }}</span>
-      <li><a href="{{ url_for('jumbotron.index') }}">Home</a>
+      <li><a href="{{ url_for('jumbotron.full') }}">Home</a>
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
     {% endif %}
   </ul>

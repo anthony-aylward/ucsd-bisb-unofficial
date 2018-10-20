@@ -27,5 +27,19 @@
   via emails, the slack channel, etc. would be nice to have on this page
   <footer class="blockquote-footer text-right">Tony</footer>
 </blockquote>
-<hr>See a recent example of a job opening for a <a href="{{ url_for('career.example_position') }}">computational biologist</a>.</hr>
+<hr>
+<p>
+    See recent examples of job openings:
+    <ul>
+        <li><a href="https://jobs.lever.co/deepgenomics">Various</a> (Deep Genomics)</li>
+        <li><a href="https://guardanthealth.com/careers/jobs/">Various</a> (Guardant Health)</li>
+        <li><a href="{{ url_for('protected.protected', filename='2018-10-08-ascus-data-scientist-position.pdf') }}">Data scientist</a> (Ascus, 2018-10-08)</li>
+        <li><a href="https://illumina.wd1.myworkdayjobs.com/illumina-careers/job/US---California---San-Diego/Bioinformatics-Scientist-1_15216-JOB">Bioinformatics scientist</a> (Illumina, 2018-10-01)</li>
+        <li><a href="https://illumina.wd1.myworkdayjobs.com/en-US/illumina-careers/job/US---California---San-Diego/Bioinformatics-Scientist-1_13182-JOB">Bioinformatics scientist</a> (Illumina, 2018-08-28)</li>
+        <li><a href="{{ url_for('protected.protected', filename='2018-08-11-brightseed-bioinformatics-scientist-position.pdf') }}">Bioinformatics scientist</a> (Brightseed, 2018-08-11)</li>
+        <li><a href="{{ url_for('career.example_position') }}">Computational biologist</a> (Johnson & Johnson, 2018-07-17)</li>
+        <li><a href="{{ url_for('protected.protected', filename='2018-06-18-biota-data-science-position.pdf') }}">Data scientist</a> (Biota, 2018-06-18)</li>
+        <li><a href="{{ url_for('protected.protected', filename='2018-03-11-twinstrand-bioinformatics-engineer-position.pdf') }}">Bioinformatics engineer</a> (Twin Strand, 2018-03-11)</li>
+    </ul>
+</p>
 {% endblock %}
