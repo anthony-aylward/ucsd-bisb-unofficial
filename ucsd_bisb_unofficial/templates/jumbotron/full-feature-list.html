@@ -1,4 +1,5 @@
 {% extends 'jumbotron/index.html' %}
+
 {% macro feature(title, description, button_text, href=False) %}
 <div class="col-md-4">
   <h2>{{ title }}</h2>
@@ -12,6 +13,7 @@
   </p>
 </div>
 {% endmacro %}
+
 {% block otherfeatures %}
 {{
   feature(

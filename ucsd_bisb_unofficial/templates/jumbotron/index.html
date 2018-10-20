@@ -1,5 +1,28 @@
 {% extends 'base.html' %}
+
+{% macro feature(title, description, button_text, href=False) %}
+<div class="col-md-4">
+  <h2>{{ title }}</h2>
+  <p>{{ description }}</p>
+  <p>
+    {% if href %}
+    <a href="{{ href }}" class="btn btn-outline-primary">{{ button_text }}</a>
+    {% else %}
+    <button class="btn btn-outline-primary" disabled>{{ button_text }}</button>
+    {% endif %}
+  </p>
+</div>
+{% endmacro %}
+
+{% macro quote(body, citation) %}
+<blockquote class="blockquote">
+  {{ body }}
+  <footer class="blockquote-footer text-right">{{ citation }}</footer>
+</blockquote>
+{% endmacro %}
+
 {% block title %}Index{% endblock %}
+
 {% block header %}{% endblock %}
 
 {% block content %}
@@ -21,38 +44,50 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
-      <h2>Lab</h2>
-      <p>Learn about the organizational styles of various labs, and about which
-        ones are hiring new students. Examples of past rotation reports are also
-        found here.
-      </p>
-      <a href="{{ url_for('lab.index') }}" class="btn btn-outline-primary">Learn about labs</a>
-    </div>
-    <div class="col-md-4">
-      <h2>Career</h2>
-      <p>Learn how to make the most of job hunting before and after defending your thesis.</p>
-      <a href="{{ url_for('career.index') }}" class="btn btn-outline-primary">Learn about jobs</a>
-    </div>
+    {{
+      feature(
+        'Lab',
+        'Learn about the organizational styles of various labs, and about which
+         ones are hiring new students. Examples of past rotation reports are
+         also found here.',
+        'Learn about labs',
+        href=url_for('lab.index')
+      )
+    }}
+    {{
+      feature(
+        'Career',
+        'Learn how to make the most of job hunting before and after defending your thesis.',
+        'Learn about jobs',
+        href=url_for('career.index')
+      )
+    }}
     {% block otherfeatures %}
-    <div class="col-md-4">
-      <h2>More...</h2>
-      <p>See the rest of this site's features.</p>
-      <p><a href="{{ url_for('jumbotron.full') }}" class="btn btn-outline-primary">See more</a></p>
-    </div>
+    {{
+      feature(
+        'More...',
+        'See the rest of this site\'s features.',
+        'See more',
+        href=url_for('jumbotron.full')
+      )
+    }}
     {% endblock otherfeatures %}
   </div>
   <hr>
-    <blockquote class="blockquote">
-      Current graduate students are the only reliable source of advice on how 
-      to succeed in graduate school.
-      <footer class="blockquote-footer text-right">Tony</footer>
-    </blockquote>
-    <blockquote class="blockquote">
-        This site still needs a lot of work, but I think if even just a few of 
+    {{
+      quote(
+        'Current graduate students are the only reliable source of advice on
+        how to succeed in graduate school.',
+        'Tony'
+      )
+    }}
+    {{
+      quote(
+        'This site still needs a lot of work, but I think if even just a few of 
         us contribute some time to it then it has the potential to make a lot
-        of things easier for most of us.
-        <footer class="blockquote-footer text-right">Tony</footer>
-      </blockquote>
+        of things easier for most of us.',
+        'Tony'
+      )
+    }}
 </div> 
 {% endblock content %}
