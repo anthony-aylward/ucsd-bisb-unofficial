@@ -84,7 +84,7 @@ def parse_arguments():
     )
     parser.add_argument(
         'instance',
-        metavar='/path/to/instance-folder/',
+        metavar='<path/to/instance-folder/>',
         help='Path to instance folder'
     )
     return parser.parse_args()
