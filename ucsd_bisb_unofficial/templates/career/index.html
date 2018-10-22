@@ -1,4 +1,8 @@
-{% extends "base.html" %} {% block header %}
+{% extends "base.html" %}
+
+{% from 'macros.html' import quote as quote %}
+
+{% block header %}
 <h1>{% block title %}Career{% endblock %}</h1>
 {% endblock %} {% block content %}
 <hr>
@@ -8,25 +12,27 @@
   for some useful wisdom on this topic. (She's a program alum.)
 </p>
 <hr>
-<blockquote class="blockquote" cite="http://www.sciencemag.org/careers/2012/09/you-need-game-plan">
-  For scientists, finishing a Ph.D. or postdoc and automatically moving on to a research-faculty position is no longer the
-  norm. In fact, the share of all U.S. science and engineering doctorate recipients working in academe dropped from 55% to
-  44% between 1973 and 2008; that percentage includes postdocs, staff scientists, research and teaching faculty, and administrators.
-  Within academe, the proportion of scientists employed in tenured or tenure-track positions has also declined [...] likely
-  reflecting a growth in postdoctoral, staff scientist, and other non–tenure-track slots. And with a growing population of
-  talented trainees poised to enter the job market, the competition for sought-after academic jobs is tough.
-  <footer class="blockquote-footer text-right">
-    <a href="http://www.sciencemag.org/careers/2012/09/you-need-game-plan">
-      <cite title="You Need a Game Plan">You Need a Game Plan</cite>, Science Magazine
-    </a>
-  </footer>
-</blockquote>
+{{
+  quote(
+    'For scientists, finishing a Ph.D. or postdoc and automatically moving on to a research-faculty position is no longer the
+    norm. In fact, the share of all U.S. science and engineering doctorate recipients working in academe dropped from 55% to
+    44% between 1973 and 2008; that percentage includes postdocs, staff scientists, research and teaching faculty, and administrators.
+    Within academe, the proportion of scientists employed in tenured or tenure-track positions has also declined [...] likely
+    reflecting a growth in postdoctoral, staff scientist, and other non–tenure-track slots. And with a growing population of
+    talented trainees poised to enter the job market, the competition for sought-after academic jobs is tough.',
+    '<cite title="You Need a Game Plan">You Need a Game Plan</cite>, Science Magazine',
+    cite='http://www.sciencemag.org/careers/2012/09/you-need-game-plan',
+    safe=true
+  )
+}}
 <hr>
-<blockquote class="blockquote">
-  A feature allowing users to submit/browse job listings that have circulated through the program
-  via emails, the slack channel, etc. would be nice to have on this page
-  <footer class="blockquote-footer text-right">Tony</footer>
-</blockquote>
+{{
+  quote(
+    'A feature allowing users to submit/browse job listings that have circulated through the program
+    via emails, the slack channel, etc. would be nice to have on this page',
+    'Tony'
+  )
+}}
 <hr>
 <p>
     See recent examples of job openings:

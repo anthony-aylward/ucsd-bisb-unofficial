@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 
+{% from 'macros.html' import quote as quote %}
+
 {% block header %}
   <h1>{% block title %}Lab{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 <hr>
-<blockquote class="blockquote">
-  Students are evaluated every year and the program is evaluated every 4-8 
-  years, but individual labs are evaluated essentially never (at least WRT
-  bioinformatics student experience). Some labs are better than others. That 
-  means it's up to us to help new students decide where to go.
-  <footer class="blockquote-footer text-right">Tony</footer>
-</blockquote>
+{{
+  quote(
+    'Students are evaluated every year and the program is evaluated every 4-8 
+    years, but individual labs are evaluated essentially never (at least WRT
+    bioinformatics student experience). Some labs are better than others. That 
+    means it\'s up to us to help new students decide where to go.',
+    'Tony'
+  )
+}}
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'jumbotron/index.html' %}
-{% from 'jumbotron/macros.html' import feature as feature %}
+{% from 'macros.html' import feature as feature %}
 
 {% block otherfeatures %}
 {{
@@ -14,6 +14,12 @@
     'Exam',
     'See materials presented by students who passed qualifying and senate exams.',
     'View exam materials'
+  )
+}}
+{{
+  feature(
+    'Checklist',
+    'View a checklist of bureaucratic responsibilities for BISB students'
   )
 }}
 {{

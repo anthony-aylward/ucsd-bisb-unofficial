@@ -314,7 +314,7 @@ class Post(db.Model):
         str
             String representation of the post
         """
-
+        
         return f'<Post {self.body}>'
 
 

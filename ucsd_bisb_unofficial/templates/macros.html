@@ -12,9 +12,23 @@
 </div>
 {% endmacro %}
 
-{% macro quote(body, citation) %}
+{% macro quote(body, attribution, cite=none, safe=false) %}
+{% if cite %}
+<blockquote class="blockquote" cite="{{ cite }}">
+{% else %}
 <blockquote class="blockquote">
+{% endif %}
   {{ body }}
-  <footer class="blockquote-footer text-right">{{ citation }}</footer>
+  <footer class="blockquote-footer text-right">
+    {% if cite and safe %}
+    <a href="{{ cite }}">{{ attribution|safe }}</a>
+    {% elif cite %}
+    <a href="{{ cite }}">{{ attribution }}</a>
+    {% elif safe %}
+    {{ attribution|safe }}
+    {% else %}
+    {{ attribution }}
+    {% endif %}
+  </footer>
 </blockquote>
 {% endmacro %}

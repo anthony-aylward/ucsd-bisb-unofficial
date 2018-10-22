@@ -1,8 +1,8 @@
 #===============================================================================
-# lab.py
+# checklist.py
 #===============================================================================
 
-"""Lab blueprint
+"""Checklist blueprint
 
 Attributes
 ----------
@@ -29,7 +29,7 @@ from ucsd_bisb_unofficial.principals import named_permission
 
 # Blueprint assignment =========================================================
 
-bp = Blueprint('lab', __name__, url_prefix='/lab')
+bp = Blueprint('checklist', __name__, url_prefix='/checklist')
 
 
 
@@ -40,9 +40,6 @@ bp = Blueprint('lab', __name__, url_prefix='/lab')
 @login_required
 @named_permission.require(http_exception=403)
 def index():
-    """Render the lab index"""
-    
-    db = get_db()
-    posts = Post.query.all()
-    return render_template('lab/index.html', posts=posts)
+    """Render the checklist index"""
 
+    return render_template('checklist/index.html')
