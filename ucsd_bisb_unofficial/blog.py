@@ -51,7 +51,7 @@ def index():
     """
 
     db = get_db()
-    posts = Post.query.all()
+    posts = Post.query.filter(Post.tag == 'blog').all()
     return render_template('blog/index.html', posts=posts)
 
 
@@ -71,7 +71,8 @@ def create():
         post = Post(
             title=form.title.data,
             body=form.body.data,
-            author=current_user
+            author=current_user,
+            tag='blog'
         )
         db.session.add(post)
         db.session.commit()
