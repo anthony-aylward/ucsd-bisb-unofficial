@@ -298,6 +298,7 @@ class Post(db.Model):
     body : str
     timestamp : datetime
     user_id : int
+    tag : str
     """
 
     id = db.Column(db.Integer, primary_key=True)
@@ -305,6 +306,7 @@ class Post(db.Model):
     body = db.Column(db.String(80000))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    tag = db.Column(db.String(128))
 
     def __repr__(self):
         """String representation of the post
