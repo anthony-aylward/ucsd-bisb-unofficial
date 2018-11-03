@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% from 'macros.html' import quote as quote %}
+
+{% block header %}
+  <h1>{% block title %}TA{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<hr>
+<p class="lead">A BISB student asked:</p>
+{{
+  quote(
+    'Anyone have any advice on how to find TA positions? I\'m probably quite
+    late for Fall positions but I\'m not sure I even know the best way to find
+    them.',
+    'OP'
+  )
+}}
+<p class="lead">Another student gave this advice:</p>
+<ol>
+  <li>
+    Look at what’s being offered in the Fall and email professors directly if
+    you are interested in TAing their course. I think I blasted out like 10
+    emails one quarter.
+  </li>
+  <li>
+    Like Bill mentioned, get in touch with the Admins. Personally, I’d reach
+    out to the Bioengineering, CSE, and Biomedical Informatics (Elizabeth
+    Santillanez esantillanez@ucsd.edu).
+  </li>
+  <li>
+    CSE has a <a href="https://academicaffairs.ucsd.edu/Modules/ASES/Apply.aspx?cid=2474">formal TAship application</a>,
+    however it looks like the priority deadline has passed
+  </li>
+  <li>
+    Open positions can be found <a href="https://academicaffairs.ucsd.edu/Modules/ASES/OpenPositions.aspx">here</a>,
+    but I’m not sure how relevant they are
+  </li>
+  <li>
+    If there is some urgency (e.g. you need to complete your TAship immediately
+    for some reason) talk to Vineet Bafna.
+  </li>
+</ol>
+{% endblock %}

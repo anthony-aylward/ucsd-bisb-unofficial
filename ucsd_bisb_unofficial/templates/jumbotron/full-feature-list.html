@@ -4,6 +4,22 @@
 {% block otherfeatures %}
 {{
   feature(
+    'Residency',
+    'Find out how to deal with California residency issues',
+    'Learn about residency',
+    href=url_for('residency.index')
+  )
+}}
+{{
+  feature(
+    'TA',
+    'Find teaching assistantship positions',
+    'Find a TAship',
+    href=url_for('ta.index')
+  )
+}}
+{{
+  feature(
     'Committee',
     'View the makeup of doctoral committees previously accepted by the graduate division.',
     'Browse committees'
@@ -19,12 +35,13 @@
 {{
   feature(
     'Checklist',
-    'View a checklist of bureaucratic responsibilities for BISB students'
+    'View a checklist of bureaucratic responsibilities for BISB students',
+    'Check the list'
   )
 }}
 {{
   feature(
-    'Tech',
+    'Technology',
     'Bioinformatics is a discipline with many established best practices and standard technologies.',
     'Learn about tech',
     href=url_for('tech.index')

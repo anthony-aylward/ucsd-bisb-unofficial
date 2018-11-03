@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% from 'macros.html' import quote as quote %}
+
+{% block header %}
+  <h1>{% block title %}Residency{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<hr>
+<p class="lead">A BISB student asked:</p>
+{{
+  quote(
+    'Has anyone had the experience of applying for residency after going out of
+    state for a summer internship? I have a feeling I am about to get into a
+    bit of a problem.',
+    'OP'
+  )
+}}
+<p class="lead">This conversation followed:</p>
+<ul>
+  <li>
+    <strong>A:</strong> After going to the residency-application seminar last
+    year I think you might be in a bit of a pickle there. Do you have any
+    documents (bills, etc?) that might support that you were still "residing"
+    in CA?
+  </li>
+  <li>
+    <strong>OP:</strong> Yes I do have utilities, and internet.
+  </li>
+  <li>
+    <strong>OP:</strong> Ugh oh boy this is about to be quite a situation. I am
+    also considering getting a letter from Olivier that this is part of my
+    training but that may be a stretch.
+  </li>
+  <li>
+    <strong>A:</strong> idk if that's a good idea
+  </li>
+  <li>
+    <strong>A:</strong> Not to be Michael Cohen here, but you may want to
+    forget that you left CA for the summer when you fill out the form
+  </li>
+  <li>
+    <strong>OP:</strong> I don’t know what to do about my banking and credit
+    card statements then :expressionless:
+  </li>
+  <li>
+    <strong>B:</strong> Contact the grad coordinator, they are on your side here
+  </li>
+  <li>
+    <strong>C:</strong> if you have a CA lisence you should be fine
+  </li>
+  <li>
+    <strong>D:</strong> at the seminar I was at a few months ago they said
+    summer internships were fine as long as it's for your training. I think
+    your best bet is a letter from Olivier since they'll tell based on your
+    bank statements anyway.
+  </li>
+  <li>
+    <strong>OP:</strong> Ok great, I’m glad they said that!
+  </li>
+</ul>
+{% endblock %}
