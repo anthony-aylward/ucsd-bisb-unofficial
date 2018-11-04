@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-
-{% from 'macros.html' import quote as quote %}
+{% import 'macros.html' as macros %}
 
 {% block header %}
-<h1>{% block title %}Career{% endblock %}</h1>
-{% endblock %} {% block content %}
+<h1>{% block title %}Career{% endblock title %}</h1>
+<a class="action" href="{{ url_for('career.create') }}">New post</a>
+{% endblock header %}
+{% block content %}
 <hr>
 <p class="lead">
   Check out
@@ -13,7 +14,7 @@
 </p>
 <hr>
 {{
-  quote(
+  macros.quote(
     'For scientists, finishing a Ph.D. or postdoc and automatically moving on to a research-faculty position is no longer the
     norm. In fact, the share of all U.S. science and engineering doctorate recipients working in academe dropped from 55% to
     44% between 1973 and 2008; that percentage includes postdocs, staff scientists, research and teaching faculty, and administrators.
@@ -27,7 +28,7 @@
 }}
 <hr>
 {{
-  quote(
+  macros.quote(
     'A feature allowing users to submit/browse job listings that have circulated through the program
     via emails, the slack channel, etc. would be nice to have on this page',
     'Tony'
@@ -49,4 +50,5 @@
         <li><a href="{{ url_for('protected.protected', filename='2018-03-11-twinstrand-bioinformatics-engineer-position.pdf') }}">Bioinformatics engineer</a> (Twin Strand, 2018-03-11)</li>
     </ul>
 </p>
-{% endblock %}
+{{ macros.list_of_posts(posts, current_user, 'career.update') }}
+{% endblock content %}
