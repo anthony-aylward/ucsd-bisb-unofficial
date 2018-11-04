@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
-
-{% from 'macros.html' import quote as quote %}
+{% import 'macros.html' as macros %}
 
 {% block header %}
-  <h1>{% block title %}TA{% endblock %}</h1>
+<h1>{% block title %}TA{% endblock %}</h1>
+<a class="action" href="{{ url_for('ta.create') }}">New post</a>
 {% endblock %}
 
 {% block content %}
 <hr>
 <p class="lead">A BISB student asked:</p>
 {{
-  quote(
+  macros.quote(
     'Anyone have any advice on how to find TA positions? I\'m probably quite
     late for Fall positions but I\'m not sure I even know the best way to find
     them.',
@@ -42,4 +42,5 @@
     for some reason) talk to Vineet Bafna.
   </li>
 </ol>
+{{ macros.list_of_posts(posts, current_user, 'ta.update') }}
 {% endblock %}

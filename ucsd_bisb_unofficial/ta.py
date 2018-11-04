@@ -19,10 +19,19 @@ bp : Blueprint
 
 # Imports ======================================================================
 
-from flask import Blueprint, render_template
-from flask_login import login_required
+from flask import (
+    Blueprint, flash, g, redirect, render_template, request, url_for
+)
+from flask_login import current_user, login_required
+from werkzeug.exceptions import abort
 
+from ucsd_bisb_unofficial.forms import PostForm
+from ucsd_bisb_unofficial.models import get_db, Post
 from ucsd_bisb_unofficial.principals import named_permission
+from ucsd_bisb_unofficial.blog import (
+    get_post, construct_create_route, construct_update_route,
+    construct_delete_route
+)
 
 
 
@@ -42,5 +51,12 @@ bp = Blueprint('ta', __name__, url_prefix='/ta')
 def index():
     """Render the ta index"""
     
-    return render_template('ta/index.html')
+    db = get_db()
+    posts = Post.query.filter(Post.tag == 'ta').all()[::-1]
+    return render_template('ta/index.html', posts = posts)
+
+
+create = construct_create_route(bp, 'ta')
+update = construct_update_route(bp, 'ta')
+delete = construct_delete_route(bp, 'ta')
 

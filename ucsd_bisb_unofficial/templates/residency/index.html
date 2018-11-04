@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 
-{% from 'macros.html' import quote as quote %}
+{% import 'macros.html' as macros %}
 
 {% block header %}
-  <h1>{% block title %}Residency{% endblock %}</h1>
+<h1>{% block title %}Residency{% endblock %}</h1>
+<a class="action" href="{{ url_for('residency.create') }}">New post</a>
 {% endblock %}
 
 {% block content %}
 <hr>
 <p class="lead">A BISB student asked:</p>
 {{
-  quote(
+  macros.quote(
     'Has anyone had the experience of applying for residency after going out of
     state for a summer internship? I have a feeling I am about to get into a
     bit of a problem.',
@@ -60,4 +61,5 @@
     <strong>OP:</strong> Ok great, I’m glad they said that!
   </li>
 </ul>
+{{ macros.list_of_posts(posts, current_user, 'residency.update') }}
 {% endblock %}

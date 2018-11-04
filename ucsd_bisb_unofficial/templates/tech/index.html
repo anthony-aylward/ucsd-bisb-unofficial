@@ -1,6 +1,12 @@
-{% extends 'base.html' %} {% block header %}
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block header %}
 <h1>{% block title %}Tech{% endblock %}</h1>
-{% endblock %} {% block content %}
+<a class="action" href="{{ url_for('tech.create') }}">New post</a>
+{% endblock header %}
+
+{% block content %}
 <hr>
 <p class="lead">
   Check out
@@ -8,4 +14,5 @@
   to jump-start your understanding of modern next-generation sequencing technologies
   and software analysis pipelines.
 </p>
-{% endblock %}
+{{ macros.list_of_posts(posts, current_user, 'tech.update') }}
+{% endblock content %}
