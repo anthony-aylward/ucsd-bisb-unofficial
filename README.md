@@ -6,7 +6,6 @@
 
 * Modernize layout/styling
 * Provide an explanation / tutorial for the Whisper app.
-* Remove clutter above the fold on the front page, replace it with a call to action.
 
 # ucsd-bisb-unofficial
 The unofficial information hub for students in the Bioinformatics and Systems Biology graduate program at UCSD. If you have any questions about it, contact Tony (aaylward@eng.ucsd.edu).
