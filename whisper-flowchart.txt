@@ -1,0 +1,13 @@
+st=>start: Accept confidentiality agreement
+e=>end: Browse
+op1=>operation: Log in with existing credentials
+op2=>operation: Generate new account token
+op3=>operation: Check email and follow token link
+op4=>operation: Activate new account
+op5=>operation: Record account credentials
+cond=>condition: Create new
+Account?
+
+st->cond
+cond(no)->op1->e
+cond(yes)->op2->op3->op4->op5->e
