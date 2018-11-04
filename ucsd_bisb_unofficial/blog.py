@@ -51,34 +51,36 @@ def index():
     """
 
     db = get_db()
-    posts = Post.query.filter(Post.tag == 'blog').all()
+    posts = Post.query.filter(Post.tag == 'blog').all()[::-1]
     return render_template('blog/index.html', posts=posts)
 
 
-@bp.route('/create', methods=('GET', 'POST'))
-@login_required
-@named_permission.require(http_exception=403)
-def create():
-    """Create a new post
-    
-    This page includes a PostForm (see `forms.py`). A new post will be added to
-    the database based on the form data.
-    """
+def construct_create_route(blueprint, tag):
+    @blueprint.route('/create', methods=('GET', 'POST'))
+    @login_required
+    @named_permission.require(http_exception=403)
+    def create():
+        """Create a new post
+        
+        This page includes a PostForm (see `forms.py`). A new post will be added to
+        the database based on the form data.
+        """
 
-    db = get_db()
-    form = PostForm()
-    if form.validate_on_submit():
-        post = Post(
-            title=form.title.data,
-            body=form.body.data,
-            author=current_user,
-            tag='blog'
-        )
-        db.session.add(post)
-        db.session.commit()
-        flash('your post is now live!')
-        return redirect(url_for('blog.index'))
-    return render_template('blog/create.html', form=form)
+        db = get_db()
+        form = PostForm()
+        if form.validate_on_submit():
+            post = Post(
+                title=form.title.data,
+                body=form.body.data,
+                author=current_user,
+                tag=tag
+            )
+            db.session.add(post)
+            db.session.commit()
+            flash('your post is now live!')
+            return redirect(url_for(f'{tag}.index'))
+        return render_template(f'blog/create.html', form=form)
+    return create
 
 
 def get_post(id, check_author=True):
@@ -110,57 +112,66 @@ def get_post(id, check_author=True):
     return post
 
 
-@bp.route('/<int:id>/update', methods=('GET', 'POST'))
-@login_required
-@named_permission.require(http_exception=403)
-def update(id):
-    """Update a post
+def construct_update_route(blueprint, tag):
+    @blueprint.route('/<int:id>/update', methods=('GET', 'POST'))
+    @login_required
+    @named_permission.require(http_exception=403)
+    def update(id):
+        """Update a post
 
-    Retrieves the post with the provided ID and provides a PostForm that can
-    be used to edit it.
+        Retrieves the post with the provided ID and provides a PostForm that can
+        be used to edit it.
 
-    Parameters
-    ----------
-    id : int
-        The id of the post to be updated
-    """
+        Parameters
+        ----------
+        id : int
+            The id of the post to be updated
+        """
 
-    post = get_post(id)
-    form = PostForm()
-    if request.method == 'POST':
-        title = request.form['title']
-        body = request.form['body']
-        error = None
+        post = get_post(id)
+        form = PostForm()
+        if request.method == 'POST':
+            title = request.form['title']
+            body = request.form['body']
+            error = None
+            
+            if not title:
+                error = 'Title is required.'
+            
+            if error is not None:
+                flash(error)
+            else:
+                post.title = title
+                post.body = body
+                db = get_db()
+                db.session.commit()
+                return redirect(url_for(f'{tag}.index'))
         
-        if not title:
-            error = 'Title is required.'
-        
-        if error is not None:
-            flash(error)
-        else:
-            post.title = title
-            post.body = body
-            db = get_db()
-            db.session.commit()
-            return redirect(url_for('blog.index'))
-    
-    return render_template('blog/update.html', form=form, post=post)
+        return render_template(f'blog/update.html', form=form, post=post)
+    return update
 
 
-@bp.route('/<int:id>/delete', methods=('POST',))
-@login_required
-@named_permission.require(http_exception=403)
-def delete(id):
-    """Delete a post
+def construct_delete_route(blueprint, tag):
+    @blueprint.route('/<int:id>/delete', methods=('POST',))
+    @login_required
+    @named_permission.require(http_exception=403)
+    def delete(id):
+        """Delete a post
 
-    Parameters
-    ----------
-    id : int
-        The ID no. of the post to be deleted
-    """
+        Parameters
+        ----------
+        id : int
+            The ID no. of the post to be deleted
+        """
 
-    post = get_post(id)
-    db = get_db()
-    db.session.delete(post)
-    db.session.commit()
-    return redirect(url_for('blog.index'))
+        post = get_post(id)
+        db = get_db()
+        db.session.delete(post)
+        db.session.commit()
+        return redirect(url_for(f'{tag}.index'))
+    return delete
+
+
+create = construct_create_route(bp, 'blog')
+update = construct_update_route(bp, 'blog')
+delete = construct_delete_route(bp, 'blog')

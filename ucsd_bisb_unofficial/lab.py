@@ -28,7 +28,10 @@ from werkzeug.exceptions import abort
 from ucsd_bisb_unofficial.forms import PostForm
 from ucsd_bisb_unofficial.models import get_db, Post
 from ucsd_bisb_unofficial.principals import named_permission
-from ucsd_bisb_unofficial.blog import get_post as get_post
+from ucsd_bisb_unofficial.blog import (
+    get_post, construct_create_route, construct_update_route,
+    construct_delete_route
+)
 
 
 
@@ -49,88 +52,10 @@ def index():
     """Render the lab index"""
     
     db = get_db()
-    posts = Post.query.filter(Post.tag == 'lab').all()
+    posts = Post.query.filter(Post.tag == 'lab').all()[::-1]
     return render_template('lab/index.html', posts=posts)
 
 
-@bp.route('/create', methods=('GET', 'POST'))
-@login_required
-@named_permission.require(http_exception=403)
-def create():
-    """Create a new post
-    
-    This page includes a PostForm (see `forms.py`). A new post will be added to
-    the database based on the form data.
-    """
-
-    db = get_db()
-    form = PostForm()
-    if form.validate_on_submit():
-        post = Post(
-            title=form.title.data,
-            body=form.body.data,
-            author=current_user,
-            tag='lab'
-        )
-        db.session.add(post)
-        db.session.commit()
-        flash('your post is now live!')
-        return redirect(url_for('lab.index'))
-    return render_template('blog/create.html', form=form)
-
-
-@bp.route('/<int:id>/update', methods=('GET', 'POST'))
-@login_required
-@named_permission.require(http_exception=403)
-def update(id):
-    """Update a post
-
-    Retrieves the post with the provided ID and provides a PostForm that can
-    be used to edit it.
-
-    Parameters
-    ----------
-    id : int
-        The id of the post to be updated
-    """
-
-    post = get_post(id)
-    form = PostForm()
-    if request.method == 'POST':
-        title = request.form['title']
-        body = request.form['body']
-        error = None
-        
-        if not title:
-            error = 'Title is required.'
-        
-        if error is not None:
-            flash(error)
-        else:
-            post.title = title
-            post.body = body
-            db = get_db()
-            db.session.commit()
-            return redirect(url_for('lab.index'))
-    
-    return render_template('blog/update.html', form=form, post=post)
-
-
-@bp.route('/<int:id>/delete', methods=('POST',))
-@login_required
-@named_permission.require(http_exception=403)
-def delete(id):
-    """Delete a post
-
-    Parameters
-    ----------
-    id : int
-        The ID no. of the post to be deleted
-    """
-
-    post = get_post(id)
-    db = get_db()
-    db.session.delete(post)
-    db.session.commit()
-    return redirect(url_for('lab.index'))
-
+create = construct_create_route(bp, 'lab')
+update = construct_update_route(bp, 'lab')
+delete = construct_delete_route(bp, 'lab')
