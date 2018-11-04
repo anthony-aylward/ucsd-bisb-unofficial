@@ -1,6 +1,5 @@
 # TO DO
 
-* Add link to BISB student slack
 * Alum page
 * Disclaimer indicating the site is not associated with UCSD in any official capacity
 
