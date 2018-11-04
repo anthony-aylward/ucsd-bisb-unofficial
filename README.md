@@ -1,7 +1,6 @@
 # TO DO
 
 * Alum page
-* Disclaimer indicating the site is not associated with UCSD in any official capacity
 
 # Other suggestions
 
