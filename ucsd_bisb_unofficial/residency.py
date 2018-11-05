@@ -53,7 +53,7 @@ def index():
     
     db = get_db()
     posts = Post.query.filter(Post.tag == 'residency').all()[::-1]
-    return render_template('residency/index.html')
+    return render_template('residency/index.html', posts=posts)
 
 
 create = construct_create_route(bp, 'residency')
