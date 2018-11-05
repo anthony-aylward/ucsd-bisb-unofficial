@@ -1,11 +1,11 @@
 # TO DO
 
+* Parse markdown in posts
 * Alum page
 
 # Other suggestions
 
 * Modernize layout/styling
-* Provide an explanation / tutorial for the Whisper app.
 
 # ucsd-bisb-unofficial
 The unofficial information hub for students in the Bioinformatics and Systems Biology graduate program at UCSD. If you have any questions about it, contact Tony (aaylward@eng.ucsd.edu).
