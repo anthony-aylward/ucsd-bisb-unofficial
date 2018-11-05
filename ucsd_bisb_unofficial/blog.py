@@ -147,7 +147,12 @@ def construct_update_route(blueprint, tag):
                 db.session.commit()
                 return redirect(url_for(f'{tag}.index'))
         
-        return render_template(f'blog/update.html', form=form, post=post)
+        return render_template(
+            'blog/update.html',
+            form=form,
+            post=post,
+            delete_route=f'{tag}.delete'
+        )
     return update
 
 
