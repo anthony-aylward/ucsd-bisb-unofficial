@@ -75,6 +75,15 @@ def confidentiality():
     return render_template('whisper/confidentiality.html')
 
 
+@bp.route('/info')
+@login_required
+@named_permission.require(http_exception=403)
+def info():
+    """Render the information page"""
+
+    return render_template('whisper/info.html')
+
+
 @bp.route('/anonymize', methods=('GET', 'POST'))
 @login_required
 @named_permission.require(http_exception=403)

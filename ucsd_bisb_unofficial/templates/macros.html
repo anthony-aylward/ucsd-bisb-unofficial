@@ -1,12 +1,18 @@
-{% macro feature(title, description, button_text, href=none) %}
+{% macro feature(
+  title,
+  description,
+  button_text,
+  button_class='btn btn-outline-primary',
+  href=none
+) %}
 <div class="col-md-4">
   <h2>{{ title }}</h2>
   <p>{{ description }}</p>
   <p>
     {% if href %}
-    <a href="{{ href }}" class="btn btn-outline-primary">{{ button_text }}</a>
+    <a href="{{ href }}" class="{{ button_class }}">{{ button_text }}</a>
     {% else %}
-    <button class="btn btn-outline-primary" disabled>{{ button_text }}</button>
+    <button class="{{ button_class }}" disabled>{{ button_text }}</button>
     {% endif %}
   </p>
 </div>

@@ -7,6 +7,11 @@
   --warning-outline: goldenrod;
 }
 
+img.center {
+  display: block;
+  margin: 0 auto;
+}
+
 blockquote {
   /* background: var(--light); */
   /* border-left: 10px solid var(--gray); */

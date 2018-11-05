@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block header %}
+<h1>{% block title %}Whisper{% endblock title %}</h1>
+{% endblock header %}
+{% block content %}
+<hr>
+<p class="lead">
+  The whisper feature is designed to be a place where students can post
+  information anonymously. To that end, you must use an anonymous account
+  to access it, rather than an account attached to your email address.
+</p>
+<p class="lead">
+  Here's how it works:
+  <ol>
+    <li><strong>Accept the confidentiality agreement.</strong></li>
+    <li>
+      <strong>Create a new anonymous account.</strong> To confirm your identity, an email will
+      be sent to you containing a link with a new account token. Following that
+      link will generate a new anonymous account for you and take you to
+      the activation page.
+    </li>
+    <li>
+      <strong>Activate the new anonymous account</strong> by clicking the "activate" button. You
+      will be redirected to the Whisper home page and shown the credentials
+      (username and password) for the account you have just created.
+      <span class="text-danger">This is the only chance you will have to write
+      down the anonymous account credentials</span>, so record them now in a
+      safe place if you want to edit posts that you make later or just
+      have a quicker login process.
+    </li>
+    <li>
+      <strong>Browse</strong> posts in the Whisper section and/or make new
+      posts.
+    </li>
+  </ol>
+</p>
+<p>
+  Once you have created an anonymous account, the next time you access the
+  Whisper feature you may either log in with your existing credentials or
+  create a new anonymous account. You can create as many anonymous accounts
+  as you like.
+</p>
+<img
+  class="center"
+  src="{{ url_for('protected.protected', filename='whisper-flowchart.svg') }}"
+  alt="Whisper flowchart"
+  height="800px"
+/>
+<div>
+  <br />
+  <a href="{{ url_for('whisper.confidentiality') }}" class="btn btn-outline-primary">Back to confidentiality agreement</a>
+  <a href="{{ url_for('jumbotron.index') }}" class="btn btn-outline-secondary">Back to home page</a>
+</div>
+{% endblock content %}
