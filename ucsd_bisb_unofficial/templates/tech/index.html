@@ -14,5 +14,30 @@
   to jump-start your understanding of modern next-generation sequencing technologies
   and software analysis pipelines.
 </p>
+<hr>
+<p class="lead">
+  Brett Copeland posted <a href="{{ url_for('protected.protected', filename='perlibs.tar.gz') }}">
+  a collection of useful scripts</a> to the BISB student slack. He wrote:
+</p>
+<p>
+  I've got a collection of scripts that help in viewing files on the command
+  line; I didn't create most of them, but three I can suggest using are the
+  following:
+  <ul>
+    <li>
+      <code>sheet.pl</code> (other two are just wrappers to it)
+      (this helps viewing any regularly delimited file, e.g. csv, tsv);
+      use <code>sheet.pl -d <delimiter> <file> | less -S</code>
+    </li>
+    <li>
+      <code>view_vcf <vcf></code> (passes whatever other arguments you use onto
+      tabix, so can subset to an indexed file readily)
+    </li>
+    <li><code>view_bam <bam></code> (passes other arguments to samtools view)</li>
+  </ul>
+</p>
+<p>
+  These help a lot in being readily able to read and interpret these files.
+</p>
 {{ macros.list_of_posts(posts, current_user, 'tech.update') }}
 {% endblock content %}
