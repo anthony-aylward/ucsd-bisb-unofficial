@@ -63,7 +63,7 @@ def index():
     """
 
     db = get_db()
-    posts = WhisperPost.query.all()
+    posts = WhisperPost.query.all()[::-1]
     return render_template('whisper/index.html', posts=posts)
 
 
