@@ -35,8 +35,9 @@ from ucsd_bisb_unofficial.forms import (
     LoginForm, SendWhisperEmailForm, NewWhisperUserForm, PostForm
 )
 from ucsd_bisb_unofficial.models import (
-    get_db, Role, User, WhisperUser, WhisperPost
+    get_db, Role, WhisperUser, WhisperPost
 )
+from ucsd_bisb_unofficial.models import User as NamedUser
 from ucsd_bisb_unofficial.principals import whisper_permission, named_permission
 
 
@@ -105,7 +106,9 @@ def anonymize():
         ):
             flash('Invalid username or password', 'error')
             return redirect(url_for('whisper.anonymize'))
+        User = NamedUser
         logout_user()
+        User = WhisperUser
         login_user(whisper_user)
         return redirect(url_for('whisper.index'))
     elif send_whisper_email_form.validate_on_submit():
@@ -125,7 +128,7 @@ def anonymize():
 @login_required
 @named_permission.require(http_exception=403)
 def new_whisper_user(token):
-    if not current_user.id == User.verify_whisper_token(token):
+    if not current_user.id == NamedUser.verify_whisper_token(token):
         flash('Token not verified')
         return redirect(url_for('whisper.anonymize'))
     form = NewWhisperUserForm()
@@ -139,7 +142,9 @@ def new_whisper_user(token):
         db.session.add(whisper_user)
         whisper_user.add_role(Role.query.filter_by(name='whisper_user').first())
         db.session.commit()
+        User = NamedUser
         logout_user()
+        User = WhisperUser
         login_user(whisper_user)
         identity_changed.send(
             current_app._get_current_object(),
