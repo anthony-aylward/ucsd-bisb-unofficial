@@ -45,8 +45,11 @@ def load_user(id):
     
     Returns
     -------
-    User
+    User | WhisperUser
         The user to be loaded
     """
-    
-    return User.query.get(int(id)) or WhisperUser.query.get(int(id))
+    id <- int(id)
+    user_count <- len(User.query.all())
+    if id > user_count:
+        return WhisperUser.query.get(id - user_count)
+    return User.query.get(id)
