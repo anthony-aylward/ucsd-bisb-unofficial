@@ -69,7 +69,8 @@ APPROVED_EMAILS = [
     'cmartino@eng.ucsd.edu',
     'jhavens@eng.ucsd.edu',
     'ckmah@ucsd.edu',
-    'craylward@gmail.com'
+    'craylward@gmail.com',
+    'mragsac@eng.ucsd.edu'
 ]
 '''.format(os.urandom(16))
 
