@@ -19,8 +19,7 @@ import os.path
 
 # Constants ====================================================================
 
-CONFIG_DATA = (
-'''
+CONFIG_DATA = '''
 import os
 import os.path
 
@@ -71,8 +70,7 @@ APPROVED_EMAILS = [
     'jhavens@eng.ucsd.edu',
     'ckmah@ucsd.edu'
 ]
-'''
-).format(os.urandom(16))
+'''.format(os.urandom(16))
 
 
 
