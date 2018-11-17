@@ -1,9 +1,9 @@
 #!/user/bin/env python3
 #===============================================================================
-# production_config
+# config
 #===============================================================================
 
-"""Create the production config file"""
+"""Create a config file"""
 
 
 
@@ -19,7 +19,28 @@ import os.path
 
 # Constants ====================================================================
 
-CONFIG_DATA = '''
+DEVELOPMENT_CONFIG_DATA = '''
+import os
+import os.path
+basedir = os.path.abspath(os.path.dirname(__file__))
+SECRET_KEY = os.environ.get('SECRET_KEY') or {}
+SQLALCHEMY_DATABASE_URI = (
+    os.environ.get('DATABASE_URL')
+    or
+    'sqlite:///' + os.path.join(basedir, 'app.db')
+)
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.gmail.com'
+MAIL_PORT = int(os.environ.get('MAIL_PORT') or 587)
+MAIL_USE_TLS = True
+MAIL_USE_SSL = False
+MAIL_USERNAME = ''
+MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+ADMINS = []
+APPROVED_EMAILS = []
+'''.format(os.urandom(16))
+
+PRODUCTION_CONFIG_DATA = '''
 import os
 import os.path
 
@@ -81,17 +102,26 @@ APPROVED_EMAILS = [
 
 def main(args):
     with open(os.path.join(args.instance, 'config.py'), 'w') as f:
-        f.write(CONFIG_DATA)
+        f.write(
+            PRODUCTION_CONFIG_DATA
+            if args.production
+            else DEVELOPMENT_CONFIG_DATA
+        )
 
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
-        description='configure the secret key for a flask instance'
+        description='write configuration file'
     )
     parser.add_argument(
         'instance',
         metavar='<path/to/instance-folder/>',
-        help='Path to instance folder'
+        help='path to instance folder'
+    )
+    parser.add_argument(
+        '--production',
+        action='store_true',
+        help='write a production config file'
     )
     return parser.parse_args()
 
