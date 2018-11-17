@@ -48,8 +48,8 @@ def load_user(id):
     User | WhisperUser
         The user to be loaded
     """
-    id <- int(id)
-    user_count <- len(User.query.all())
+    id = int(id)
+    user_count = len(User.query.all())
     if id > user_count:
         return WhisperUser.query.get(id - user_count)
     return User.query.get(id)
