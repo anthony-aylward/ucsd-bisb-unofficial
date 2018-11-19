@@ -1,0 +1,18 @@
+{% extends 'base-whisper.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ post.title }}{% endblock title %}</h1>
+{% endblock header %}
+
+{% block content %}
+<article class="post">
+  <header>
+    <div class="about">by {{ post.author.username }} on {{ post.timestamp.strftime('%Y-%m-%d') }}</div>
+    {% if current_user.id == post.user_id %}
+      <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
+    {% endif %}
+    <a class="btn btn-outline-primary" href="{{ url_for(index_route, id=post.id) }}">Go back</a>
+  </header>
+  <p class="body">{{ post.body }}</p>
+</article>
+{% endblock content %}

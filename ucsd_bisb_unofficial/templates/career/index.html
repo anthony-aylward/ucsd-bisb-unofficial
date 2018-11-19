@@ -69,5 +69,5 @@
         <li><a href="{{ url_for('protected.protected', filename='2018-03-11-twinstrand-bioinformatics-engineer-position.pdf') }}">Bioinformatics engineer</a> (Twin Strand, 2018-03-11)</li>
     </ul>
 </p>
-{{ macros.list_of_posts(posts, current_user, 'career.update') }}
+{{ macros.list_of_posts(posts, current_user, 'career.detail', 'career.update') }}
 {% endblock content %}

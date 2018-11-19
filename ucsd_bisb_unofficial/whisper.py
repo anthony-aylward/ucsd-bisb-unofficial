@@ -271,6 +271,29 @@ def delete(id):
     return redirect(url_for('whisper.index'))
 
 
+@bp.route('/<int:id>/detail')
+@login_required
+@whisper_permission.require(http_exception=403)
+def detail(id):
+    """Detail view of a post
+
+    Retrieves the post with the provided ID and renders the detail
+    template
+
+    Parameters
+    ----------
+    id : int
+        The id of the post to be viewed
+    """
+
+    post = get_post(id)
+    return render_template(
+        'whisper/detail.html',
+        post=post,
+        index_route='whisper.index',
+        update_route='whisper.update'
+    )
+
 
 # Other ------------------------------------------------------------------------
 

@@ -30,7 +30,7 @@ from ucsd_bisb_unofficial.models import get_db, Post
 from ucsd_bisb_unofficial.principals import named_permission
 from ucsd_bisb_unofficial.blog import (
     get_post, construct_create_route, construct_update_route,
-    construct_delete_route
+    construct_delete_route, construct_detail_route
 )
 
 
@@ -68,3 +68,4 @@ def example_position():
 create = construct_create_route(bp, 'career')
 update = construct_update_route(bp, 'career')
 delete = construct_delete_route(bp, 'career')
+detail = construct_detail_route(bp, 'career')

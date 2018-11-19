@@ -134,10 +134,8 @@ def construct_update_route(blueprint, tag):
             title = request.form['title']
             body = request.form['body']
             error = None
-            
             if not title:
                 error = 'Title is required.'
-            
             if error is not None:
                 flash(error)
             else:
@@ -146,7 +144,6 @@ def construct_update_route(blueprint, tag):
                 db = get_db()
                 db.session.commit()
                 return redirect(url_for(f'{tag}.index'))
-        
         return render_template(
             'blog/update.html',
             form=form,
@@ -177,6 +174,33 @@ def construct_delete_route(blueprint, tag):
     return delete
 
 
+def construct_detail_route(blueprint, tag):
+    @blueprint.route('/<int:id>/detail')
+    @login_required
+    @named_permission.require(http_exception=403)
+    def detail(id):
+        """Detail view of a post
+
+        Retrieves the post with the provided ID and renders the detail
+        template
+
+        Parameters
+        ----------
+        id : int
+            The id of the post to be viewed
+        """
+
+        post = get_post(id)
+        return render_template(
+            'blog/detail.html',
+            post=post,
+            index_route=f'{tag}.index',
+            update_route=f'{tag}.update'
+        )
+    return detail
+
+
 create = construct_create_route(bp, 'blog')
 update = construct_update_route(bp, 'blog')
 delete = construct_delete_route(bp, 'blog')
+detail = construct_detail_route(bp, 'blog')
