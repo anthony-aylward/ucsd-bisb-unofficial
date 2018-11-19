@@ -27,6 +27,7 @@ from flask import (
 )
 from flask_login import login_required, login_user, logout_user, current_user
 from flask_principal import Identity, identity_changed
+from werkzeug.exceptions import abort
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.urls import url_parse
 
@@ -286,7 +287,7 @@ def detail(id):
         The id of the post to be viewed
     """
 
-    post = get_post(id)
+    post = get_post(id, check_author=False)
     return render_template(
         'whisper/detail.html',
         post=post,

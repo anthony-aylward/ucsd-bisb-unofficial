@@ -190,7 +190,7 @@ def construct_detail_route(blueprint, tag):
             The id of the post to be viewed
         """
 
-        post = get_post(id)
+        post = get_post(id, check_author=False)
         return render_template(
             'blog/detail.html',
             post=post,
