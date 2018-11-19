@@ -1,6 +1,6 @@
 # TO DO
 
-* Convert posts to a preview/detail veiw format
+* Display truncated posts when not in detail view
 * Parse markdown in posts
 * Alum page
 
