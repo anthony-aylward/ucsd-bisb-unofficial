@@ -1,5 +1,6 @@
 # TO DO
 
+* Page for info on handling enrollment issues
 * Display truncated posts when not in detail view
 * Parse markdown in posts
 * Alum page
