@@ -53,6 +53,8 @@ def index():
     
     db = get_db()
     posts = Post.query.filter(Post.tag == 'residency').all()[::-1]
+    for post in posts:
+        post.preview = post.body[:256]
     return render_template('residency/index.html', posts=posts)
 
 

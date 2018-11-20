@@ -54,7 +54,7 @@
         <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
       {% endif %}
     </header>
-    <p class="body">{{ post.body }}</p>
+    <p class="body">{{ post.preview }}</p>
   </article>
   {% if not loop.last %}
     <hr>
