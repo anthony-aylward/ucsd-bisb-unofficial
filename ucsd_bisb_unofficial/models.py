@@ -320,6 +320,36 @@ class Post(db.Model):
         return f'<Post {self.body}>'
 
 
+class Comment(db.Model):
+    """A comment
+
+    Attributes
+    ----------
+    id : int
+    body : str
+    timestamp : datetime
+    post_id : int
+    user_id : int
+    """
+
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(80000))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    user_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        """String representation of the comment
+        
+        Returns
+        -------
+        str
+            String representation of the comment
+        """
+        
+        return f'<Comment {self.body}>'
+
+
 class Role(db.Model):
     """A role
 
@@ -448,6 +478,36 @@ class WhisperPost(db.Model):
         """
 
         return f'<WhisperPost {self.body}>'
+
+
+class WhisperComment(db.Model):
+    """A whisper comment
+
+    Attributes
+    ----------
+    id : int
+    body : str
+    timestamp : datetime
+    whisper_post_id : int
+    whisper_user_id : int
+    """
+
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(80000))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    whisper_post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    whisper_user_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        """String representation of the comment
+        
+        Returns
+        -------
+        str
+            String representation of the comment
+        """
+        
+        return f'<WhisperComment {self.body}>'
 
 
 
