@@ -100,17 +100,14 @@ def construct_comment_route(blueprint, tag):
         if form.validate_on_submit():
             comment = Comment(
                 body=form.body.data,
-                user_id=current_user,
+                user_id=current_user.id,
                 post_id=post_id
             )
             db.session.add(comment)
             db.session.commit()
             flash('your comment is now live!')
             return redirect(
-                url_for(f'{tag}.detail'),
-                post=post,
-                index_route=f'{tag}.index',
-                update_route=f'{tag}.update'
+                url_for(f'{tag}.detail', id=post.id)
             )
         return render_template(f'blog/comment.html', form=form, post=post)
     return comment
@@ -135,14 +132,37 @@ def get_post(id, check_author=True):
     """
 
     post = Post.query.filter_by(id=id).first()
-    
     if post is None:
         abort(404, f"Post id {id} doesn't exist.")
-    
     if check_author and post.user_id != current_user.id:
         abort(403)
-    
     return post
+
+
+def get_comment(id, check_author=True):
+    """Retrieve a comment from the database
+    
+    Parameters
+    ----------
+    id : int
+        A comment ID.
+    check_author : bool
+        If True, the ID of the current user will be compared to the ID of the
+        comment's author. If the current user is not the author of the comment,
+        the retrieval is aborted.
+    
+    Returns
+    -------
+    Comment or NoneType
+        The comment with the given comment ID.
+    """
+
+    comment = Comment.query.filter_by(id=id).first()
+    if comment is None:
+        abort(404, f"Comment id {id} doesn't exist.")
+    if check_author and comment.user_id != current_user.id:
+        abort(403)
+    return comment
 
 
 def construct_update_route(blueprint, tag):
@@ -207,6 +227,27 @@ def construct_delete_route(blueprint, tag):
     return delete
 
 
+def construct_delete_comment_route(blueprint, tag):
+    @blueprint.route('/<int:id>/delete-comment', methods=('GET', 'POST',))
+    @login_required
+    @named_permission.require(http_exception=403)
+    def delete_comment(id):
+        """Delete a post
+
+        Parameters
+        ----------
+        id : int
+            The ID no. of the post to be deleted
+        """
+
+        comment = get_comment(id)
+        db = get_db()
+        db.session.delete(comment)
+        db.session.commit()
+        return redirect(url_for(f'{tag}.detail', id=comment.post_id))
+    return delete
+
+
 def construct_detail_route(blueprint, tag):
     @blueprint.route('/<int:id>/detail')
     @login_required
@@ -224,9 +265,12 @@ def construct_detail_route(blueprint, tag):
         """
 
         post = get_post(id, check_author=False)
+        db = get_db()
+        comments = Comment.query.filter(Comment.post_id == id).all()[::-1]
         return render_template(
             'blog/detail.html',
             post=post,
+            comments=comments,
             index_route=f'{tag}.index',
             update_route=f'{tag}.update',
             comment_route=f'{tag}.comment'
@@ -239,3 +283,4 @@ update = construct_update_route(bp, 'blog')
 delete = construct_delete_route(bp, 'blog')
 detail = construct_detail_route(bp, 'blog')
 comment = construct_comment_route(bp, 'blog')
+delete_comment = construct_delete_comment_route(bp, 'blog')

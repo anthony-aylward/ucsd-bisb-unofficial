@@ -81,6 +81,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+    comments = db.relationship('Comment', backref='author', lazy='dynamic')
     email_confirmation_sent_on = db.Column(db.DateTime, nullable=True)
     email_confirmed = db.Column(db.Boolean, default=False, nullable=True)
     email_confirmed_on = db.Column(db.DateTime, nullable=True)
@@ -307,7 +308,7 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     tag = db.Column(db.String(128))
-    comments = db.relationship('Comment', backref='root', lazy='dynamic')
+    comments = db.relationship('Comment', backref='post', lazy='dynamic')
 
     def __repr__(self):
         """String representation of the post
@@ -337,7 +338,7 @@ class Comment(db.Model):
     body = db.Column(db.String(80000))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
-    user_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
         """String representation of the comment

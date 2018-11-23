@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% from 'macros.html' import list_of_comments as list_of_comments %}
 
 {% block header %}
   <h1>{% block title %}{{ post.title }}{% endblock title %}</h1>
@@ -16,4 +17,5 @@
   </header>
   <p class="body">{{ post.body }}</p>
 </article>
+{{ list_of_comments(comments, current_user, 'blog.delete_comment') }}
 {% endblock content %}

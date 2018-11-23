@@ -61,3 +61,23 @@
   {% endif %}
 {% endfor %}
 {% endmacro %}
+
+{% macro list_of_comments(comments, current_user, delete_comment_route) %}
+{% for comment in comments %}
+  {% if loop.first %}
+    <hr>
+  {% endif %}
+  <article class="post">
+    <header>
+      <div class="about">by {{ comment.author.username }} on {{ comment.timestamp.strftime('%Y-%m-%d') }}</div>
+      {% if current_user.id == comment.user_id %}
+        <a class="btn btn-outline-primary" href="{{ url_for(delete_comment_route, id=comment.id) }}">Delete</a>
+      {% endif %}
+    </header>
+    <p class="body">{{ comment.body }}</p>
+  </article>
+  {% if not loop.last %}
+    <hr>
+  {% endif %}
+{% endfor %}
+{% endmacro %}
