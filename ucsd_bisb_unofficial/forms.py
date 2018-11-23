@@ -96,6 +96,24 @@ class PostForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
+class CommentForm(FlaskForm):
+    """A form for comment data
+    
+    Attributes
+    ----------
+    body : TextAreaField
+    """
+
+    body = TextAreaField(
+        'Say something',
+        validators=[
+            DataRequired(),
+            Length(min=1, max=80000)
+        ]
+    )
+    submit = SubmitField('Submit')
+
+
 class ResetPasswordRequestForm(FlaskForm):
     """A form for a password reset request
 

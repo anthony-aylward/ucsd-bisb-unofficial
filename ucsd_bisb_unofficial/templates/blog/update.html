@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Edit "{{ post['title'] }}"{% endblock %}</h1>
-{% endblock %}
+  <h1>{% block title %}Edit "{{ post['title'] }}"{% endblock title %}</h1>
+{% endblock header %}
 
 {% block content %}
   <div class='content-post'>
@@ -21,4 +21,4 @@
     <input class="danger" type="submit" value="Delete" onclick="return confirm ('Are you sure?');">
   </form>
 </div>
-{% endblock %}
+{% endblock content %}

@@ -25,8 +25,8 @@ from flask import (
 from flask_login import current_user, login_required
 from werkzeug.exceptions import abort
 
-from ucsd_bisb_unofficial.forms import PostForm
-from ucsd_bisb_unofficial.models import get_db, Post
+from ucsd_bisb_unofficial.forms import PostForm, CommentForm
+from ucsd_bisb_unofficial.models import get_db, Post, Comment
 from ucsd_bisb_unofficial.principals import named_permission
 
 
@@ -81,6 +81,39 @@ def construct_create_route(blueprint, tag):
             return redirect(url_for(f'{tag}.index'))
         return render_template(f'blog/create.html', form=form)
     return create
+
+
+def construct_comment_route(blueprint, tag):
+    @blueprint.route('/<int:post_id>/comment/', methods=('GET', 'POST'))
+    @login_required
+    @named_permission.require(http_exception=403)
+    def comment(post_id):
+        """Comment on a post
+        
+        This page includes a CommentForm (see `forms.py`). A new comment will
+        be added to the database based on the form data.
+        """
+        
+        post = get_post(post_id)
+        db = get_db()
+        form = CommentForm()
+        if form.validate_on_submit():
+            comment = Comment(
+                body=form.body.data,
+                user_id=current_user,
+                post_id=post_id
+            )
+            db.session.add(comment)
+            db.session.commit()
+            flash('your comment is now live!')
+            return redirect(
+                url_for(f'{tag}.detail'),
+                post=post,
+                index_route=f'{tag}.index',
+                update_route=f'{tag}.update'
+            )
+        return render_template(f'blog/comment.html', form=form, post=post)
+    return comment
 
 
 def get_post(id, check_author=True):
@@ -195,7 +228,8 @@ def construct_detail_route(blueprint, tag):
             'blog/detail.html',
             post=post,
             index_route=f'{tag}.index',
-            update_route=f'{tag}.update'
+            update_route=f'{tag}.update',
+            comment_route=f'{tag}.comment'
         )
     return detail
 
@@ -204,3 +238,4 @@ create = construct_create_route(bp, 'blog')
 update = construct_update_route(bp, 'blog')
 delete = construct_delete_route(bp, 'blog')
 detail = construct_detail_route(bp, 'blog')
+comment = construct_comment_route(bp, 'blog')

@@ -33,9 +33,7 @@ from ucsd_bisb_unofficial.forms import (
     LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm
 )
 from ucsd_bisb_unofficial.models import get_db, User, Role
-from ucsd_bisb_unofficial.email import (
-    send_confirmation_email, send_password_reset_email
-)
+from ucsd_bisb_unofficial.email import send_confirmation_email
 
 
 
