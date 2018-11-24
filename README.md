@@ -1,6 +1,6 @@
 # TO DO
 
-* Page for info on handling enrollment issues
+* Search feature
 * Parse markdown in posts
 * Alum page
 
