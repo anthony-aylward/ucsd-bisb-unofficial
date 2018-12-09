@@ -30,6 +30,7 @@ from ucsd_bisb_unofficial.models import get_db, Post
 from ucsd_bisb_unofficial.principals import named_permission
 from ucsd_bisb_unofficial.blog import (
     get_post, construct_create_route, construct_update_route,
+    construct_delete_route, construct_detail_route, construct_update_route,
     construct_delete_route, construct_detail_route
 )
 
@@ -62,3 +63,5 @@ create = construct_create_route(bp, 'ta')
 update = construct_update_route(bp, 'ta')
 delete = construct_delete_route(bp, 'ta')
 detail = construct_detail_route(bp, 'ta')
+comment = construct_comment_route(bp, 'ta')
+delete_comment = construct_delete_comment_route(bp, 'ta')
