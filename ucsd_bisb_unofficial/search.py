@@ -23,6 +23,8 @@ def fts4_search(table, query, per_page):
     return search
 
 def query_index(index, query, page, per_page):
+    if not current_app.fts4:
+        return [], 0
     search = fts4_search(
         table=index,
         body={
