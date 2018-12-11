@@ -29,6 +29,8 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from ucsd_bisb_unofficial.search import query_index
+
 
 
 
@@ -58,6 +60,21 @@ roles_whisper_users = db.Table(
 
 
 # Classes ======================================================================
+
+# Mixins -----------------------------------------------------------------------
+
+class SearchableMixin():
+    @classmethod
+    def search(cls, expression, page, per_page):
+        ids, total = query_index(cls.__tablename__, expression, page, per_page)
+        if total == 0:
+            return cls.query.filter_by(id=0), 0
+        when = []
+        for i in range(len(ids)):
+            when.append((ids[i], i))
+        return cls.query.filter(cls.id.in_(ids)).order_by(
+            db.case(when, value=cls.id)), total
+
 
 # Models -----------------------------------------------------------------------
 
@@ -301,6 +318,8 @@ class Post(db.Model):
     user_id : int
     tag : str
     """
+
+    __searchable__ = ('body',)
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128))
