@@ -76,6 +76,8 @@ class SearchableMixin():
             db.case(when, value=cls.id)), total
 
 
+
+
 # Models -----------------------------------------------------------------------
 
 class User(UserMixin, db.Model):
@@ -306,7 +308,7 @@ class User(UserMixin, db.Model):
     #     return User.query.get(id)
 
 
-class Post(db.Model):
+class Post(SearchableMixin, db.Model):
     """A post
 
     Attributes
