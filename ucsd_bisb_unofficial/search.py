@@ -46,17 +46,23 @@ def fts4_search(table, query, body=None):
     validate_table_name(c, source_db_name, table)
     validate_column_names(c, source_db_name, table, *Post.__searchable__)
     c.execute(
-        f"CREATE VIRTUAL TABLE {table} USING "
-        f"fts4({', '.join(Post.__searchable__)})"
+        f"""
+        CREATE VIRTUAL TABLE {table}
+        USING fts4({', '.join(Post.__searchable__)})
+        """
     )
     c.execute(
-        f"INSERT INTO {table}(docid, {', '.join(Post.__searchable__)}) "
-        f"SELECT id, {', '.join(Post.__searchable__)} "
-        f"FROM {source_db_name}.{table}"
+        f"""
+        INSERT INTO {table}(docid, {', '.join(Post.__searchable__)})
+        SELECT id, {', '.join(Post.__searchable__)}
+        FROM {source_db_name}.{table}
+        """
     )
     hits = c.execute(
-        f"SELECT docid, {', '.join(Post.__searchable__)} FROM {table} "
-        f"WHERE {table} MATCH ?",
+        f"""
+        SELECT docid, {', '.join(Post.__searchable__)} FROM {table}
+        WHERE {table} MATCH ?
+        """,
         (f"'{' OR '.join(f'{col}:{query}' for col in Post.__searchable__)}'",)
     ).fetchall()
     return {
