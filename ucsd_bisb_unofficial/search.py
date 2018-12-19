@@ -56,29 +56,26 @@ def fts4_search(table, query, body=None):
         f'ATTACH ? AS {source_db_name}',
         (current_app.config['SQLALCHEMY_DATABASE_URI'],)
     )
-    c.execute(
-        f"""
-        CREATE VIRTUAL TABLE {table}
-        USING fts4({', '.join(Post.__searchable__)})
-        """
-    )
-    c.execute(
-        f"""
+    c.executescript(f"""
+        CREATE VIRTUAL TABLE {table} USING fts4(
+            {', '.join(Post.__searchable__)}
+        );
+
         INSERT INTO {table}(docid, {', '.join(Post.__searchable__)})
         SELECT id, {', '.join(Post.__searchable__)}
-        FROM {source_db_name}.{table}
+        FROM {source_db_name}.{table};
         """
     )
-    hits = c.execute(
-        f"""
-        SELECT docid, {', '.join(Post.__searchable__)} FROM {table}
-        WHERE {table} MATCH ?
-        """,
-        (f"'{' OR '.join(f'{col}:{query}' for col in Post.__searchable__)}'",)
-    ).fetchall()
+    q = (f"'{' OR '.join(f'{col}:{query}' for col in Post.__searchable__)}'",)
+    hits = tuple(
+        tup[0] for tup in c.execute(
+            f'SELECT docid FROM {table} WHERE {table} MATCH ?',
+            q
+        )
+    )
     c.execute('DETACH ?', (source_db_name,))
     return {
-        'hits': {'total': len(hits), 'hits': {{'_id': hit[0]} for hit in hits}}
+        'hits': {'total': len(hits), 'hits': {{'_id': hit} for hit in hits}}
     }
 
 
