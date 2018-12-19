@@ -85,6 +85,7 @@ def create_app(test_config=None):
         whisper,
         residency,
         ta,
+        search,
         seminars
     )
     for bp in (
@@ -98,6 +99,7 @@ def create_app(test_config=None):
         whisper.bp,
         residency.bp,
         ta.bp,
+        search.bp,
         seminars.bp
     ):
         app.register_blueprint(bp)

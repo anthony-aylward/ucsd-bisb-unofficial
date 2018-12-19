@@ -24,12 +24,25 @@
   <h1>UCSD BISB Unofficial</h1>
   <ul>
     {% if current_user.is_anonymous %}
-      <li><a href="{{ url_for('auth.register') }}">Register</a>
-      <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    <li><a href="{{ url_for('auth.register') }}">Register</a>
+    <li><a href="{{ url_for('auth.login') }}">Log In</a>
     {% else %}
-      <li><span>{{ current_user.username }}</span>
-      <li><a href="{{ url_for('jumbotron.full') }}">Home</a>
-      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+    <li><span>{{ current_user.username }}</span>
+    <li><a href="{{ url_for('jumbotron.full') }}">Home</a>
+    <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+    {% endif %}
+    {% if g.search_form %}
+    <form class="navbar-form navbar-left" method="get" action="{{ url_for('search.search') }}">
+        <div class="form-group">
+            {{
+              g.search_form.q(
+                size=20,
+                class='form-control',
+                placeholder=g.search_form.q.label.text
+              )
+            }}
+        </div>
+    </form>
     {% endif %}
   </ul>
 </nav>
@@ -38,7 +51,7 @@
     {% block header %}{% endblock %}
   </header>
   {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
+  <div class="flash">{{ message }}</div>
   {% endfor %}
   {% block content %}{% endblock %}
 </section>

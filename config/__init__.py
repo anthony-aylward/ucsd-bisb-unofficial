@@ -26,8 +26,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 SECRET_KEY = os.environ.get('SECRET_KEY') or {}
 SQLALCHEMY_DATABASE_URI = (
     os.environ.get('DATABASE_URL')
-    or
-    'sqlite:///' + os.path.join(basedir, 'app.db')
+    or 'sqlite:///' + os.path.join(basedir, 'app.db')
 )
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.gmail.com'
@@ -36,6 +35,7 @@ MAIL_USE_TLS = True
 MAIL_USE_SSL = False
 MAIL_USERNAME = ''
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+POSTS_PER_PAGE = 3
 ADMINS = []
 APPROVED_EMAILS = []
 '''.format(os.urandom(16))
@@ -49,8 +49,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 SECRET_KEY = os.environ.get('SECRET_KEY') or {}
 SQLALCHEMY_DATABASE_URI = (
     os.environ.get('DATABASE_URL')
-    or
-    'sqlite:///' + os.path.join(basedir, 'app.db')
+    or 'sqlite:///' + os.path.join(basedir, 'app.db')
 )
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.gmail.com'
@@ -59,6 +58,7 @@ MAIL_USE_TLS = False
 MAIL_USE_SSL = True
 MAIL_USERNAME = 'ucsd.bisb.unofficial'
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+POSTS_PER_PAGE = 5
 ADMINS = ['ucsd.bisb.unofficial@gmail.com']
 APPROVED_EMAILS = [
     'ucsd.bisb.unofficial@gmail.com',
