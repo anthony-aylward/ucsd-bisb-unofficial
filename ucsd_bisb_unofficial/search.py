@@ -11,8 +11,10 @@
 
 import sqlite3
 
-from flask import Blueprint, current_app, g
-from flask_login import current_user
+from flask import (
+    Blueprint, current_app, g, request, redirect, render_template, url_for
+)
+from flask_login import current_user, login_required
 from ucsd_bisb_unofficial.models import Post
 from ucsd_bisb_unofficial.forms import SearchForm
 
@@ -45,15 +47,15 @@ def validate_column_names(cursor, source_db_name, table_name, *column_names):
 
 
 def fts4_search(table, query, body=None):
+    source_db_name = 'source'
     conn = sqlite3.connect(':memory:')
     c = conn.cursor()
-    source_db_name = 'source'
+    validate_table_name(c, source_db_name, table)
+    validate_column_names(c, source_db_name, table, *Post.__searchable__)
     c.execute(
         f'ATTACH ? AS {source_db_name}',
         (current_app.config['SQLALCHEMY_DATABASE_URI'],)
     )
-    validate_table_name(c, source_db_name, table)
-    validate_column_names(c, source_db_name, table, *Post.__searchable__)
     c.execute(
         f"""
         CREATE VIRTUAL TABLE {table}
@@ -74,6 +76,7 @@ def fts4_search(table, query, body=None):
         """,
         (f"'{' OR '.join(f'{col}:{query}' for col in Post.__searchable__)}'",)
     ).fetchall()
+    c.execute('DETACH ?', (source_db_name,))
     return {
         'hits': {'total': len(hits), 'hits': {{'_id': hit[0]} for hit in hits}}
     }
@@ -117,7 +120,7 @@ def search():
         else None
     )
     return render_template(
-        'search.html',
+        'search/search.html',
         title='Search',
         posts=posts,
         next_url=next_url,
