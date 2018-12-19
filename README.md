@@ -2,6 +2,7 @@
 
 * Search feature
 * Parse markdown in posts
+* Attach an image with a post
 * Alum page
 
 # Other suggestions
