@@ -58,15 +58,15 @@ def fts4_search(table, query, body=None):
         FROM {source_db_name}.{table}
         """
     )
-    hits = c.execute(
-        f"""
-        SELECT docid, {', '.join(Post.__searchable__)} FROM {table}
-        WHERE {table} MATCH ?
-        """,
-        (f"'{' OR '.join(f'{col}:{query}' for col in Post.__searchable__)}'",)
-    ).fetchall()
+    q = (f"'{' OR '.join(f'{col}:{query}' for col in Post.__searchable__)}'",)
+    hits = tuple(
+        tup[0] for tup in c.execute(
+            f'SELECT docid FROM {table} WHERE {table} MATCH ?',
+            q
+        )
+    )
     return {
-        'hits': {'total': len(hits), 'hits': {{'_id': hit[0]} for hit in hits}}
+        'hits': {'total': len(hits), 'hits': {{'_id': hit} for hit in hits}}
     }
 
 
