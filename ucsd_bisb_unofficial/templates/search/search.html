@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% from 'macros.html' import search_results as search_results %}
 
+{% block header %}
+<h1>{% block title %}{{ title }}{% endblock title %}</h1>
+{% endblock header %}
+
 {% block content %}
-<h1>Search Results</h1>
 {{ search_results(posts, current_user) }}
 {% if prev_url %}
 <a class="btn btn-outline-primary"  href="{{ prev_url or '#' }}">&larr; Previous results</a>

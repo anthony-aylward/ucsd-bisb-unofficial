@@ -59,16 +59,18 @@ def search():
     )
     posts = tuple(
         {
+            'id': post.id,
             'title': post.title,
             'author': post.author,
             'timestamp': post.timestamp,
-            'preview': post.body[:128] + (len(post.body) > 128) * '...'
+            'preview': post.body[:128] + (len(post.body) > 128) * '...',
+            'detail_route': f'{post.tag}.detail'
         }
         for post in posts
     )
     return render_template(
         'search/search.html',
-        title='Search',
+        title='Search Results',
         posts=posts,
         next_url=next_url,
         prev_url=prev_url
