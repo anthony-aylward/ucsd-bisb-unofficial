@@ -55,15 +55,11 @@ def fts4_search(table, query, page, per_page):
         FROM {source_db_name}.{table};
         """
     )
-    query_parameters = (
-        ' OR '.join(f'{col}:{query}' for col in __searchable__),
-        per_page,
-        (page - 1) * per_page
-    )
+    q = (' OR '.join(f'{col}:{query}' for col in __searchable__),)
     hits = tuple(
         tup[0] for tup in c.execute(
-            f'SELECT docid FROM {table} WHERE {table} MATCH ? LIMIT ? OFFSET ?',
-            query_parameters
+            f'SELECT docid FROM {table} WHERE {table} MATCH ?',
+            q
         )
     )
     c.execute(f'DROP TABLE {table}')
@@ -71,7 +67,11 @@ def fts4_search(table, query, page, per_page):
     return {
         'hits': {
             'total': len(hits),
-            'hits': tuple({'_id': hit} for hit in hits)
+            'hits': tuple(
+                {'_id': hit} for hit in hits[
+                    (page - 1) * per_page:page * per_page
+                ]
+            )
         }
     }
 
