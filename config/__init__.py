@@ -19,11 +19,11 @@ import os.path
 
 # Constants ====================================================================
 
-DEVELOPMENT_CONFIG_DATA = '''
+DEVELOPMENT_CONFIG_DATA = f'''
 import os
 import os.path
 basedir = os.path.abspath(os.path.dirname(__file__))
-SECRET_KEY = os.environ.get('SECRET_KEY') or {}
+SECRET_KEY = os.environ.get('SECRET_KEY') or {os.urandom(16)}
 SQLALCHEMY_DATABASE_URI = (
     os.environ.get('DATABASE_URL')
     or 'sqlite:///' + os.path.join(basedir, 'app.db')
@@ -38,15 +38,15 @@ MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 POSTS_PER_PAGE = 3
 ADMINS = []
 APPROVED_EMAILS = []
-'''.format(os.urandom(16))
+'''
 
-PRODUCTION_CONFIG_DATA = '''
+PRODUCTION_CONFIG_DATA = f'''
 import os
 import os.path
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-SECRET_KEY = os.environ.get('SECRET_KEY') or {}
+SECRET_KEY = os.environ.get('SECRET_KEY') or {os.urandom(16)}
 SQLALCHEMY_DATABASE_URI = (
     os.environ.get('DATABASE_URL')
     or 'sqlite:///' + os.path.join(basedir, 'app.db')
@@ -94,7 +94,7 @@ APPROVED_EMAILS = [
     'mragsac@eng.ucsd.edu',
     'solvason@eng.ucsd.edu'
 ]
-'''.format(os.urandom(16))
+'''
 
 
 

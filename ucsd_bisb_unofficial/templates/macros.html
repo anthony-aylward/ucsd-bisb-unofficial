@@ -81,3 +81,23 @@
   {% endif %}
 {% endfor %}
 {% endmacro %}
+
+{% macro search_results(posts, current_user) %}
+{% for post in posts %}
+  {% if loop.first %}
+    <hr>
+  {% endif %}
+  <article class="post">
+    <header>
+      <div>
+        <h1>{{ post.title }}</h1>
+        <div class="about">by {{ post.author.username }} on {{ post.timestamp.strftime('%Y-%m-%d') }}</div>
+      </div>
+    </header>
+    <p class="body">{{ post.preview }}</p>
+  </article>
+  {% if not loop.last %}
+    <hr>
+  {% endif %}
+{% endfor %}
+{% endmacro %}

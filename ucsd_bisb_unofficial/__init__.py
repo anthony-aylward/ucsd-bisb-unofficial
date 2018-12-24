@@ -13,6 +13,7 @@ This file contains the application factory for the ucsd_bisb_unofficial app.
 # Imports ======================================================================
 
 import os
+import sqlite3
 
 from flask import Flask
 
@@ -105,6 +106,8 @@ def create_app(test_config=None):
         app.register_blueprint(bp)
 
     app.add_url_rule('/', endpoint='auth.login')
+
+    app.fts4 = sqlite3.connect(':memory:')
 
     @app.before_first_request
     def populate_databse():

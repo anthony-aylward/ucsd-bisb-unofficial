@@ -20,7 +20,8 @@ bp : Blueprint
 # Imports ======================================================================
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for,
+    current_app
 )
 from flask_login import current_user, login_required
 from werkzeug.exceptions import abort
@@ -51,10 +52,31 @@ def index():
     """
 
     db = get_db()
-    posts = Post.query.filter(Post.tag == 'blog').all()[::-1]
-    for post in posts:
+    page = request.args.get('page', 1, type=int)
+    posts = (
+        Post.query
+        .filter(Post.tag == 'blog')
+        .order_by(Post.timestamp.desc())
+        .paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+    )
+    next_url = (
+        url_for('blog.index', page=posts.next_num)
+        if posts.has_next
+        else None
+    )
+    prev_url = (
+        url_for('blog.index', page=posts.prev_num)
+        if posts.has_prev
+        else None
+    )
+    for post in posts.items:
         post.preview = post.body[:128] + (len(post.body) > 128) * '...'
-    return render_template('blog/index.html', posts=posts)
+    return render_template(
+        'blog/index.html',
+        posts=posts.items,
+        next_url=next_url,
+        prev_url=prev_url
+    )
 
 
 def construct_create_route(blueprint, tag):

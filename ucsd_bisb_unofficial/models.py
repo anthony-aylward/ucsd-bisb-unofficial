@@ -29,7 +29,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from ucsd_bisb_unofficial.search import query_index
+from ucsd_bisb_unofficial.fts4 import query_index
 
 
 
@@ -73,7 +73,7 @@ class SearchableMixin():
         for i in range(len(ids)):
             when.append((ids[i], i))
         return cls.query.filter(cls.id.in_(ids)).order_by(
-            db.case(when, value=cls.id)), total
+            db.case(when, value=cls.id).desc()), total
 
 
 

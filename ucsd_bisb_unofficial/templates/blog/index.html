@@ -8,4 +8,10 @@
 
 {% block content %}
 {{ list_of_posts(posts, current_user, 'blog.detail', 'blog.update') }}
+{% if prev_url %}
+<a class="btn btn-outline-primary" href="{{ prev_url }}">Newer posts</a>
+{% endif %}
+{% if next_url %}
+<a class="btn btn-outline-primary" href="{{ next_url }}">Older posts</a>
+{% endif %}
 {% endblock content %}
