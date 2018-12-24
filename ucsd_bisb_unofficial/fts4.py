@@ -32,7 +32,7 @@ def validate_column_names(cursor, source_db_name, table_name, *column_names):
         raise ValueError('Invalid column names')
 
 
-def fts4_search(table, query, body=None):
+def fts4_search(table, query, page, per_page):
     __searchable__ = ('body',)
     c = current_app.fts4.cursor()
     source_db_name = 'source'
@@ -55,11 +55,15 @@ def fts4_search(table, query, body=None):
         FROM {source_db_name}.{table};
         """
     )
-    q = (' OR '.join(f'{col}:{query}' for col in __searchable__),)
+    query_parameters = (
+        ' OR '.join(f'{col}:{query}' for col in __searchable__),
+        per_page,
+        (page - 1) * per_page
+    )
     hits = tuple(
         tup[0] for tup in c.execute(
-            f'SELECT docid FROM {table} WHERE {table} MATCH ?',
-            q
+            f'SELECT docid FROM {table} WHERE {table} MATCH ? LIMIT ? OFFSET ?',
+            query_parameters
         )
     )
     c.execute(f'DROP TABLE {table}')
@@ -77,8 +81,12 @@ def search_results(search):
     return ids, search['hits']['total']
 
 
+def add_to_index(index, model):
+    pass
+
+
 def query_index(index, query, page, per_page):
     if not current_app.fts4:
         return [], 0
-    search = fts4_search(table=index, query=query)
+    search = fts4_search(table=index, query=query, page=page, per_page=per_page)
     return search_results(search)
