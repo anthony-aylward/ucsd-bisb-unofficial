@@ -82,7 +82,13 @@ def search_results(search):
 
 
 def add_to_index(index, model):
-    pass
+    if not current_app.fts4:
+        return
+
+
+def remove_from_index(index, model):
+    if not current_app.fts4:
+        return
 
 
 def query_index(index, query, page, per_page):
