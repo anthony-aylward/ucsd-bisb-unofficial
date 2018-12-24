@@ -68,7 +68,6 @@ roles_whisper_users = db.Table(
 class SearchableMixin():
     @classmethod
     def search(cls, expression, page, per_page):
-        cls.reindex()
         ids, total = query_index(cls.__tablename__, expression, page, per_page)
         if total == 0:
             return cls.query.filter_by(id=0), 0
