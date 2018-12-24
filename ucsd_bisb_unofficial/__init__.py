@@ -76,32 +76,12 @@ def create_app(test_config=None):
         app.register_error_handler(403, forbidden)
     
     from ucsd_bisb_unofficial import (
-        auth,
-        blog,
-        jumbotron,
-        protected,
-        lab,
-        career,
-        tech,
-        whisper,
-        residency,
-        ta,
-        search,
-        seminars
+        auth, blog, jumbotron, protected, lab, career, tech, whisper,
+        residency, ta, search, seminars
     )
     for bp in (
-        auth.bp,
-        blog.bp,
-        jumbotron.bp,
-        protected.bp,
-        lab.bp,
-        career.bp,
-        tech.bp,
-        whisper.bp,
-        residency.bp,
-        ta.bp,
-        search.bp,
-        seminars.bp
+        auth.bp, blog.bp, jumbotron.bp, protected.bp, lab.bp, career.bp,
+        tech.bp, whisper.bp, residency.bp, ta.bp, search.bp, seminars.bp
     ):
         app.register_blueprint(bp)
 
