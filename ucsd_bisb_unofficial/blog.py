@@ -96,9 +96,6 @@ def construct_create_route(blueprint, tag):
         if form.validate_on_submit():
             filename = images.save(request.files['image']) if request.files['image'] else None
             url = images.url(filename) if filename else None
-            print(images.config.destination)
-            print(filename)
-            print(url)
             post = Post(
                 title=form.title.data,
                 body=form.body.data,
@@ -299,7 +296,6 @@ def construct_detail_route(blueprint, tag):
         post = get_post(id, check_author=False)
         db = get_db()
         comments = Comment.query.filter(Comment.post_id == id).all()[::-1]
-        print(post.image_url)
         return render_template(
             'blog/detail.html',
             post=post,
