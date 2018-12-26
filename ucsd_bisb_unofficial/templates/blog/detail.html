@@ -15,6 +15,9 @@
     <a class="btn btn-outline-primary" href="{{ url_for(comment_route, post_id=post.id) }}">Comment</a>
     <a class="btn btn-outline-primary" href="{{ url_for(index_route, id=post.id) }}">Go back</a>
   </header>
+  {% if post.image_url %}
+  <img src="{{ post.image_url }}" alt="{{ post.image_filename }}" style="width:600px;height:450px;">
+  {% endif %}
   <p class="body">{{ post.body }}</p>
 </article>
 {{ list_of_comments(comments, current_user, 'blog.delete_comment') }}

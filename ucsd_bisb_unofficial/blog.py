@@ -29,6 +29,7 @@ from werkzeug.exceptions import abort
 from ucsd_bisb_unofficial.forms import PostForm, CommentForm
 from ucsd_bisb_unofficial.models import get_db, Post, Comment
 from ucsd_bisb_unofficial.principals import named_permission
+from ucsd_bisb_unofficial.uploads import images
 
 
 
@@ -93,11 +94,18 @@ def construct_create_route(blueprint, tag):
         db = get_db()
         form = PostForm()
         if form.validate_on_submit():
+            filename = images.save(request.files['image']) if request.files['image'] else None
+            url = images.url(filename) if filename else None
+            print(images.config.destination)
+            print(filename)
+            print(url)
             post = Post(
                 title=form.title.data,
                 body=form.body.data,
                 author=current_user,
-                tag=tag
+                tag=tag,
+                image_filename=filename,
+                image_url=url
             )
             db.session.add(post)
             db.session.commit()
@@ -291,6 +299,7 @@ def construct_detail_route(blueprint, tag):
         post = get_post(id, check_author=False)
         db = get_db()
         comments = Comment.query.filter(Comment.post_id == id).all()[::-1]
+        print(post.image_url)
         return render_template(
             'blog/detail.html',
             post=post,

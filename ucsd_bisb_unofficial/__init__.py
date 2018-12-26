@@ -16,7 +16,7 @@ import os
 import sqlite3
 
 from flask import Flask
-
+from flask_uploads import configure_uploads, patch_request_class
 
 
 
@@ -88,6 +88,10 @@ def create_app(test_config=None):
     app.add_url_rule('/', endpoint='auth.login')
 
     app.fts4 = sqlite3.connect(':memory:')
+
+    from ucsd_bisb_unofficial.blog import images
+    configure_uploads(app, images)
+    patch_request_class(app)
 
     @app.before_first_request
     def populate_databse():

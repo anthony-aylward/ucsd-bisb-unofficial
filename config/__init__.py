@@ -36,6 +36,7 @@ MAIL_USE_SSL = False
 MAIL_USERNAME = ''
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 POSTS_PER_PAGE = 3
+UPLOADED_IMAGES_DEST = os.path.join(basedir, 'uploads', 'img')
 ADMINS = []
 APPROVED_EMAILS = []
 '''
@@ -59,6 +60,7 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = 'ucsd.bisb.unofficial'
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 POSTS_PER_PAGE = 5
+UPLOADED_IMAGES_DEST = os.path.join(basedir, 'uploads', 'img')
 ADMINS = ['ucsd.bisb.unofficial@gmail.com']
 APPROVED_EMAILS = [
     'ucsd.bisb.unofficial@gmail.com',

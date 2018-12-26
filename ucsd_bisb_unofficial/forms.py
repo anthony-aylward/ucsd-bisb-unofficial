@@ -11,8 +11,9 @@ http://flask-wtf.readthedocs.io/en/stable/ )
 
 # Imports  =====================================================================
 
-from flask import request
+from flask import request, current_app
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import (
     StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 )
@@ -20,6 +21,7 @@ from wtforms.validators import (
     ValidationError, DataRequired, Email, EqualTo, Length
 )
 from ucsd_bisb_unofficial.models import User
+from ucsd_bisb_unofficial.uploads import images
 
 
 
@@ -89,10 +91,11 @@ class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     body = TextAreaField(
         'Say something',
-        validators=[
-            DataRequired(),
-            Length(min=1, max=80000)
-        ]
+        validators=[DataRequired(), Length(min=1, max=80000)]
+    )
+    image = FileField(
+        'Image',
+        validators=[FileAllowed(images, 'Images only!')]
     )
     submit = SubmitField('Submit')
 

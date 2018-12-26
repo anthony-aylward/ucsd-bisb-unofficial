@@ -357,6 +357,8 @@ class Post(SearchableMixin, db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     tag = db.Column(db.String(128))
+    image_filename = db.Column(db.String, default=None)
+    image_url = db.Column(db.String, default=None)
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
 
     def __repr__(self):

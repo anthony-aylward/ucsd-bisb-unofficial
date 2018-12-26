@@ -6,12 +6,14 @@
 
 {% block content %}
   <div class="content-post">
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     {{ form.title.label }}
     {{ form.title(id='title', required=True) }}
     {{ form.body.label }}
     {{ form.body(cols=32, rows=4, id='body') }}
+    {{ form.image.label }}
+    {{ form.image(id='image')}}
     {{ form.submit() }}
   </form>
 </div>
