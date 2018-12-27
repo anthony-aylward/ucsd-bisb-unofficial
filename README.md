@@ -1,6 +1,6 @@
 # TO DO
 
-* Add CSS for github-style tables and code blocks
+* Markdown formatting help page
 * Alum page
 
 # Other suggestions
