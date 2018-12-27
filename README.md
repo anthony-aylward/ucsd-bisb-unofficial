@@ -1,5 +1,6 @@
 # TO DO
 
+* Improve separation between displayed posts/comments
 * Upload a PDF with a post
 * Markdown formatting help page
 * Alum page
