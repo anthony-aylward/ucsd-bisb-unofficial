@@ -66,8 +66,9 @@ def create_app(test_config=None):
     from ucsd_bisb_unofficial.email import mail
     from ucsd_bisb_unofficial.principals import principals
     from ucsd_bisb_unofficial.errors import forbidden
+    from ucsd_bisb_unofficial.misaka import md
     
-    for ext in db, login, mail, principals:
+    for ext in db, login, mail, principals, md:
         ext.init_app(app)
     migrate.init_app(app, db)
     login.login_view = 'auth.login'

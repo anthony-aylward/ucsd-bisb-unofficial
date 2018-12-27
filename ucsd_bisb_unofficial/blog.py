@@ -94,7 +94,7 @@ def construct_create_route(blueprint, tag):
         db = get_db()
         form = PostForm()
         if form.validate_on_submit():
-            filename = images.save(request.files['image']) if request.files['image'] else None
+            filename = images.save(request.files['image']) if request.files.get('image') else None
             url = images.url(filename) if filename else None
             post = Post(
                 title=form.title.data,
