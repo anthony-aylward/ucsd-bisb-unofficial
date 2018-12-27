@@ -21,8 +21,8 @@
   <p class="body">
     {{
       post.body|markdown(
-        fenced_code=True, highlight=True, quote=True,
-        superscript=True, tables=True, escape=True
+        autolink=True, fenced_code=True, highlight=True, quote=True,
+        strikethrough=True, superscript=True, tables=True, escape=True
       )
     }}
   </p>
