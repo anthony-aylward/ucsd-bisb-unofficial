@@ -1,5 +1,6 @@
 # TO DO
 
+* Add CSS for github-style tables
 * Alum page
 
 # Other suggestions
