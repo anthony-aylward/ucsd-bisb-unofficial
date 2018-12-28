@@ -1,6 +1,5 @@
 # TO DO
 
-* Markdown formatting help page
 * Alum page
 
 # Other suggestions
