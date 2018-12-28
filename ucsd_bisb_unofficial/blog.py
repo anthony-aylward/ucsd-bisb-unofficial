@@ -19,13 +19,13 @@ bp : Blueprint
 
 # Imports ======================================================================
 
+from datetime import datetime
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for,
     current_app
 )
 from flask_login import current_user, login_required
 from werkzeug.exceptions import abort
-
 from ucsd_bisb_unofficial.forms import PostForm, CommentForm
 from ucsd_bisb_unofficial.models import get_db, Post, Comment
 from ucsd_bisb_unofficial.principals import named_permission
@@ -94,12 +94,12 @@ def construct_create_route(blueprint, tag):
         db = get_db()
         form = PostForm()
         if form.validate_on_submit():
-            image_filename = (
+            image_filename = datetime.now().strftime('%Y%m%d-%H%M%S-') + (
                 images.save(request.files['image'])
                 if request.files.get('image')
                 else None
             )
-            document_filename = (
+            document_filename = datetime.now().strftime('%Y%m%d-%H%M%S-') + (
                 documents.save(request.files['document'])
                 if request.files.get('document')
                 else None
