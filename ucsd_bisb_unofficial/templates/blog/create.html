@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% from 'macros.html' import markdown_message as markdown_message %}
 
 {% block header %}
-  <h1>{% block title %}New Post{% endblock title %}</h1>
+<h1>{% block title %}New Post{% endblock title %}</h1>
 {% endblock header %}
 
 {% block content %}
-  <div class="content-post">
+<div class="content-post">
   <form method="post" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     {{ form.title.label }}
@@ -19,4 +20,5 @@
     {{ form.submit() }}
   </form>
 </div>
+{{ markdown_message() }}
 {% endblock content %}

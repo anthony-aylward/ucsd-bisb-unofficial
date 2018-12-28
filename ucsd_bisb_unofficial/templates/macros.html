@@ -108,3 +108,15 @@
   {% endif %}
 {% endfor %}
 {% endmacro %}
+
+{% macro markdown_message() %}
+<div>
+{% filter markdown %}
+Posts and comments support
+[Markdown](https://www.markdownguide.org/cheat-sheet/) via
+[Flask-Misaka](https://flask-misaka.readthedocs.io/en/latest/), with the
+following options turned on: `autolink`, `fenced_code`, `highlight`, `quote`,
+`strikethrough`, `superscript`, `tables`, and `escape`.
+{% endfilter %}
+</div>
+{% endmacro %}

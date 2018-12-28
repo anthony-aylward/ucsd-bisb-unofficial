@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
+{% from 'macros.html' import markdown_message as markdown_message %}
 
 {% block header %}
-  <h1>{% block title %}Comment on "{{ post['title'] }}"{% endblock title %}</h1>
+<h1>{% block title %}Comment on "{{ post['title'] }}"{% endblock title %}</h1>
 {% endblock header %}
 
 {% block content %}
-  <div class='content-post'>
+<div class="content-post">
   <form method="post">
     {{ form.hidden_tag() }}
     {{ form.body.label }}
-    {{ form.body(cols=32, rows=4, id='body') }}
+    {{ form.body(cols=32, rows=4, id="body") }}
     {{ form.submit() }}
   </form>
 </div>
+{{ markdown_message() }}
 {% endblock content %}
