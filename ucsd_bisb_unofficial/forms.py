@@ -21,7 +21,7 @@ from wtforms.validators import (
     ValidationError, DataRequired, Email, EqualTo, Length
 )
 from ucsd_bisb_unofficial.models import User
-from ucsd_bisb_unofficial.uploads import images
+from ucsd_bisb_unofficial.uploads import documents, images
 
 
 
@@ -92,6 +92,10 @@ class PostForm(FlaskForm):
     body = TextAreaField(
         'Say something',
         validators=[DataRequired(), Length(min=1, max=80000)]
+    )
+    document = FileField(
+        'Document',
+        validators=[FileAllowed(documents, 'Documents only!')]
     )
     image = FileField(
         'Image',

@@ -90,7 +90,8 @@ def create_app(test_config=None):
 
     app.fts4 = sqlite3.connect(':memory:')
 
-    from ucsd_bisb_unofficial.blog import images
+    from ucsd_bisb_unofficial.blog import documents, images
+    configure_uploads(app, documents)
     configure_uploads(app, images)
     patch_request_class(app)
 

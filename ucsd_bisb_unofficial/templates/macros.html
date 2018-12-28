@@ -54,14 +54,7 @@
         <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
       {% endif %}
     </header>
-    <p class="body">
-    {{
-      post.preview|markdown(
-        autolink=True, fenced_code=True, highlight=True, quote=True,
-        strikethrough=True, superscript=True, tables=True, escape=True
-      )
-    }}
-    </p>
+    <p class="body">{{ post.preview }}</p>
   </article>
   {% if not loop.last %}
     <hr>
@@ -108,14 +101,7 @@
         <div class="about">by {{ post.author.username }} on {{ post.timestamp.strftime('%Y-%m-%d') }}</div>
       </div>
     </header>
-    <p class="body">
-    {{
-      post.preview|markdown(
-        autolink=True, fenced_code=True, highlight=True, quote=True,
-        strikethrough=True, superscript=True, tables=True, escape=True
-      )
-    }}
-    </p>
+    <p class="body">{{ post.preview }}</p>
   </article>
   {% if not loop.last %}
     <hr>

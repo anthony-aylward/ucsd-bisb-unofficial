@@ -12,6 +12,8 @@
     {{ form.title(id='title', required=True) }}
     {{ form.body.label }}
     {{ form.body(cols=32, rows=4, id='body') }}
+    {{ form.document.label }}
+    {{ form.document(id='document')}}
     {{ form.image.label }}
     {{ form.image(id='image')}}
     {{ form.submit() }}
