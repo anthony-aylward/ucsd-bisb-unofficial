@@ -16,6 +16,8 @@ from flask import current_app
 
 # Functions ====================================================================
 
+# Functions for the fts4 package -----------------------------------------------
+
 def validate_table_name(cursor, source_db_name, table_name):
     if table_name not in {
         tup[0] for tup in cursor.execute(
@@ -63,6 +65,26 @@ def _fts4_index(cursor, source_db_name, table, id, searchable):
     )
 
 
+def _fts4_delete(cursor, table, id):
+    validate_table_name(cursor, 'main', table)
+    cursor.execute(f'DELETE FROM {table} WHERE id = ?', (id,))
+
+
+def _fts4_search(cursor, source_db_name, table, query, page, per_page):
+    validate_table_name(cursor, source_db_name, table)
+    cursor.execute('DETACH ?', (source_db_name,))
+    searchable = searchable_columns(cursor, table)
+    return tuple(
+        tup[0] for tup in cursor.execute(
+            f'SELECT docid FROM {table} WHERE {table} MATCH ?',
+            (' OR '.join(f'{col}:{query}' for col in searchable),)
+        )
+    )
+
+
+
+
+# Functions for the flask-fts4 package -----------------------------------------
 
 def fts4_index(table, id, searchable):
     c = current_app.fts4.cursor()
@@ -79,26 +101,9 @@ def fts4_index(table, id, searchable):
     c.execute('DETACH ?', (source_db_name,))
 
 
-def _fts4_delete(cursor, table, id):
-    validate_table_name(cursor, 'main', table)
-    cursor.execute(f'DELETE FROM {table} WHERE id = ?', (id,))
-
-
 def fts4_delete(table, id):
     c = current_app.fts4.cursor()
     _fts4_delete(c, table, id)
-
-
-def _fts4_search(cursor, source_db_name, table, query, page, per_page):
-    validate_table_name(cursor, source_db_name, table)
-    cursor.execute('DETACH ?', (source_db_name,))
-    searchable = searchable_columns(cursor, table)
-    return tuple(
-        tup[0] for tup in cursor.execute(
-            f'SELECT docid FROM {table} WHERE {table} MATCH ?',
-            (' OR '.join(f'{col}:{query}' for col in searchable),)
-        )
-    )
 
 
 def fts4_search(table, query, page, per_page):
