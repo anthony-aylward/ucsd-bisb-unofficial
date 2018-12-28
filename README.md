@@ -1,6 +1,5 @@
 # TO DO
 
-* Upload a PDF with a post
 * Markdown formatting help page
 * Alum page
 
