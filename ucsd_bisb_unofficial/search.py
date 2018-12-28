@@ -2,7 +2,7 @@
 # search.py
 #===============================================================================
 
-"""Integration with sqlite3 FTS4 tables"""
+"""Search functionality"""
 
 
 
