@@ -135,6 +135,7 @@ table tr:nth-child(2n) { background-color: var(--light); }
 pre code {
   background-color: var(--light);
   border: 1px solid var(--dark);
+  border-radius: 5px;
   display: block;
   padding: 20px;
 }
