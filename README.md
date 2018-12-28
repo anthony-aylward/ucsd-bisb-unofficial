@@ -1,6 +1,6 @@
 # TO DO
 
-* Markdown formatting help page
+* Fix & expand unit testing
 * Alum page
 
 # Other suggestions
