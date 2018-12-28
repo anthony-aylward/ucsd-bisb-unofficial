@@ -42,19 +42,20 @@ def table_is_indexed(cursor, table_name):
     }
 
 
-def searchable_columns(cursor, table_name):
+def indexed_columns(cursor, table_name):
     cursor.execute(f'SELECT * FROM main.{table_name}')
     return tuple(tup[0] for tup in cursor.description)
 
 
-def _fts4_index(cursor, source_db_name, table, id, searchable):
+def _fts4_index(cursor, source_db_name, table, id, searchable, delete=True):
     validate_table_name(cursor, source_db_name, table)
     validate_column_names(cursor, source_db_name, table, *searchable)
     if not table_is_indexed(cursor, table):
         cursor.execute(
             f"CREATE VIRTUAL TABLE {table} USING fts4({', '.join(searchable)})"
         )
-    cursor.execute(f'DELETE FROM {table} WHERE docid = ?', (id,))
+    if delete:
+        cursor.execute(f'DELETE FROM {table} WHERE docid = ?', (id,))
     cursor.execute(f"""
         INSERT INTO {table}(docid, {', '.join(searchable)})
         SELECT id, {', '.join(searchable)}
@@ -73,11 +74,11 @@ def _fts4_delete(cursor, table, id):
 def _fts4_search(cursor, source_db_name, table, query, page, per_page):
     validate_table_name(cursor, source_db_name, table)
     cursor.execute('DETACH ?', (source_db_name,))
-    searchable = searchable_columns(cursor, table)
+    searchable_columns = indexed_columns(cursor, table)
     return tuple(
         tup[0] for tup in cursor.execute(
             f'SELECT docid FROM {table} WHERE {table} MATCH ?',
-            (' OR '.join(f'{col}:{query}' for col in searchable),)
+            (' OR '.join(f'{col}:{query}' for col in searchable_columns),)
         )
     )
 
