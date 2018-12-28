@@ -1,5 +1,6 @@
 # TO DO
 
+* Fix & expand unit testing
 * Alum page
 
 # Other suggestions
