@@ -38,6 +38,7 @@ setup(
         'flask-sqlalchemy',
         'flask-uploads',
         'flask-wtf',
+        'ftscursor',
         'itsdangerous',
         'jinja2',
         'mako',
