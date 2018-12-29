@@ -10,114 +10,137 @@
 # Imports ======================================================================
 
 from flask import current_app
+from sqlite3 import Cursor
+
+
+
+
+# Classes ======================================================================
+
+# Classes for the fts4 package -------------------------------------------------
+
+class FTS4Cursor(Cursor):
+    """A Cursor with additional methods to support FTS4 indexing & searching"""
+
+    def validate_table_name(self, table_name, source_db_name='source'):
+        if table_name not in {
+            tup[0] for tup in self.execute(
+                f"SELECT name FROM {source_db_name}.sqlite_master "
+                "WHERE type='table'"
+            )
+        }:
+            raise ValueError('Invalid table name')
+    
+    def validate_column_names(
+        self,
+        table_name,
+        *column_names,
+        source_db_name='source'
+    ):
+        self.execute(f'SELECT * FROM {source_db_name}.{table_name}')
+        if not set(column_names) <= {tup[0] for tup in self.description}:
+            raise ValueError('Invalid column names')
+    
+    def table_is_indexed(self, table_name):
+        return table_name in {
+            tup[0] for tup in self.execute(
+                "SELECT name FROM main.sqlite_master WHERE type='table'"
+            )
+        }
+    
+    def indexed_columns(self, table_name):
+        self.execute(f'SELECT * FROM main.{table_name}')
+        return tuple(tup[0] for tup in self.description)
+    
+    def attach_source_db(self, source_db_path, source_db_name='source'):
+        self.execute('ATTACH ? AS ?', (source_db_path, source_db_name))
+    
+    def detach_source_db(self, source_db_name='source'):
+        self.execute('DETACH ?', (source_db_name,))
+    
+    def index(
+        self,
+        table,
+        id,
+        searchable,
+        source_db_name='source',
+        delete=True
+    ):
+        self.validate_table_name(table, source_db_name=source_db_name)
+        self.validate_column_names(
+            table,
+            *searchable,
+            source_db_name=source_db_name
+        )
+        if not self.table_is_indexed(table):
+            self.execute(f"""
+                CREATE VIRTUAL TABLE {table}
+                USING fts4({', '.join(searchable)})
+                """
+            )
+        if delete:
+            self.execute(f'DELETE FROM {table} WHERE docid = ?', (id,))
+        self.execute(f"""
+            INSERT INTO {table}(docid, {', '.join(searchable)})
+            SELECT id, {', '.join(searchable)}
+            FROM {source_db_name}.{table}
+            WHERE id = ?
+            """,
+            (id,)
+        )
+    
+    def delete(self, table, id):
+        self.validate_table_name(table, source_db_name='main')
+        self.execute(f'DELETE FROM {table} WHERE id = ?', (id,))
+    
+    def search(
+        self,
+        table,
+        query,
+        page,
+        per_page,
+        source_db_name='source'
+    ):
+        self.validate_table_name(table, source_db_name=source_db_name)
+        searchable_columns = self.indexed_columns(table)
+        return tuple(
+            tup[0] for tup in self.execute(
+                f'SELECT docid FROM {table} WHERE {table} MATCH ?',
+                (' OR '.join(f'{col}:{query}' for col in searchable_columns),)
+            )
+        )
+    
+    
 
 
 
 
 # Functions ====================================================================
 
-# Functions for the fts4 package -----------------------------------------------
-
-def validate_table_name(cursor, source_db_name, table_name):
-    if table_name not in {
-        tup[0] for tup in cursor.execute(
-            f"SELECT name FROM {source_db_name}.sqlite_master "
-            "WHERE type='table'"
-        )
-    }:
-        raise ValueError('Invalid table name')
-
-
-def validate_column_names(cursor, source_db_name, table_name, *column_names):
-    cursor.execute(f'SELECT * FROM {source_db_name}.{table_name}')
-    if not set(column_names) <= {tup[0] for tup in cursor.description}:
-        raise ValueError('Invalid column names')
-
-
-def table_is_indexed(cursor, table_name):
-    return table_name in {
-        tup[0] for tup in cursor.execute(
-            "SELECT name FROM main.sqlite_master WHERE type='table'"
-        )
-    }
-
-
-def indexed_columns(cursor, table_name):
-    cursor.execute(f'SELECT * FROM main.{table_name}')
-    return tuple(tup[0] for tup in cursor.description)
-
-
-def _fts4_index(cursor, source_db_name, table, id, searchable, delete=True):
-    validate_table_name(cursor, source_db_name, table)
-    validate_column_names(cursor, source_db_name, table, *searchable)
-    if not table_is_indexed(cursor, table):
-        cursor.execute(
-            f"CREATE VIRTUAL TABLE {table} USING fts4({', '.join(searchable)})"
-        )
-    if delete:
-        cursor.execute(f'DELETE FROM {table} WHERE docid = ?', (id,))
-    cursor.execute(f"""
-        INSERT INTO {table}(docid, {', '.join(searchable)})
-        SELECT id, {', '.join(searchable)}
-        FROM {source_db_name}.{table}
-        WHERE id = ?
-        """,
-        (id,)
-    )
-
-
-def _fts4_delete(cursor, table, id):
-    validate_table_name(cursor, 'main', table)
-    cursor.execute(f'DELETE FROM {table} WHERE id = ?', (id,))
-
-
-def _fts4_search(cursor, source_db_name, table, query, page, per_page):
-    validate_table_name(cursor, source_db_name, table)
-    cursor.execute('DETACH ?', (source_db_name,))
-    searchable_columns = indexed_columns(cursor, table)
-    return tuple(
-        tup[0] for tup in cursor.execute(
-            f'SELECT docid FROM {table} WHERE {table} MATCH ?',
-            (' OR '.join(f'{col}:{query}' for col in searchable_columns),)
-        )
-    )
-
-
-
-
 # Functions for the flask-fts4 package -----------------------------------------
 
 def fts4_index(table, id, searchable):
-    c = current_app.fts4.cursor()
-    source_db_name = 'source'
-    c.execute(
-        f'ATTACH ? AS ?',
-        (
-            current_app.config['SQLALCHEMY_DATABASE_URI'].split(':///')[1],
-            source_db_name
-        )
+    c = current_app.fts4.cursor(factory=FTS4Cursor)
+    c.attach_source_db(
+        current_app.config['SQLALCHEMY_DATABASE_URI'].split(':///')[1]
     )
-    _fts4_index(c, source_db_name, table, id, searchable)
+    c.index(table, id, searchable)
     current_app.fts4.commit()
-    c.execute('DETACH ?', (source_db_name,))
+    c.detach_source_db()
 
 
 def fts4_delete(table, id):
-    c = current_app.fts4.cursor()
-    _fts4_delete(c, table, id)
+    c = current_app.fts4.cursor(factory=FTS4Cursor)
+    c.delete(c, table, id)
 
 
 def fts4_search(table, query, page, per_page):
-    c = current_app.fts4.cursor()
-    source_db_name = 'source'
-    c.execute(
-        f'ATTACH ? AS ?',
-        (
-            current_app.config['SQLALCHEMY_DATABASE_URI'].split(':///')[1],
-            source_db_name
-        )
+    c = current_app.fts4.cursor(factory=FTS4Cursor)
+    c.attach_source_db(
+        current_app.config['SQLALCHEMY_DATABASE_URI'].split(':///')[1]
     )
-    hits = _fts4_search(c, source_db_name, table, query, page, per_page)
+    hits = c.search(table, query, page, per_page)
+    c.detach_source_db()
     return {
         'hits': {
             'total': len(hits),
