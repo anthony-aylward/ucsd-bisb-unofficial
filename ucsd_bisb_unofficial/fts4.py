@@ -17,10 +17,10 @@ from sqlite3 import Cursor
 
 # Classes ======================================================================
 
-# Classes for the fts4 package -------------------------------------------------
+# Classes for the ftscursor package --------------------------------------------
 
-class FTS4Cursor(Cursor):
-    """A Cursor with additional methods to support FTS4 indexing & searching"""
+class FTSCursor(Cursor):
+    """A Cursor with additional methods to support FTS indexing & searching"""
 
     def validate_table_name(self, table_name, source_db_name='source'):
         if table_name not in {
@@ -64,7 +64,8 @@ class FTS4Cursor(Cursor):
         id,
         searchable,
         source_db_name='source',
-        delete=True
+        delete=True,
+        fts_version=4
     ):
         self.validate_table_name(table, source_db_name=source_db_name)
         self.validate_column_names(
@@ -75,7 +76,7 @@ class FTS4Cursor(Cursor):
         if not self.table_is_indexed(table):
             self.execute(f"""
                 CREATE VIRTUAL TABLE {table}
-                USING fts4({', '.join(searchable)})
+                USING fts{fts_version}({', '.join(searchable)})
                 """
             )
         if delete:
@@ -113,14 +114,12 @@ class FTS4Cursor(Cursor):
     
 
 
-
-
 # Functions ====================================================================
 
 # Functions for the flask-fts4 package -----------------------------------------
 
 def fts4_index(table, id, searchable):
-    c = current_app.fts4.cursor(factory=FTS4Cursor)
+    c = current_app.fts4.cursor(factory=FTSCursor)
     c.attach_source_db(
         current_app.config['SQLALCHEMY_DATABASE_URI'].split(':///')[1]
     )
@@ -130,12 +129,12 @@ def fts4_index(table, id, searchable):
 
 
 def fts4_delete(table, id):
-    c = current_app.fts4.cursor(factory=FTS4Cursor)
+    c = current_app.fts4.cursor(factory=FTSCursor)
     c.delete(c, table, id)
 
 
 def fts4_search(table, query, page, per_page):
-    c = current_app.fts4.cursor(factory=FTS4Cursor)
+    c = current_app.fts4.cursor(factory=FTSCursor)
     c.attach_source_db(
         current_app.config['SQLALCHEMY_DATABASE_URI'].split(':///')[1]
     )
