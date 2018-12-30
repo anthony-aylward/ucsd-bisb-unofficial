@@ -36,7 +36,7 @@ def fts4_delete(table, id):
 
 def fts4_search(table, query, page, per_page):
     c = current_app.fts4.cursor(factory=FTSCursor)
-    hits = c.search(table, query, page, per_page)
+    hits = c.search(table, query)
     return {
         'hits': {
             'total': len(hits),
