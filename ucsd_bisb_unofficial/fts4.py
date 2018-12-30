@@ -36,11 +36,7 @@ def fts4_delete(table, id):
 
 def fts4_search(table, query, page, per_page):
     c = current_app.fts4.cursor(factory=FTSCursor)
-    c.attach_source_db(
-        current_app.config['SQLALCHEMY_DATABASE_URI'].split(':///')[1]
-    )
     hits = c.search(table, query, page, per_page)
-    c.detach_source_db()
     return {
         'hits': {
             'total': len(hits),
