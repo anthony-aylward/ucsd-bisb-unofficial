@@ -24,14 +24,11 @@ import jwt
 from time import time
 from datetime import datetime
 from flask import g, current_app
+from flask_ftscursor import query_index, add_to_index, remove_from_index
 from flask_login import UserMixin
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-
-from ucsd_bisb_unofficial.fts4 import (
-    query_index, add_to_index, remove_from_index
-)
 
 
 

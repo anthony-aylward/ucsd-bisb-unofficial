@@ -17,6 +17,7 @@ import sqlite3
 
 from flask import Flask
 from flask_uploads import configure_uploads, patch_request_class
+from datetime import datetime
 
 
 
@@ -67,8 +68,9 @@ def create_app(test_config=None):
     from ucsd_bisb_unofficial.principals import principals
     from ucsd_bisb_unofficial.errors import forbidden
     from ucsd_bisb_unofficial.misaka import md
+    from ucsd_bisb_unofficial.fts import fts
     
-    for ext in db, login, mail, principals, md:
+    for ext in db, login, mail, principals, md, fts:
         ext.init_app(app)
     migrate.init_app(app, db)
     login.login_view = 'auth.login'
@@ -87,8 +89,6 @@ def create_app(test_config=None):
         app.register_blueprint(bp)
 
     app.add_url_rule('/', endpoint='auth.login')
-
-    app.fts4 = sqlite3.connect(':memory:')
 
     from ucsd_bisb_unofficial.blog import documents, images
     configure_uploads(app, documents)
