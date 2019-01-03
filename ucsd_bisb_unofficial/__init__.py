@@ -13,11 +13,9 @@ This file contains the application factory for the ucsd_bisb_unofficial app.
 # Imports ======================================================================
 
 import os
-import sqlite3
 
 from flask import Flask
 from flask_uploads import configure_uploads, patch_request_class
-from datetime import datetime
 
 
 
