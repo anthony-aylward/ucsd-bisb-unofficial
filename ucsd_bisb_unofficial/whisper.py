@@ -37,7 +37,7 @@ from ucsd_bisb_unofficial.forms import (
     LoginForm, SendWhisperEmailForm, NewWhisperUserForm, PostForm
 )
 from ucsd_bisb_unofficial.models import (
-    get_db, Role, User, WhisperUser, WhisperPost
+    get_db, Role, User, WhisperUser, WhisperPost, WhisperComment
 )
 from ucsd_bisb_unofficial.principals import whisper_permission, named_permission
 
@@ -312,11 +312,16 @@ def detail(id):
     """
 
     post = get_post(id, check_author=False)
+    comments = WhisperComment.query.filter(WhisperComment.post_id == id).all()[
+        ::-1
+    ]
     return render_template(
         'whisper/detail.html',
         post=post,
+        comments=comments,
         index_route='whisper.index',
-        update_route='whisper.update'
+        update_route='whisper.update',
+        comment_route='whisper.comment'
     )
 
 
