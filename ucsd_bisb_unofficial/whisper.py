@@ -235,7 +235,7 @@ def create():
 
 @bp.route('/<int:whisper_post_id>/comment/', methods=('GET', 'POST'))
 @login_required
-@named_permission.require(http_exception=403)
+@whisper_permission.require(http_exception=403)
 def comment(whisper_post_id):
     """Comment on a post
     
