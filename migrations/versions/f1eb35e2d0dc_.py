@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: beb0d5a68113
+Revision ID: f1eb35e2d0dc
 Revises: 
-Create Date: 2019-01-04 07:40:44.385135
+Create Date: 2019-01-04 14:17:56.661118
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'beb0d5a68113'
+revision = 'f1eb35e2d0dc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -103,6 +103,7 @@ def upgrade():
     sa.Column('whisper_post_id', sa.Integer(), nullable=True),
     sa.Column('whisper_user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['whisper_post_id'], ['whisper_post.id'], ),
+    sa.ForeignKeyConstraint(['whisper_user_id'], ['whisper_user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_whisper_comment_timestamp'), 'whisper_comment', ['timestamp'], unique=False)

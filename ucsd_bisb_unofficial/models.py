@@ -443,6 +443,7 @@ class WhisperUser(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     whisper_posts = db.relationship('WhisperPost', backref='author', lazy='dynamic')
+    whisper_comments = db.relationship('WhisperComment', backref='author', lazy='dynamic')
     roles = db.relationship(
         'Role',
         secondary=roles_whisper_users,
@@ -555,7 +556,7 @@ class WhisperComment(db.Model):
     body = db.Column(db.String(80000))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     whisper_post_id = db.Column(db.Integer, db.ForeignKey('whisper_post.id'))
-    whisper_user_id = db.Column(db.Integer)
+    whisper_user_id = db.Column(db.Integer, db.ForeignKey('whisper_user.id'))
 
     def __repr__(self):
         """String representation of the comment
