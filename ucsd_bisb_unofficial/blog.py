@@ -140,7 +140,7 @@ def construct_comment_route(blueprint, tag):
         be added to the database based on the form data.
         """
         
-        post = get_post(post_id)
+        post = get_post(post_id, check_author=False)
         db = get_db()
         form = CommentForm()
         if form.validate_on_submit():
