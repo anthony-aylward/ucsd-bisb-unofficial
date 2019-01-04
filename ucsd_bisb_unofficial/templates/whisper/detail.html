@@ -12,7 +12,7 @@
     {% if current_user.id == post.user_id %}
     <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
     {% endif %}
-    <a class="btn btn-outline-primary" href="{{ url_for(comment_route, post_id=post.id) }}">Comment</a>
+    <a class="btn btn-outline-primary" href="{{ url_for(comment_route, whisper_post_id=post.id) }}">Comment</a>
     <a class="btn btn-outline-primary" href="{{ url_for(index_route, id=post.id) }}">Go back</a>
   </header>
   <hr>
