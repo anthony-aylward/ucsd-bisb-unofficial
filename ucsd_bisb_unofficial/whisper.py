@@ -385,7 +385,7 @@ def delete_comment(id):
     db = get_db()
     db.session.delete(comment)
     db.session.commit()
-    return redirect(url_for('whisper.detail', id=comment.post_id))
+    return redirect(url_for('whisper.detail', id=comment.whisper_post_id))
 
 
 @bp.route('/<int:id>/detail')
@@ -404,7 +404,7 @@ def detail(id):
     """
 
     post = get_post(id, check_author=False)
-    comments = WhisperComment.query.filter(WhisperComment.post_id == id).all()[
+    comments = WhisperComment.query.filter(WhisperComment.whisper_post_id == id).all()[
         ::-1
     ]
     return render_template(
