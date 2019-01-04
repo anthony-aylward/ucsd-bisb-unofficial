@@ -385,7 +385,7 @@ def delete_comment(id):
     db = get_db()
     db.session.delete(comment)
     db.session.commit()
-    return redirect(url_for(f'{tag}.detail', id=comment.post_id))
+    return redirect(url_for('whisper.detail', id=comment.post_id))
 
 
 @bp.route('/<int:id>/detail')
@@ -446,7 +446,7 @@ def search():
             'author': post.author,
             'timestamp': post.timestamp,
             'preview': post.body[:128] + (len(post.body) > 128) * '...',
-            'detail_route': f'{post.tag}.detail'
+            'detail_route': 'whisper.detail'
         }
         for post in posts
     )
