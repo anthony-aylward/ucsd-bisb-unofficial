@@ -1,7 +1,8 @@
 {% extends 'base-whisper.html' %}
+{% from 'macros.html' import list_of_comments as list_of_comments %}
 
 {% block header %}
-  <h1>{% block title %}{{ post.title }}{% endblock title %}</h1>
+<h1>{% block title %}{{ post.title }}{% endblock title %}</h1>
 {% endblock header %}
 
 {% block content %}
@@ -9,10 +10,26 @@
   <header>
     <div class="about">by {{ post.author.username }} on {{ post.timestamp.strftime('%Y-%m-%d') }}</div>
     {% if current_user.id == post.user_id %}
-      <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
+    <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
     {% endif %}
+    <a class="btn btn-outline-primary" href="{{ url_for(comment_route, post_id=post.id) }}">Comment</a>
     <a class="btn btn-outline-primary" href="{{ url_for(index_route, id=post.id) }}">Go back</a>
   </header>
-  <p class="body">{{ post.body }}</p>
+  <hr>
+  {% if post.document_url %}
+  <iframe src="{{ post.document_url }}" alt="{{ post.document_filename }}" style="width:100%;height:450px;"></iframe>
+  {% endif %}
+  {% if post.image_url %}
+  <img src="{{ post.image_url }}" alt="{{ post.image_filename }}" style="width:100%;height:auto;">
+  {% endif %}
+  <p class="body">
+    {{
+      post.body|markdown(
+        autolink=True, fenced_code=True, highlight=True, quote=True,
+        strikethrough=True, superscript=True, tables=True, escape=True
+      )
+    }}
+  </p>
 </article>
+{{ list_of_comments(comments, current_user, 'whisper.delete_comment') }}
 {% endblock content %}

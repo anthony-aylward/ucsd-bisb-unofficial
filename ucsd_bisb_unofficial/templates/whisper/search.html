@@ -1,0 +1,16 @@
+{% extends 'base-whisper.html' %}
+{% from 'macros.html' import search_results as search_results %}
+
+{% block header %}
+<h1>{% block title %}{{ title }}{% endblock title %}</h1>
+{% endblock header %}
+
+{% block content %}
+{{ search_results(posts, current_user) }}
+{% if prev_url %}
+<a class="btn btn-outline-primary"  href="{{ prev_url or '#' }}">&larr; Previous results</a>
+{% endif %}
+{% if next_url %}
+<a class="btn btn-outline-primary"  href="{{ next_url or '#' }}">Next results &rarr;</a>
+{% endif %}
+{% endblock content %}
