@@ -23,7 +23,8 @@ import random
 import string
 
 from flask import (
-    Blueprint, render_template, request, url_for, flash, redirect, current_app
+    Blueprint, render_template, request, url_for, flash, redirect, current_app,
+    g
 )
 from flask_login import login_required, login_user, logout_user, current_user
 from flask_principal import Identity, identity_changed
@@ -63,10 +64,31 @@ def index():
     """
 
     db = get_db()
-    posts = WhisperPost.query.all()[::-1]
-    for post in posts:
-        post.preview = post.body[:256]
-    return render_template('whisper/index.html', posts=posts)
+    page = request.args.get('page', 1, type=int)
+    posts = (
+        WhisperPost.query
+        .filter(WhisperPost.tag == 'blog')
+        .order_by(WhisperPost.timestamp.desc())
+        .paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+    )
+    next_url = (
+        url_for('blog.index', page=posts.next_num)
+        if posts.has_next
+        else None
+    )
+    prev_url = (
+        url_for('blog.index', page=posts.prev_num)
+        if posts.has_prev
+        else None
+    )
+    for post in posts.items:
+        post.preview = post.body[:128] + (len(post.body) > 128) * '...'
+    return render_template(
+        'blog/index.html',
+        posts=posts.items,
+        next_url=next_url,
+        prev_url=prev_url
+    )
 
 
 @bp.route('/confidentiality')
@@ -296,6 +318,49 @@ def detail(id):
         index_route='whisper.index',
         update_route='whisper.update'
     )
+
+
+@bp.route('/search')
+@login_required
+@named_permission.require(http_exception=403)
+def search():
+    if not g.search_form.validate():
+        return redirect(url_for('whisper.index'))
+    page = request.args.get('page', 1, type=int)
+    posts, total = WhisperPost.search(
+        g.search_form.q.data,
+        page,
+        current_app.config['POSTS_PER_PAGE']
+    )
+    next_url = (
+        url_for('whisper.search', q=g.search_form.q.data, page=page + 1)
+        if total > page * current_app.config['POSTS_PER_PAGE']
+        else None
+    )
+    prev_url = (
+        url_for('whisper.search', q=g.search_form.q.data, page=page - 1)
+        if page > 1
+        else None
+    )
+    posts = tuple(
+        {
+            'id': post.id,
+            'title': post.title,
+            'author': post.author,
+            'timestamp': post.timestamp,
+            'preview': post.body[:128] + (len(post.body) > 128) * '...',
+            'detail_route': f'{post.tag}.detail'
+        }
+        for post in posts
+    )
+    return render_template(
+        'whisper/search.html',
+        title='Search Results',
+        posts=posts,
+        next_url=next_url,
+        prev_url=prev_url
+    )
+
 
 
 # Other ------------------------------------------------------------------------

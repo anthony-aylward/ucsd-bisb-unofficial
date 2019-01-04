@@ -17,6 +17,7 @@ from flask import (
 from flask_login import current_user, login_required
 from ucsd_bisb_unofficial.models import Post
 from ucsd_bisb_unofficial.forms import SearchForm
+from ucsd_bisb_unofficial.principals import named_permission
 
 
 
@@ -38,6 +39,7 @@ def before_request():
 
 @bp.route('/search')
 @login_required
+@named_permission.require(http_exception=403)
 def search():
     if not g.search_form.validate():
         return redirect(url_for('jumbotron.index'))

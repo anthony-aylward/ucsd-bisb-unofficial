@@ -502,7 +502,7 @@ class WhisperUser(UserMixin, db.Model):
             ).count() > 0
 
 
-class WhisperPost(db.Model):
+class WhisperPost(SearchableMixin, db.Model):
     """A whisper post
 
     Attributes
@@ -514,11 +514,18 @@ class WhisperPost(db.Model):
     whisper_user_id : int
     """
 
+    __searchable__ = ('body', 'title')
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128))
     body = db.Column(db.String(80000))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     whisper_user_id = db.Column(db.Integer, db.ForeignKey('whisper_user.id'))
+    document_filename = db.Column(db.String, default=None)
+    document_url = db.Column(db.String, default=None)
+    image_filename = db.Column(db.String, default=None)
+    image_url = db.Column(db.String, default=None)
+    comments = db.relationship('WhisperComment', backref='post', lazy='dynamic')
 
     def __repr__(self):
         """String representation of the post
@@ -547,7 +554,7 @@ class WhisperComment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(80000))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    whisper_post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    whisper_post_id = db.Column(db.Integer, db.ForeignKey('whisper_post.id'))
     whisper_user_id = db.Column(db.Integer)
 
     def __repr__(self):

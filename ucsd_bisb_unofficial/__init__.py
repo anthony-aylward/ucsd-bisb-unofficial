@@ -60,7 +60,9 @@ def create_app(test_config=None):
     except OSError:
         pass
     
-    from ucsd_bisb_unofficial.models import db, migrate, Role, get_db, Post
+    from ucsd_bisb_unofficial.models import (
+        db, migrate, Role, get_db, Post, WhisperPost
+    )
     from ucsd_bisb_unofficial.login import login
     from ucsd_bisb_unofficial.email import mail
     from ucsd_bisb_unofficial.principals import principals
@@ -112,8 +114,9 @@ def create_app(test_config=None):
                 db.session.commit()
     
     @app.before_first_request
-    def reindex_posts():
+    def reindex():
         with app.app_context():
             Post.reindex()
+            WhisperPost.reindex()
     
     return app
