@@ -419,7 +419,7 @@ def detail(id):
 
 @bp.route('/search')
 @login_required
-@named_permission.require(http_exception=403)
+@whisper_permission.require(http_exception=403)
 def search():
     if not g.search_form.validate():
         return redirect(url_for('whisper.index'))
