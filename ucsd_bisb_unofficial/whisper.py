@@ -69,24 +69,23 @@ def index():
     page = request.args.get('page', 1, type=int)
     posts = (
         WhisperPost.query
-        .filter(WhisperPost.tag == 'blog')
         .order_by(WhisperPost.timestamp.desc())
         .paginate(page, current_app.config['POSTS_PER_PAGE'], False)
     )
     next_url = (
-        url_for('blog.index', page=posts.next_num)
+        url_for('whisper.index', page=posts.next_num)
         if posts.has_next
         else None
     )
     prev_url = (
-        url_for('blog.index', page=posts.prev_num)
+        url_for('whisper.index', page=posts.prev_num)
         if posts.has_prev
         else None
     )
     for post in posts.items:
         post.preview = post.body[:128] + (len(post.body) > 128) * '...'
     return render_template(
-        'blog/index.html',
+        'whisper/index.html',
         posts=posts.items,
         next_url=next_url,
         prev_url=prev_url
