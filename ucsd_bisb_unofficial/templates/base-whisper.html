@@ -23,7 +23,7 @@
 <nav class="rounded-top">
   <h1>UCSD BISB Unofficial</h1>
   {% if g.search_form %}
-  <form class="navbar-form navbar-left" method="get" action="{{ url_for('search.search') }}">
+  <form class="navbar-form navbar-left" method="get" action="{{ url_for('whisper.search') }}">
     <div class="form-group">
       {{
         g.search_form.q(
