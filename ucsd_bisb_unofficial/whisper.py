@@ -22,6 +22,7 @@ bp : Blueprint
 import random
 import string
 
+from datetime import datetime
 from flask import (
     Blueprint, render_template, request, url_for, flash, redirect, current_app,
     g
@@ -40,6 +41,7 @@ from ucsd_bisb_unofficial.models import (
     get_db, Role, User, WhisperUser, WhisperPost, WhisperComment
 )
 from ucsd_bisb_unofficial.principals import whisper_permission, named_permission
+from ucsd_bisb_unofficial.uploads import documents, images
 
 
 
@@ -200,10 +202,31 @@ def create():
     db = get_db()
     form = PostForm()
     if form.validate_on_submit():
+        document_filename =  (
+            datetime.utcnow().strftime('%Y%m%d-%H%M%S-{}').format(
+                documents.save(request.files['document'])
+            )
+            if request.files.get('document') else None
+        )
+        image_filename = (
+            datetime.utcnow().strftime('%Y%m%d-%H%M%S-{}').format(
+                images.save(request.files['image'])
+            )
+            if request.files.get('image') else None
+        )
         post = WhisperPost(
             title=form.title.data,
             body=form.body.data,
-            author=current_user
+            author=current_user,
+            document_filename=document_filename,
+            document_url=(
+                documents.url(document_filename)
+                if document_filename else None
+            ),
+            image_filename=image_filename,
+            image_url=(
+                images.url(image_filename) if image_filename else None
+            )
         )
         db.session.add(post)
         db.session.commit()
