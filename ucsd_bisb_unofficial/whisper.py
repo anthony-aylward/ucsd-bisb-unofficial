@@ -34,7 +34,7 @@ from werkzeug.urls import url_parse
 
 from ucsd_bisb_unofficial.email import send_whisper_email
 from ucsd_bisb_unofficial.forms import (
-    LoginForm, SendWhisperEmailForm, NewWhisperUserForm, PostForm
+    LoginForm, SendWhisperEmailForm, NewWhisperUserForm, PostForm, CommentForm
 )
 from ucsd_bisb_unofficial.models import (
     get_db, Role, User, WhisperUser, WhisperPost, WhisperComment
@@ -211,6 +211,32 @@ def create():
     return render_template('whisper/create.html', form=form)
 
 
+@bp.route('/<int:whisper_post_id>/comment/', methods=('GET', 'POST'))
+@login_required
+@named_permission.require(http_exception=403)
+def comment(whisper_post_id):
+    """Comment on a post
+    
+    This page includes a CommentForm (see `forms.py`). A new comment will
+    be added to the database based on the form data.
+    """
+    
+    post = get_post(whisper_post_id)
+    db = get_db()
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = WhisperComment(
+            body=form.body.data,
+            whisper_user_id=current_user.id,
+            whisper_post_id=whisper_post_id
+        )
+        db.session.add(comment)
+        db.session.commit()
+        flash('your comment is now live!')
+        return redirect(url_for('whisper.detail', id=post.id))
+    return render_template('whisper/comment.html', form=form, post=post)
+
+
 def get_post(id, check_author=True):
     """Retrieve a post from the database
     
@@ -238,6 +264,32 @@ def get_post(id, check_author=True):
         abort(403)
     
     return post
+
+
+def get_comment(id, check_author=True):
+    """Retrieve a comment from the database
+    
+    Parameters
+    ----------
+    id : int
+        A comment ID.
+    check_author : bool
+        If True, the ID of the current user will be compared to the ID of the
+        comment's author. If the current user is not the author of the comment,
+        the retrieval is aborted.
+    
+    Returns
+    -------
+    Comment or NoneType
+        The comment with the given comment ID.
+    """
+
+    comment = WhisperComment.query.filter_by(id=id).first()
+    if comment is None:
+        abort(404, f"WhisperComment id {id} doesn't exist.")
+    if check_author and comment.user_id != current_user.id:
+        abort(403)
+    return comment
 
 
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
@@ -294,6 +346,24 @@ def delete(id):
     db.session.delete(post)
     db.session.commit()
     return redirect(url_for('whisper.index'))
+
+@bp.route('/<int:id>/delete-comment', methods=('GET', 'POST',))
+@login_required
+@whisper_permission.require(http_exception=403)
+def delete_comment(id):
+    """Delete a comment
+
+    Parameters
+    ----------
+    id : int
+        The ID no. of the comment to be deleted
+    """
+
+    comment = get_comment(id)
+    db = get_db()
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect(url_for(f'{tag}.detail', id=comment.post_id))
 
 
 @bp.route('/<int:id>/detail')

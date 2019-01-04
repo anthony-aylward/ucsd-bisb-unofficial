@@ -155,7 +155,7 @@ def construct_comment_route(blueprint, tag):
             return redirect(
                 url_for(f'{tag}.detail', id=post.id)
             )
-        return render_template(f'blog/comment.html', form=form, post=post)
+        return render_template('blog/comment.html', form=form, post=post)
     return comment
 
 
@@ -278,12 +278,12 @@ def construct_delete_comment_route(blueprint, tag):
     @login_required
     @named_permission.require(http_exception=403)
     def delete_comment(id):
-        """Delete a post
+        """Delete a comment
 
         Parameters
         ----------
         id : int
-            The ID no. of the post to be deleted
+            The ID no. of the comment to be deleted
         """
 
         comment = get_comment(id)
@@ -291,7 +291,7 @@ def construct_delete_comment_route(blueprint, tag):
         db.session.delete(comment)
         db.session.commit()
         return redirect(url_for(f'{tag}.detail', id=comment.post_id))
-    return delete
+    return delete_comment
 
 
 def construct_detail_route(blueprint, tag):
