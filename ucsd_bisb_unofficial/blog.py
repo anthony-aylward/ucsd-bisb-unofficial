@@ -95,15 +95,11 @@ def construct_create_route(blueprint, tag):
         form = PostForm()
         if form.validate_on_submit():
             document_filename =  (
-                datetime.utcnow().strftime('%Y%m%d-%H%M%S-{}').format(
-                    documents.save(request.files['document'])
-                )
+                documents.save(request.files['document'])
                 if request.files.get('document') else None
             )
             image_filename = (
-                datetime.utcnow().strftime('%Y%m%d-%H%M%S-{}').format(
-                    images.save(request.files['image'])
-                )
+                images.save(request.files['image'])
                 if request.files.get('image') else None
             )
             post = Post(
