@@ -20,7 +20,7 @@
   <iframe src="{{ post.document_url }}" alt="{{ post.document_filename }}" style="width:100%;height:450px;"></iframe>
   {% endif %}
   {% if post.image_url %}
-  <img src="{{ post.image_url }}" alt="{{ post.image_filename }}" style="width:100%;height:auto;">
+  <img src="{{ post.image_url }}" alt="{{ post.image_filename }}" style="max-width:100%;height:auto;">
   {% endif %}
   <p class="body">
     {{
