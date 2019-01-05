@@ -156,7 +156,11 @@
     <header>
       <div>
         <h1><a href="{{ url_for(post.detail_route, id=post.id) }}">{{ post.title }}</a></h1>
-        <div class="about">by {{ post.author.username }} on {{ post.timestamp.strftime('%Y-%m-%d') }}</div>
+        <div class="about">
+          by {{ post.author.username }} on {{ post.timestamp.strftime('%Y-%m-%d') }}
+          {% if post.document_url %}(document){% endif %}
+          {% if post.image_url %}(image){% endif %}
+        </div>
       </div>
     </header>
     <p class="body">{{ post.preview }}</p>
