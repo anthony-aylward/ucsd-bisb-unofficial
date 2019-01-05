@@ -175,6 +175,12 @@
           {% if post.image_url %}(image){% endif %}
         </div>
       </div>
+      {% if post.document_url %}
+      <a href="{{ post.document_url }}" class="btn btn-outline-primary">Document</a>
+      {% endif %}
+      {% if post.image_url %}
+      <a href="{{ post.image_url }}" class="btn btn-outline-primary">Image</a>
+      {% endif %}
     </header>
     <p class="body">{{ post.preview }}</p>
   </article>
