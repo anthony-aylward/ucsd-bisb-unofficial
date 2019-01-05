@@ -305,7 +305,7 @@ def get_comment(id, check_author=True):
     comment = WhisperComment.query.filter_by(id=id).first()
     if comment is None:
         abort(404, f"WhisperComment id {id} doesn't exist.")
-    if check_author and comment.user_id != current_user.id:
+    if check_author and comment.whisper_user_id != current_user.id:
         abort(403)
     return comment
 
