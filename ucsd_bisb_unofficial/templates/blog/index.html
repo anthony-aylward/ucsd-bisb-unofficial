@@ -7,8 +7,6 @@
 {% endblock header %}
 
 {% block content %}
-<img src="https://ucsd-bisb.info/_uploads/images/test-tube.png" alt="test-tube.png" style="max-width:100%;height:auto;">
-<img src="https://ucsd-bisb.info/uploads/img/test-tube.png" alt="test-tube.png" style="max-width:100%;height:auto;">
 {{ list_of_posts(posts, current_user, 'blog.detail', 'blog.update') }}
 {% if prev_url %}
 <a class="btn btn-outline-primary" href="{{ prev_url }}">Newer posts</a>
