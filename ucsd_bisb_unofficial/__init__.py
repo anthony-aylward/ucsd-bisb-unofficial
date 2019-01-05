@@ -15,6 +15,7 @@ This file contains the application factory for the ucsd_bisb_unofficial app.
 import os
 
 from flask import Flask
+from flask_login import login_required
 from flask_uploads import configure_uploads, patch_request_class
 
 
@@ -94,6 +95,7 @@ def create_app(test_config=None):
     configure_uploads(app, documents)
     configure_uploads(app, images)
     patch_request_class(app)
+    app.view_functions['_uploads.uploaded_file'] = login_required(app.view_functions['_uploads.uploaded_file'])
 
     @app.before_first_request
     def populate_databse():
