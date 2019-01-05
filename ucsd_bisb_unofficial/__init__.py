@@ -90,7 +90,7 @@ def create_app(test_config=None):
 
     app.add_url_rule('/', endpoint='auth.login')
 
-    from ucsd_bisb_unofficial.blog import documents, images
+    from ucsd_bisb_unofficial.uploads import documents, images
     configure_uploads(app, documents)
     configure_uploads(app, images)
     patch_request_class(app)
