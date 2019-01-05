@@ -1,6 +1,5 @@
 # TO DO
 
-* Show tags in search results
 * Fix & expand unit testing
 * Alum page
 
