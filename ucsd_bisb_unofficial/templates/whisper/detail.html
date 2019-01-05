@@ -1,5 +1,5 @@
 {% extends 'base-whisper.html' %}
-{% from 'macros.html' import list_of_comments as list_of_comments %}
+{% from 'macros.html' import list_of_whisper_comments as list_of_whisper_comments %}
 
 {% block header %}
 <h1>{% block title %}{{ post.title }}{% endblock title %}</h1>
@@ -31,5 +31,5 @@
     }}
   </p>
 </article>
-{{ list_of_comments(comments, current_user, 'whisper.delete_comment') }}
+{{ list_of_whisper_comments(comments, current_user, 'whisper.delete_comment') }}
 {% endblock content %}

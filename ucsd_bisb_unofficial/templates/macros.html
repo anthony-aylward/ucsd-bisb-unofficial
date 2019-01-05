@@ -120,6 +120,33 @@
 {% endfor %}
 {% endmacro %}
 
+{% macro list_of_whisper_comments(comments, current_user, delete_comment_route) %}
+{% for comment in comments %}
+  {% if loop.first %}
+    <hr>
+  {% endif %}
+  <article class="post">
+    <header>
+      <div class="about">by {{ comment.author.username }} on {{ comment.timestamp.strftime('%Y-%m-%d') }}</div>
+      {% if current_user.id == comment.whisper_user_id %}
+        <a class="btn btn-outline-primary" href="{{ url_for(delete_comment_route, id=comment.id) }}">Delete</a>
+      {% endif %}
+    </header>
+    <p class="body">
+    {{
+      comment.body|markdown(
+        autolink=True, fenced_code=True, highlight=True, quote=True,
+        strikethrough=True, superscript=True, tables=True, escape=True
+      )
+    }}
+    </p>
+  </article>
+  {% if not loop.last %}
+    <hr>
+  {% endif %}
+{% endfor %}
+{% endmacro %}
+
 {% macro search_results(posts, current_user) %}
 {% for post in posts %}
   {% if loop.first %}
