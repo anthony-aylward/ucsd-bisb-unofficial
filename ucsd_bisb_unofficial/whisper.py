@@ -98,7 +98,10 @@ def index():
 def confidentiality():
     """Render the confidentiality agreement"""
 
-    return render_template('whisper/confidentiality.html')
+    return render_template(
+        'whisper/confidentiality.html',
+        date=datetime.now().strftime('%d %b %Y')
+    )
 
 
 @bp.route('/info')
