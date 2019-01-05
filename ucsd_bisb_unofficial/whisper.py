@@ -442,7 +442,9 @@ def search():
             'author': post.author,
             'timestamp': post.timestamp,
             'preview': post.body[:128] + (len(post.body) > 128) * '...',
-            'detail_route': 'whisper.detail'
+            'detail_route': 'whisper.detail',
+            'document_url': post.document_url,
+            'image_url': post.image_url
         }
         for post in posts
     )
