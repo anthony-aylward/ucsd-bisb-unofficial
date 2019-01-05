@@ -54,8 +54,14 @@
           {% if post.image_url %}(image){% endif %}
         </div>
       </div>
+      {% if post.document_url %}
+      <a href="{{ post.document_url }}" class="btn btn-outline-primary">Document</a>
+      {% endif %}
+      {% if post.image_url %}
+      <a href="{{ post.image_url }}" class="btn btn-outline-primary">Image</a>
+      {% endif %}
       {% if current_user.id == post.user_id %}
-        <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
+      <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
       {% endif %}
     </header>
     <p class="body">{{ post.preview }}</p>
@@ -81,8 +87,14 @@
           {% if post.image_url %}(image){% endif %}
         </div>
       </div>
+      {% if post.document_url %}
+      <a href="{{ post.document_url }}" class="btn btn-outline-primary">Document</a>
+      {% endif %}
+      {% if post.image_url %}
+      <a href="{{ post.image_url }}" class="btn btn-outline-primary">Image</a>
+      {% endif %}
       {% if current_user.id == post.whisper_user_id %}
-        <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
+      <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
       {% endif %}
     </header>
     <p class="body">{{ post.preview }}</p>
