@@ -41,13 +41,18 @@ class AuthActions(object):
 def testing_config():
     return {
         'TESTING': True,
-        'SQLALCHEMY_DATABASE_URI': 'sqlite://',
+        'SQLALCHEMY_DATABASE_URI': 'sqlite:////tmp/app.db',
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
         'MAIL_SERVER': None,
         'ADMINS': ['ucsd.bisb.unofficial@gmail.com'],
         'SECRET_KEY': 'you-will-never-guess',
         'WTF_CSRF_ENABLED': False,
-        'APPROVED_EMAILS': ['a@a.com', 'test@test.org', 'other@other.org']
+        'APPROVED_EMAILS': ['a@a.com', 'test@test.org', 'other@other.org'],
+        'UPLOADED_DOCUMENTS_DEST': '/tmp/doc',
+        'UPLOADED_IMAGES_DEST': '/tmp/img',
+        'FTS_DATABASE': '/tmp/fts.db',
+        'FTS_SOURCE_DATABASE': '/tmp/app.db',
+        'POSTS_PER_PAGE': 3
     }
 
 
@@ -55,11 +60,16 @@ def testing_config():
 def non_testing_config():
     return {
         'TESTING': False,
-        'SQLALCHEMY_DATABASE_URI': 'sqlite://',
+        'SQLALCHEMY_DATABASE_URI': 'sqlite:////tmp/app.db',
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
         'MAIL_SERVER': None,
         'ADMINS': ['ucsd.bisb.unofficial@gmail.com'],
-        'APPROVED_EMAILS': ['a@a.com', 'test@test.org', 'other@other.org']
+        'APPROVED_EMAILS': ['a@a.com', 'test@test.org', 'other@other.org'],
+        'UPLOADED_DOCUMENTS_DEST': '/tmp/doc',
+        'UPLOADED_IMAGES_DEST': '/tmp/img',
+        'FTS_DATABASE': '/tmp/fts.db',
+        'FTS_SOURCE_DATABASE': '/tmp/app.db',
+        'POSTS_PER_PAGE': 3
     }
 
 
@@ -103,7 +113,8 @@ def db(app, request):
         title='test title',
         body='test\nbody',
         user_id=1,
-        timestamp=datetime.strptime('2018-01-01 00:00:00', '%Y-%d-%m %H:%M:%S')
+        timestamp=datetime.strptime('2018-01-01 00:00:00', '%Y-%d-%m %H:%M:%S'),
+        tag='blog'
     )
 
     db.session.add(test_user)
