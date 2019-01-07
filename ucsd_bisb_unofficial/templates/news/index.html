@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block header %}
+<h1>{% block title %}News{% endblock %}</h1>
+<a class="btn btn-outline-primary" href="{{ url_for('news.create') }}">New post</a>
+{% endblock %}
+
+{% block content %}
+<hr>
+<p class="lead">A place for news relevant to the BISB program</p>
+{{ macros.list_of_posts(posts, current_user, 'news.detail', 'news.update') }}
+{% endblock %}
