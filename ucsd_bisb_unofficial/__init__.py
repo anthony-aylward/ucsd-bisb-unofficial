@@ -80,11 +80,12 @@ def create_app(test_config=None):
     
     from ucsd_bisb_unofficial import (
         auth, blog, jumbotron, protected, lab, career, tech, whisper,
-        residency, ta, search, seminars
+        residency, ta, search, seminars, news
     )
     for bp in (
         auth.bp, blog.bp, jumbotron.bp, protected.bp, lab.bp, career.bp,
-        tech.bp, whisper.bp, residency.bp, ta.bp, search.bp, seminars.bp
+        tech.bp, whisper.bp, residency.bp, ta.bp, search.bp, seminars.bp,
+        news.bp
     ):
         app.register_blueprint(bp)
 
