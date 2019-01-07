@@ -54,8 +54,47 @@
           {% if post.image_url %}(image){% endif %}
         </div>
       </div>
+      {% if post.document_url %}
+      <a href="{{ post.document_url }}" class="btn btn-outline-primary">Document</a>
+      {% endif %}
+      {% if post.image_url %}
+      <a href="{{ post.image_url }}" class="btn btn-outline-primary">Image</a>
+      {% endif %}
       {% if current_user.id == post.user_id %}
-        <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
+      <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
+      {% endif %}
+    </header>
+    <p class="body">{{ post.preview }}</p>
+  </article>
+  {% if not loop.last %}
+    <hr>
+  {% endif %}
+{% endfor %}
+{% endmacro %}
+
+{% macro list_of_whisper_posts(posts, current_user, detail_route, update_route) %}
+{% for post in posts %}
+  {% if loop.first %}
+    <hr>
+  {% endif %}
+  <article class="post">
+    <header>
+      <div>
+        <h1><a href="{{ url_for(detail_route, id=post.id) }}">{{ post.title }}</a></h1>
+        <div class="about">
+          by {{ post.author.username }} on {{ post.timestamp.strftime('%Y-%m-%d') }}
+          {% if post.document_url %}(document){% endif %}
+          {% if post.image_url %}(image){% endif %}
+        </div>
+      </div>
+      {% if post.document_url %}
+      <a href="{{ post.document_url }}" class="btn btn-outline-primary">Document</a>
+      {% endif %}
+      {% if post.image_url %}
+      <a href="{{ post.image_url }}" class="btn btn-outline-primary">Image</a>
+      {% endif %}
+      {% if current_user.id == post.whisper_user_id %}
+      <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
       {% endif %}
     </header>
     <p class="body">{{ post.preview }}</p>
@@ -93,6 +132,33 @@
 {% endfor %}
 {% endmacro %}
 
+{% macro list_of_whisper_comments(comments, current_user, delete_comment_route) %}
+{% for comment in comments %}
+  {% if loop.first %}
+    <hr>
+  {% endif %}
+  <article class="post">
+    <header>
+      <div class="about">by {{ comment.author.username }} on {{ comment.timestamp.strftime('%Y-%m-%d') }}</div>
+      {% if current_user.id == comment.whisper_user_id %}
+        <a class="btn btn-outline-primary" href="{{ url_for(delete_comment_route, id=comment.id) }}">Delete</a>
+      {% endif %}
+    </header>
+    <p class="body">
+    {{
+      comment.body|markdown(
+        autolink=True, fenced_code=True, highlight=True, quote=True,
+        strikethrough=True, superscript=True, tables=True, escape=True
+      )
+    }}
+    </p>
+  </article>
+  {% if not loop.last %}
+    <hr>
+  {% endif %}
+{% endfor %}
+{% endmacro %}
+
 {% macro search_results(posts, current_user) %}
 {% for post in posts %}
   {% if loop.first %}
@@ -102,8 +168,19 @@
     <header>
       <div>
         <h1><a href="{{ url_for(post.detail_route, id=post.id) }}">{{ post.title }}</a></h1>
-        <div class="about">by {{ post.author.username }} on {{ post.timestamp.strftime('%Y-%m-%d') }}</div>
+        <div class="about">
+          by {{ post.author.username }} on {{ post.timestamp.strftime('%Y-%m-%d') }}
+          {% if post.tag %}[{{ post.tag }}]{% endif %}
+          {% if post.document_url %}(document){% endif %}
+          {% if post.image_url %}(image){% endif %}
+        </div>
       </div>
+      {% if post.document_url %}
+      <a href="{{ post.document_url }}" class="btn btn-outline-primary">Document</a>
+      {% endif %}
+      {% if post.image_url %}
+      <a href="{{ post.image_url }}" class="btn btn-outline-primary">Image</a>
+      {% endif %}
     </header>
     <p class="body">{{ post.preview }}</p>
   </article>

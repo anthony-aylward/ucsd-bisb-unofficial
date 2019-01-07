@@ -69,9 +69,6 @@ def test_create(client, auth):
         '/blog/create',
         data={'title': 'created', 'body': 'another test'}
     )
-    print(response.data)
-    posts = Post.query.all()
-    print(posts)
     count = Post.query.count()
     assert count == 2
 

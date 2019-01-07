@@ -13,12 +13,6 @@
   page, where you can create or log in to your anonymous account.
 </p>
 <hr>
-<blockquote class="blockquote">
-  For now a draft version of the confidentiality agreement is here as a placeholder, so bear in mind that it's subject to change.
-  I'm working with an attorney on the final version, which will be up soon.
-  <footer class="blockquote-footer text-right">Tony</footer>
-</blockquote>
-<p>[DRAFT]</p>
 <p>CONFIDENTIALITY AGREEMENT</p>
 <p>
   In connection with your participation and use of
@@ -99,9 +93,8 @@
   </li>
 </ol>
 <p>IN WITNESS WHEREOF, the parties have executed this agreement effective as of the date first written above.</p>
-<p>By electronically signing this, you are agreeing to the terms of this Confidentiality Agreement.</p>
-<p>[electronic signing]</p>
-<p>Date: [   ]</p>
+<p>By accepting, you are agreeing to the terms of this Confidentiality Agreement.</p>
+<p>Date: {{ date }}</p>
 <a href="{{ url_for('whisper.anonymize') }}" class="btn btn-outline-warning">Accept</a>
 <a href="{{ url_for('jumbotron.index') }}" class="btn btn-outline-primary">Decline</a>
 {% endblock %}

@@ -13,14 +13,15 @@
     <a class="btn btn-outline-primary" href="{{ url_for(update_route, id=post.id) }}">Edit</a>
     {% endif %}
     <a class="btn btn-outline-primary" href="{{ url_for(comment_route, post_id=post.id) }}">Comment</a>
-    <a class="btn btn-outline-primary" href="{{ url_for(index_route, id=post.id) }}">Go back</a>
+    <a class="btn btn-outline-primary" href="{{ url_for(index_route, id=post.id) }}">Index</a>
   </header>
-  <hr>
   {% if post.document_url %}
-  <iframe src="{{ post.document_url }}" alt="{{ post.document_filename }}" style="width:100%;height:450px;"></iframe>
+  <a href="{{ post.document_url }}" class="btn btn-outline-primary">Download document</a>
+  <!-- <iframe src="{{ post.document_url }}" alt="{{ post.document_filename }}" style="width:100%;height:450px;"></iframe> -->
   {% endif %}
   {% if post.image_url %}
-  <img src="{{ post.image_url }}" alt="{{ post.image_filename }}" style="width:100%;height:auto;">
+  <a href="{{ post.image_url }}" class="btn btn-outline-primary">Download image</a>
+  <!-- <img src="{{ post.image_url }}" alt="{{ post.image_filename }}" style="max-width:100%;height:auto;"> -->
   {% endif %}
   <p class="body">
     {{

@@ -1,5 +1,5 @@
 {% extends 'base-whisper.html' %}
-{% from 'macros.html' import list_of_posts as list_of_posts %}
+{% from 'macros.html' import list_of_whisper_posts as list_of_whisper_posts %}
 
 {% block header %}
   <h1>{% block title %}Whispers{% endblock title %}</h1>
@@ -7,5 +7,11 @@
 {% endblock header %}
 
 {% block content %}
-{{ list_of_posts(posts, current_user, 'whisper.detail', 'whisper.update') }}
+{{ list_of_whisper_posts(posts, current_user, 'whisper.detail', 'whisper.update') }}
+{% if prev_url %}
+<a class="btn btn-outline-primary" href="{{ prev_url }}">Newer posts</a>
+{% endif %}
+{% if next_url %}
+<a class="btn btn-outline-primary" href="{{ next_url }}">Older posts</a>
+{% endif %}
 {% endblock content %}

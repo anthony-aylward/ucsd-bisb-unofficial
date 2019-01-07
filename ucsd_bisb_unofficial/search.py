@@ -66,7 +66,10 @@ def search():
             'author': post.author,
             'timestamp': post.timestamp,
             'preview': post.body[:128] + (len(post.body) > 128) * '...',
-            'detail_route': f'{post.tag}.detail'
+            'detail_route': f'{post.tag}.detail',
+            'document_url': post.document_url,
+            'image_url': post.image_url,
+            'tag': post.tag
         }
         for post in posts
     )

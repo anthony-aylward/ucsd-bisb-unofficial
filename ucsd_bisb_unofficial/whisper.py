@@ -98,7 +98,10 @@ def index():
 def confidentiality():
     """Render the confidentiality agreement"""
 
-    return render_template('whisper/confidentiality.html')
+    return render_template(
+        'whisper/confidentiality.html',
+        date=datetime.now().strftime('%d %b %Y')
+    )
 
 
 @bp.route('/info')
@@ -202,15 +205,11 @@ def create():
     form = PostForm()
     if form.validate_on_submit():
         document_filename =  (
-            datetime.utcnow().strftime('%Y%m%d-%H%M%S-{}').format(
-                documents.save(request.files['document'])
-            )
+            documents.save(request.files['document'])
             if request.files.get('document') else None
         )
         image_filename = (
-            datetime.utcnow().strftime('%Y%m%d-%H%M%S-{}').format(
-                images.save(request.files['image'])
-            )
+            images.save(request.files['image'])
             if request.files.get('image') else None
         )
         post = WhisperPost(
@@ -309,7 +308,7 @@ def get_comment(id, check_author=True):
     comment = WhisperComment.query.filter_by(id=id).first()
     if comment is None:
         abort(404, f"WhisperComment id {id} doesn't exist.")
-    if check_author and comment.user_id != current_user.id:
+    if check_author and comment.whisper_user_id != current_user.id:
         abort(403)
     return comment
 
@@ -446,7 +445,9 @@ def search():
             'author': post.author,
             'timestamp': post.timestamp,
             'preview': post.body[:128] + (len(post.body) > 128) * '...',
-            'detail_route': 'whisper.detail'
+            'detail_route': 'whisper.detail',
+            'document_url': post.document_url,
+            'image_url': post.image_url
         }
         for post in posts
     )

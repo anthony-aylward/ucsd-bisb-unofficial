@@ -71,7 +71,6 @@ def test_messages(client, auth):
         ),
         follow_redirects=True
     )
-    print(response.data)
     response = client.get('/blog/index')
     assert b'No entries here so far' not in response.data
     assert b'&lt;Hello&gt;' in response.data
