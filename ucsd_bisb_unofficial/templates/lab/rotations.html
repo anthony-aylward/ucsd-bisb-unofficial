@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
+{% from 'macros.html' import rotation_db_button as rotation_db_button %}
 
 {% block header %}
 <h1>{% block title %}BISB Rotation Databse{% endblock %}</h1>
-<a class="btn btn-outline-primary" href="{{ url_for('lab.index') }}">
-  Lab Index
-</a>
+<a class="btn btn-outline-primary" href="{{ url_for('lab.index') }}">Lab Index</a>
 {% endblock %}
 
 {% block content %}
+<hr>
+{{ rotation_db_button(quarter, 'all', 'All Quarters') }}
+{{ rotation_db_button(quarter, 'fall-2018', 'Fall 2018') }}
+{{ rotation_db_button(quarter, 'winter-2019', 'Winter 2019') }}
+{{ rotation_db_button(quarter, 'spring-2019', 'Spring 2019') }}
 <hr>
 {{ table|markdown(tables=True) }}
 {% endblock %}

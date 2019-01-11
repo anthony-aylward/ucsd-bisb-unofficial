@@ -61,7 +61,14 @@ delete_comment = construct_delete_comment_route(bp, 'lab')
 @named_permission.require(http_exception=403)
 def rotations():
     """Render the rotation database"""
-
+    quarter = request.args.get('quarter', 'all', type=str)
+    quarter_columns_dict = {
+        'all': (),
+        'fall-2018': (1, 2),
+        'winter-2019': (3, 4),
+        'spring-2019': (5, 6)
+    }
     rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_CSV'])
-    table = rotation_db.markdown_table(1, 2)
-    return render_template('lab/rotations.html', table=table)
+    columns = quarter_columns_dict[quarter]
+    table = rotation_db.markdown_table(*columns)
+    return render_template('lab/rotations.html', table=table, quarter=quarter)

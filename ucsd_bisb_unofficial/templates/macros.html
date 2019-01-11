@@ -201,3 +201,11 @@ following options turned on: `autolink`, `fenced_code`, `highlight`, `quote`,
 {% endfilter %}
 </div>
 {% endmacro %}
+
+{% macro rotation_db_button(quarter, quarter_key, text) %}
+{% if quarter == quarter_key %}
+<button class="btn btn-outline-secondary" disabled>{{ text }}</button>
+{% else %}
+<a class="btn btn-outline-primary" href="{{ url_for('lab.rotations', quarter=quarter_key) }}">{{ text }}</a>
+{% endif %}
+{% endmacro %}
