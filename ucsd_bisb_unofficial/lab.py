@@ -30,9 +30,9 @@ from ucsd_bisb_unofficial.forms import PostForm
 from ucsd_bisb_unofficial.models import get_db, Post
 from ucsd_bisb_unofficial.principals import named_permission
 from ucsd_bisb_unofficial.blog import (
-    get_post, construct_create_route, construct_update_route,
-    construct_delete_route, construct_detail_route, construct_comment_route,
-    construct_delete_comment_route
+    get_post, construct_index_route, construct_create_route,
+    construct_update_route, construct_delete_route, construct_detail_route,
+    construct_comment_route, construct_delete_comment_route
 )
 from ucsd_bisb_unofficial.rotation_database import RotationDatabase
 
@@ -48,19 +48,7 @@ bp = Blueprint('lab', __name__, url_prefix='/lab')
 
 # Functions ====================================================================
 
-@bp.route('/index')
-@login_required
-@named_permission.require(http_exception=403)
-def index():
-    """Render the lab index"""
-    
-    db = get_db()
-    posts = Post.query.filter(Post.tag == 'lab').all()[::-1]
-    for post in posts:
-        post.preview = post.body[:256]
-    return render_template('lab/index.html', posts=posts)
-
-
+index = construct_index_route(bp, 'lab')
 create = construct_create_route(bp, 'lab')
 update = construct_update_route(bp, 'lab')
 delete = construct_delete_route(bp, 'lab')

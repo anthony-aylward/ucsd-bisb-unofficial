@@ -43,41 +43,44 @@ bp = Blueprint('blog', __name__, url_prefix='/blog')
 
 # Functions ====================================================================
 
-@bp.route('/index')
-@login_required
-@named_permission.require(http_exception=403)
-def index():
-    """Render the blog index
+def construct_index_route(blueprint, tag):
+    @blueprint.route('/index')
+    @login_required
+    @named_permission.require(http_exception=403)
+    def index():
+        f"""Render the {tag} index
 
-    This page collects all posts from the database and displays them.
-    """
+        This page collects all {tag}-tagged posts from the database and
+        displays them.
+        """
 
-    db = get_db()
-    page = request.args.get('page', 1, type=int)
-    posts = (
-        Post.query
-        .filter(Post.tag == 'blog')
-        .order_by(Post.timestamp.desc())
-        .paginate(page, current_app.config['POSTS_PER_PAGE'], False)
-    )
-    next_url = (
-        url_for('blog.index', page=posts.next_num)
-        if posts.has_next
-        else None
-    )
-    prev_url = (
-        url_for('blog.index', page=posts.prev_num)
-        if posts.has_prev
-        else None
-    )
-    for post in posts.items:
-        post.preview = post.body[:128] + (len(post.body) > 128) * '...'
-    return render_template(
-        'blog/index.html',
-        posts=posts.items,
-        next_url=next_url,
-        prev_url=prev_url
-    )
+        db = get_db()
+        page = request.args.get('page', 1, type=int)
+        posts = (
+            Post.query
+            .filter(Post.tag == tag)
+            .order_by(Post.timestamp.desc())
+            .paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+        )
+        next_url = (
+            url_for(f'{tag}.index', page=posts.next_num)
+            if posts.has_next
+            else None
+        )
+        prev_url = (
+            url_for(f'{tag}.index', page=posts.prev_num)
+            if posts.has_prev
+            else None
+        )
+        for post in posts.items:
+            post.preview = post.body[:128] + (len(post.body) > 128) * '...'
+        return render_template(
+            f'{tag}/index.html',
+            posts=posts.items,
+            next_url=next_url,
+            prev_url=prev_url
+        )
+    return index
 
 
 def construct_create_route(blueprint, tag):
@@ -319,7 +322,7 @@ def construct_detail_route(blueprint, tag):
         )
     return detail
 
-
+index = construct_index_route(bp, 'blog')
 create = construct_create_route(bp, 'blog')
 update = construct_update_route(bp, 'blog')
 delete = construct_delete_route(bp, 'blog')

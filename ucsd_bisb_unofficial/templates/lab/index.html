@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% import 'macros.html' as macros %}
+{% from 'macros.html' import list_of_posts as list_of_posts %}
 
 {% block header %}
 <h1>{% block title %}Lab{% endblock %}</h1>
@@ -13,5 +13,11 @@
 <a class="btn btn-outline-primary" href="{{ url_for('lab.rotations') }}">
   BISB Rotation Database
 </a>
-{{ macros.list_of_posts(posts, current_user, 'lab.detail', 'lab.update') }}
+{{ list_of_posts(posts, current_user, 'lab.detail', 'lab.update') }}
+{% if prev_url %}
+<a class="btn btn-outline-primary" href="{{ prev_url }}">Newer posts</a>
+{% endif %}
+{% if next_url %}
+<a class="btn btn-outline-primary" href="{{ next_url }}">Older posts</a>
+{% endif %}
 {% endblock %}
