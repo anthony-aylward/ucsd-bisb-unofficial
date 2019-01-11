@@ -40,6 +40,11 @@ MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 POSTS_PER_PAGE = 3
 UPLOADED_IMAGES_DEST = os.path.join(basedir, 'uploads', 'img')
 UPLOADED_DOCUMENTS_DEST = os.path.join(basedir, 'uploads', 'doc')
+ROTATION_DATABASE_CSV = os.path.join(
+    basedir,
+    'protected',
+    'bisb-cohort-rotation-database.csv'
+)
 ADMINS = []
 APPROVED_EMAILS = []
 '''

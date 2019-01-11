@@ -20,7 +20,8 @@ bp : Blueprint
 # Imports ======================================================================
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for,
+    current_app
 )
 from flask_login import current_user, login_required
 from werkzeug.exceptions import abort
@@ -33,6 +34,7 @@ from ucsd_bisb_unofficial.blog import (
     construct_delete_route, construct_detail_route, construct_comment_route,
     construct_delete_comment_route
 )
+from ucsd_bisb_unofficial.rotation_database import RotationDatabase
 
 
 
@@ -65,3 +67,13 @@ delete = construct_delete_route(bp, 'lab')
 detail = construct_detail_route(bp, 'lab')
 comment = construct_comment_route(bp, 'lab')
 delete_comment = construct_delete_comment_route(bp, 'lab')
+
+@bp.route('/rotations')
+@login_required
+@named_permission.require(http_exception=403)
+def rotations():
+    """Render the rotation database"""
+
+    rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_CSV'])
+    table = rotation_db.markdown_table(1, 2)
+    return render_template('lab/rotations.html', table=table)

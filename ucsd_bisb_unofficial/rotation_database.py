@@ -11,17 +11,15 @@
 
 import csv
 import json
-import sys
-sys.path.pop(0)
 
 from pytablewriter import MarkdownTableWriter
 
 
 
 
-# Imports ======================================================================
+# Classes ======================================================================
 
-class BISBCohortRotationDatabase:
+class RotationDatabase:
 
     def __init__(self, csv_file_path: str):
         with open(csv_file_path, 'r') as f:
@@ -50,11 +48,3 @@ class BISBCohortRotationDatabase:
             for name in sorted(self.dict.keys())
         ]
         return writer.dumps()
-
-
-
-
-# Test =========================================================================
-
-if __name__ == '__main__':
-    print(BISBCohortRotationDatabase('/Users/anthonyaylward/Documents/web-projects/ucsd-bisb-unofficial/instance/protected/bisb-cohort-rotation-database.csv').markdown_table(1, 2))

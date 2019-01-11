@@ -3,19 +3,15 @@
 
 {% block header %}
 <h1>{% block title %}Lab{% endblock %}</h1>
-<a class="btn btn-outline-primary" href="{{ url_for('lab.create') }}">New post</a>
+<a class="btn btn-outline-primary" href="{{ url_for('lab.create') }}">
+  New post
+</a>
 {% endblock %}
 
 {% block content %}
 <hr>
-{{
-  macros.quote(
-    'Students are evaluated every year and the program is evaluated every 4-8 
-    years, but individual labs are evaluated essentially never (at least WRT
-    bioinformatics student experience). Some labs are better than others. That 
-    means it\'s up to us to help new students decide where to go.',
-    'Tony'
-  )
-}}
+<a class="btn btn-outline-primary" href="{{ url_for('lab.rotations') }}">
+  BISB rotation database
+</a>
 {{ macros.list_of_posts(posts, current_user, 'lab.detail', 'lab.update') }}
 {% endblock %}

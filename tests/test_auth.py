@@ -75,7 +75,6 @@ def test_register_validate_input(
             'password2': password
         }
     )
-    print(response.data)
     assert b'<title>Register - UCSD BISB Unofficial</title>' in response.data
 
 
@@ -99,7 +98,6 @@ def test_login(client, auth, db):
 )
 def test_login_validate_input(auth, username, password, message):
     response = auth.login(username, password, follow_redirects=True)
-    print(response.data)
     assert message in response.data
 
 

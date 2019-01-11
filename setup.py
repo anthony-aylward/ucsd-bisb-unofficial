@@ -47,6 +47,7 @@ setup(
         'pluggy',
         'py',
         'pyjwt',
+        'pytablewriter',
         'python-dateutil',
         'python-editor',
         'six',
