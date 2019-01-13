@@ -12,5 +12,5 @@
 {{ profs_button(dept, 'bioe', 'Bioengineering') }}
 {{ profs_button(dept, 'cse', 'Computer Science & Engineering') }}
 <hr>
-{{ table|markdown(tables=True) }}
+{{ table|markdown(autolink=True, tables=True) }}
 {% endblock %}
