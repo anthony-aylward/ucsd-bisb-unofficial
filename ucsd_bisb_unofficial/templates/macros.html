@@ -209,3 +209,11 @@ following options turned on: `autolink`, `fenced_code`, `highlight`, `quote`,
 <a class="btn btn-outline-primary" href="{{ url_for('lab.rotations', quarter=quarter_key) }}">{{ text }}</a>
 {% endif %}
 {% endmacro %}
+
+{% macro profs_button(dept, dept_key, text) %}
+{% if dept == dept_key %}
+<button class="btn btn-outline-secondary" disabled>{{ text }}</button>
+{% else %}
+<a class="btn btn-outline-primary" href="{{ url_for('lab.profs', dept=dept_key) }}">{{ text }}</a>
+{% endif %}
+{% endmacro %}

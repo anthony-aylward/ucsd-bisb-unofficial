@@ -11,6 +11,7 @@
 {% block content %}
 <hr>
 <a class="btn btn-outline-primary" href="{{ url_for('lab.rotations') }}">BISB Rotation Database</a>
+<a class="btn btn-outline-primary" href="{{ url_for('lab.profs') }}">BISB Faculty Database</a>
 {{ list_of_posts(posts, current_user, 'lab.detail', 'lab.update') }}
 {% if prev_url %}
 <a class="btn btn-outline-primary" href="{{ prev_url }}">Newer posts</a>

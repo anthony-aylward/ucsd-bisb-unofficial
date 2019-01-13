@@ -45,6 +45,11 @@ ROTATION_DATABASE_CSV = os.path.join(
     'protected',
     'bisb-cohort-rotation-database.csv'
 )
+PROFS_CSV = {{
+    'bio': os.path.join(basedir, 'protected', 'profs-bio.csv'),
+    'bioe': os.path.join(basedir, 'protected', 'profs-bioe.csv'),
+    'cse': os.path.join(basedir, 'protected', 'profs-cse.csv'),
+}}
 ADMINS = []
 APPROVED_EMAILS = []
 '''
@@ -75,6 +80,11 @@ ROTATION_DATABASE_CSV = os.path.join(
     'protected',
     'bisb-cohort-rotation-database.csv'
 )
+PROFS_CSV = {{
+    'bio': os.path.join(basedir, 'protected', 'profs-bio.csv'),
+    'bioe': os.path.join(basedir, 'protected', 'profs-bioe.csv'),
+    'cse': os.path.join(basedir, 'protected', 'profs-cse.csv'),
+}}
 ADMINS = ['ucsd.bisb.unofficial@gmail.com']
 APPROVED_EMAILS = [
     'ucsd.bisb.unofficial@gmail.com',

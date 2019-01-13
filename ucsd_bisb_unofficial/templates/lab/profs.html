@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import profs_button as profs_button %}
+
+{% block header %}
+<h1>{% block title %}BISB Faculty Database{% endblock %}</h1>
+<a class="btn btn-outline-primary" href="{{ url_for('lab.index') }}">Lab Index</a>
+{% endblock %}
+
+{% block content %}
+<hr>
+{{ profs_button(dept, 'bio', 'Biology & Biomedical Science') }}
+{{ profs_button(dept, 'bioe', 'Bioengineering') }}
+{{ profs_button(dept, 'cse', 'Computer Science & Engineering') }}
+<hr>
+{{ table|markdown(tables=True) }}
+{% endblock %}

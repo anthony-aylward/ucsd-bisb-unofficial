@@ -35,6 +35,7 @@ from ucsd_bisb_unofficial.blog import (
     construct_comment_route, construct_delete_comment_route
 )
 from ucsd_bisb_unofficial.rotation_database import RotationDatabase
+from ucsd_bisb_unofficial.profs import markdown_table
 
 
 
@@ -56,19 +57,34 @@ detail = construct_detail_route(bp, 'lab')
 comment = construct_comment_route(bp, 'lab')
 delete_comment = construct_delete_comment_route(bp, 'lab')
 
+
 @bp.route('/rotations')
 @login_required
 @named_permission.require(http_exception=403)
 def rotations():
     """Render the rotation database"""
     quarter = request.args.get('quarter', 'all', type=str)
-    quarter_columns_dict = {
-        'all': (),
-        'fall-2018': (1, 2),
-        'winter-2019': (3, 4),
+    quarter_to_columns = {
+        'all': (), 'fall-2018': (1, 2), 'winter-2019': (3, 4),
         'spring-2019': (5, 6)
     }
     rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_CSV'])
-    columns = quarter_columns_dict[quarter]
-    table = rotation_db.markdown_table(*columns)
-    return render_template('lab/rotations.html', table=table, quarter=quarter)
+    return render_template(
+        'lab/rotations.html',
+        table=rotation_db.markdown_table(*quarter_to_columns[quarter]),
+        quarter=quarter
+    )
+
+
+@bp.route('/profs')
+@login_required
+@named_permission.require(http_exception=403)
+def profs():
+    """Render the faculty database"""
+
+    dept = request.args.get('dept', 'bio', type=str)
+    return render_template(
+        'lab/profs.html',
+        table=markdown_table(current_app.config['PROFS_CSV'][dept]),
+        dept=dept
+    )
