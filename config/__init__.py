@@ -45,6 +45,13 @@ ROTATION_DATABASE_CSV = os.path.join(
     'protected',
     'bisb-cohort-rotation-database.csv'
 )
+ROTATION_DATABASE_JSON = {{
+    'contact': os.path.join(
+        basedir,
+        'protected',
+        'rotation-contact.json'
+    )
+}}
 PROFS_CSV = {{
     'bio': os.path.join(basedir, 'protected', 'profs-bio.csv'),
     'bioe': os.path.join(basedir, 'protected', 'profs-bioe.csv'),
@@ -80,6 +87,13 @@ ROTATION_DATABASE_CSV = os.path.join(
     'protected',
     'bisb-cohort-rotation-database.csv'
 )
+ROTATION_DATABASE_JSON = {{
+    'contact': os.path.join(
+        basedir,
+        'protected',
+        'rotation-contact.json'
+    )
+}}
 PROFS_CSV = {{
     'bio': os.path.join(basedir, 'protected', 'profs-bio.csv'),
     'bioe': os.path.join(basedir, 'protected', 'profs-bioe.csv'),

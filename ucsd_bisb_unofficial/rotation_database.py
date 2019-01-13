@@ -28,8 +28,8 @@ class RotationDatabase:
     
     def add_column(self, column_name: str, d: dict):
         self.header.append(column_name)
-        for name in d.keys():
-            self.dict[name].append(d[name])
+        for name in self.dict.keys():
+            self.dict[name].append(d.get(name, ''))
     
     def add_json(self, column_name, json_file_path: str):
         with open(json_file_path, 'r') as f:
