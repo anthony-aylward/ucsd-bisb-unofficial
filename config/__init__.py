@@ -93,7 +93,12 @@ ROTATION_DATABASE_CSV = os.path.join(
     'bisb-cohort-rotation-database.csv'
 )
 ROTATION_DATABASE_JSON = {{
-    'contact': os.path.join(
+    'Report': os.path.join(
+        basedir,
+        'protected',
+        'rotation-report.json'
+    ),
+    'Contact': os.path.join(
         basedir,
         'protected',
         'rotation-contact.json'
@@ -137,7 +142,8 @@ APPROVED_EMAILS = [
     'ckmah@ucsd.edu',
     'craylward@gmail.com',
     'mragsac@eng.ucsd.edu',
-    'solvason@eng.ucsd.edu'
+    'solvason@eng.ucsd.edu',
+    'earmingol@eng.ucsd.edu'
 ]
 '''
 
