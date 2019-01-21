@@ -72,9 +72,17 @@ def rotations():
             column_name,
             json_file_path
         )
+    for name in rotation_db.dict.keys():
+        if rotation_db.dict[name][7]:
+            rotation_db.dict[name][7] = "[Download]({})".format(
+                url_for(
+                    'protected.protected',
+                    filename=rotation_db.dict[name][7]
+                )
+            )
     quarter_to_columns = {
-        'all': (), 'fall-2018': (1, 2, 7), 'winter-2019': (3, 4, 7),
-        'spring-2019': (5, 6, 7)
+        'all': (), 'fall-2018': (1, 2, 7, 8), 'winter-2019': (3, 4, 7, 8),
+        'spring-2019': (5, 6, 7, 8)
     }
     return render_template(
         'lab/rotations.html',
