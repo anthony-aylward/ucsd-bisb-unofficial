@@ -81,7 +81,7 @@ def rotations():
                 )
             )
     quarter_to_columns = {
-        'all': (1, 2, 3, 4, 7, 5, 6, 8), 'fall-2018': (1, 2, 7, 8),
+        'all': (1, 2, 7, 3, 4, 5, 6, 8), 'fall-2018': (1, 2, 7, 8),
         'winter-2019': (3, 4, 8), 'spring-2019': (5, 6, 8)
     }
     return render_template(
