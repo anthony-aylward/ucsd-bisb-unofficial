@@ -74,7 +74,7 @@ def rotations():
         )
     for name in rotation_db.dict.keys():
         if rotation_db.dict[name][7]:
-            rotation_db.dict[name][7] = "[Download]({})".format(
+            rotation_db.dict[name][7] = '[Download]({})'.format(
                 url_for(
                     'protected.protected',
                     filename=rotation_db.dict[name][7]
