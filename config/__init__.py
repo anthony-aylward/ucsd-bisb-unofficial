@@ -85,6 +85,7 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = 'ucsd.bisb.unofficial'
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 POSTS_PER_PAGE = 5
+MAX_CONTENT_LENGTH = 64 * 1024 * 1024
 UPLOADED_IMAGES_DEST = os.path.join(basedir, 'uploads', 'img')
 UPLOADED_DOCUMENTS_DEST = os.path.join(basedir, 'uploads', 'doc')
 ROTATION_DATABASE_CSV = os.path.join(
