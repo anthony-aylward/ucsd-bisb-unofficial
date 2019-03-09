@@ -95,7 +95,7 @@ def create_app(test_config=None):
     from ucsd_bisb_unofficial.uploads import documents, images
     configure_uploads(app, documents)
     configure_uploads(app, images)
-    patch_request_class(app)
+    patch_request_class(app, 64 * 1024 * 1024)
     app.view_functions['_uploads.uploaded_file'] = login_required(app.view_functions['_uploads.uploaded_file'])
 
     @app.before_first_request
