@@ -3,7 +3,7 @@
 
 {% block header %}
 <h1>{% block title %}Mental Health{% endblock  title %}</h1>
-<a class="btn btn-outline-primary" href="{{ url_for('seminars.create') }}">
+<a class="btn btn-outline-primary" href="{{ url_for('mental_health.create') }}">
   New post
 </a>
 {% endblock header %}
@@ -16,5 +16,5 @@
   career paths. It is not uncommon for students in our very own program to seek
   treatment for mental illnesses. 
 </p>
-{{ macros.list_of_posts(posts, current_user, 'seminars.detail', 'seminars.update') }}
+{{ macros.list_of_posts(posts, current_user, 'mental_health.detail', 'mental_health.update') }}
 {% endblock %}
