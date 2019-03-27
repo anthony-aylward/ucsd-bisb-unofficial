@@ -72,17 +72,25 @@ def rotations():
             column_name,
             json_file_path
         )
+
+    def markdown_link(col, text):
+        return '[{}]({})'.format(
+            text,
+            url_for('protected.protected', filename=rotation_db.dict[name][col])
+        )
+
     for name in rotation_db.dict.keys():
         if rotation_db.dict[name][7]:
-            rotation_db.dict[name][7] = '[Download]({})'.format(
-                url_for(
-                    'protected.protected',
-                    filename=rotation_db.dict[name][7]
-                )
-            )
+            rotation_db.dict[name][7] = markdown_link(7, 'Proposal')
+        if rotation_db.dict[name][8]:
+            rotation_db.dict[name][8] = markdown_link(8, 'Report')
+        if rotation_db.dict[name][9]:
+            rotation_db.dict[name][9] = markdown_link(9, 'Proposal')
+        if rotation_db.dict[name][10]:
+            rotation_db.dict[name][10] = markdown_link(10, 'Report')
     quarter_to_columns = {
-        'all': (1, 2, 7, 3, 4, 5, 6, 8), 'fall-2018': (1, 2, 7, 8),
-        'winter-2019': (3, 4, 8), 'spring-2019': (5, 6, 8)
+        'all': (1, 2, 7, 8, 3, 4, 5, 6, 11), 'fall-2018': (1, 2, 7, 8, 11),
+        'winter-2019': (3, 4, 9, 10, 11), 'spring-2019': (5, 6, 11)
     }
     return render_template(
         'lab/rotations.html',
