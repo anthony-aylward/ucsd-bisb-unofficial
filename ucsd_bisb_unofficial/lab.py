@@ -89,8 +89,9 @@ def rotations():
         if rotation_db.dict[name][10]:
             rotation_db.dict[name][10] = markdown_link(10, 'Report')
     quarter_to_columns = {
-        'all': (1, 2, 7, 8, 3, 4, 5, 6, 11), 'fall-2018': (1, 2, 7, 8, 11),
-        'winter-2019': (3, 4, 9, 10, 11), 'spring-2019': (5, 6, 11)
+        'all': (1, 2, 7, 8, 3, 4, 9, 10, 5, 6, 11),
+        'fall-2018': (1, 2, 7, 8, 11), 'winter-2019': (3, 4, 9, 10, 11),
+        'spring-2019': (5, 6, 11)
     }
     return render_template(
         'lab/rotations.html',
