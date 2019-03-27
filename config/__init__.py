@@ -109,10 +109,25 @@ ROTATION_DATABASE_CSV = os.path.join(
     'bisb-cohort-rotation-database.csv'
 )
 ROTATION_DATABASE_JSON = {{
-    'Report': os.path.join(
+    'Proposal F18': os.path.join(
         basedir,
         'protected',
-        'rotation-report.json'
+        'rotation-proposal-f18.json'
+    ),
+    'Report F18': os.path.join(
+        basedir,
+        'protected',
+        'rotation-report-f18.json'
+    ),
+    'Proposal W19': os.path.join(
+        basedir,
+        'protected',
+        'rotation-proposal-w19.json'
+    ),
+    'Report W19': os.path.join(
+        basedir,
+        'protected',
+        'rotation-report-w19.json'
     ),
     'Contact': os.path.join(
         basedir,
