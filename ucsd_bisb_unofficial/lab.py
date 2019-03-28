@@ -35,7 +35,7 @@ from ucsd_bisb_unofficial.blog import (
     construct_comment_route, construct_delete_comment_route
 )
 from ucsd_bisb_unofficial.rotation_database import RotationDatabase
-from ucsd_bisb_unofficial.profs import markdown_table
+from ucsd_bisb_unofficial.markdown_table import markdown_table
 
 
 
