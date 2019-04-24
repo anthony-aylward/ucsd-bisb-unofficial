@@ -177,7 +177,8 @@ APPROVED_EMAILS = [
     'earmingol@eng.ucsd.edu',
     'klchu@ucdavis.edu',
     'anp055@eng.ucsd.edu',
-    'ileenamitra@eng.ucsd.edu'
+    'ileenamitra@eng.ucsd.edu',
+    'grahman@eng.ucsd.edu'
 ]
 '''
 
