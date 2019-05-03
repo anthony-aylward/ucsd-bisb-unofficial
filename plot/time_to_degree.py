@@ -32,14 +32,14 @@ def main():
     sns.set_context('paper')
     ax = sns.barplot(
         x='Award year',
-        y='Time to degree',
+        y='Time to degree (years)',
         data=pd.DataFrame(
             { 
                 'Award year': (
                     '2008-09', '2009-10', '2010-11', '2011-12', '2012-13',
                     '2013-14', '2014-15', '2015-16', '2016-17', '2017-18'
                 ),
-                'Time to degree': (
+                'Time to degree (years)': (
                     6.3, 5.8, 5.9, 6.8, 5.8, 5.8, 5.0, 5.4, 5.1, 5.6
                 )
             }
