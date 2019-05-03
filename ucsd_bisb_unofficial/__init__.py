@@ -81,12 +81,12 @@ def create_app(test_config=None):
     
     from ucsd_bisb_unofficial import (
         auth, blog, jumbotron, protected, lab, career, tech, whisper,
-        residency, ta, search, seminars, mental_health, news
+        residency, ta, search, seminars, mental_health, news, stats
     )
     for bp in (
         auth.bp, blog.bp, jumbotron.bp, protected.bp, lab.bp, career.bp,
         tech.bp, whisper.bp, residency.bp, ta.bp, search.bp, seminars.bp,
-        mental_health.bp, news.bp
+        mental_health.bp, news.bp, stats.bp
     ):
         app.register_blueprint(bp)
 
@@ -96,7 +96,9 @@ def create_app(test_config=None):
     configure_uploads(app, documents)
     configure_uploads(app, images)
     patch_request_class(app, 64 * 1024 * 1024)
-    app.view_functions['_uploads.uploaded_file'] = login_required(app.view_functions['_uploads.uploaded_file'])
+    app.view_functions['_uploads.uploaded_file'] = login_required(
+        app.view_functions['_uploads.uploaded_file']
+    )
 
     @app.before_first_request
     def populate_databse():
