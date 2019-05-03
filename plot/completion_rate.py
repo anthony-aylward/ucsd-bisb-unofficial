@@ -43,6 +43,7 @@ def main():
     ax = sns.barplot(
         x='Cohort', y='<=6 Yrs', data=rates, label='<=6 Yrs', color='b'
     )
+    ax.set_title('Bioinformatics & Systems Biology')
     ax.legend(ncol=2, loc='upper right', frameon=True)
     ax.set(ylabel='% Complete')
     fig = ax.get_figure()

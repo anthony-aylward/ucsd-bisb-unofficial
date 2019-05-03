@@ -45,6 +45,7 @@ def main():
         ),
         palette='rocket_r'
     )
+    ax.set_title('Bioinformatics & Systems Biology')
     ax.set(ylim=(4.5, 7))
     fig = ax.get_figure()
     fig.savefig(args.file, format=args.file.split('.')[1])
