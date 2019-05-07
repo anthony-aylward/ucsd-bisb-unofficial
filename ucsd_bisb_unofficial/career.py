@@ -68,6 +68,20 @@ def example_position():
     return render_template('career/example-position.html')
 
 
+@bp.route('/companies')
+@login_required
+@named_permission.require(http_exception=403)
+def companies():
+    """Render the company databse"""
+
+    return render_template(
+        'career/companies.html',
+        table=markdown_table(current_app.config['COMPANIES_CSV']),
+        dept=dept
+    )
+
+
+
 create = construct_create_route(bp, 'career')
 update = construct_update_route(bp, 'career')
 delete = construct_delete_route(bp, 'career')
