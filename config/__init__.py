@@ -77,6 +77,7 @@ PROFS_CSV = {{
     'bioe': os.path.join(basedir, 'protected', 'profs-bioe.csv'),
     'cse': os.path.join(basedir, 'protected', 'profs-cse.csv'),
 }}
+COMPANIES_CSV = os.path.join(basedir, 'protected', 'companies.csv')
 ADMINS = []
 APPROVED_EMAILS = []
 '''
@@ -140,6 +141,7 @@ PROFS_CSV = {{
     'bioe': os.path.join(basedir, 'protected', 'profs-bioe.csv'),
     'cse': os.path.join(basedir, 'protected', 'profs-cse.csv'),
 }}
+COMPANIES_CSV = os.path.join(basedir, 'protected', 'companies.csv')
 ADMINS = ['ucsd.bisb.unofficial@gmail.com']
 APPROVED_EMAILS = [
     'ucsd.bisb.unofficial@gmail.com',

@@ -20,7 +20,8 @@ bp : Blueprint
 # Imports ======================================================================
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for,
+    current_app
 )
 from flask_login import current_user, login_required
 from werkzeug.exceptions import abort
@@ -33,6 +34,7 @@ from ucsd_bisb_unofficial.blog import (
     construct_delete_route, construct_detail_route, construct_comment_route,
     construct_delete_comment_route
 )
+from ucsd_bisb_unofficial.markdown_table import markdown_table
 
 
 
@@ -76,10 +78,8 @@ def companies():
 
     return render_template(
         'career/companies.html',
-        table=markdown_table(current_app.config['COMPANIES_CSV']),
-        dept=dept
+        table=markdown_table(current_app.config['COMPANIES_CSV'])
     )
-
 
 
 create = construct_create_route(bp, 'career')

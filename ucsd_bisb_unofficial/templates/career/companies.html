@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
-{% from 'macros.html' import profs_button as profs_button %}
 
 {% block header %}
-<h1>{% block title %}BISB Faculty Database{% endblock %}</h1>
-<a class="btn btn-outline-primary" href="{{ url_for('lab.index') }}">Lab Index</a>
+<h1>{% block title %}Industry Company Database{% endblock %}</h1>
+<a class="btn btn-outline-primary" href="{{ url_for('career.index') }}">Career Index</a>
 {% endblock %}
 
 {% block content %}
