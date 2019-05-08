@@ -2,6 +2,7 @@
 
 * Fix & expand unit testing
 * Alum page
+* Page for info about electives
 
 # Other suggestions
 
