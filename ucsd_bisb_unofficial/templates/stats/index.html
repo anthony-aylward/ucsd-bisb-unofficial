@@ -11,5 +11,8 @@
 {% block content %}
 <hr>
 <p class="lead">Vital statistics of the BISB program are found here.</p>
+<a class="btn btn-outline-primary" href="url_for('protected.protected', filename='bisb-bmi-town-hall-survey-summary.pdf')">
+  2018 BISB/BMI student survey
+</a>
 {{ macros.list_of_posts(posts, current_user, 'stats.detail', 'stats.update') }}
 {% endblock %}
