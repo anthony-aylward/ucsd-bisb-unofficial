@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block header %}
+<h1>{% block title %}Committee{% endblock  title %}</h1>
+<a class="btn btn-outline-primary" href="{{ url_for('committee.create') }}">
+  New post
+</a>
+{% endblock header %}
+
+{% block content %}
+<hr>
+<p class="lead">This page is for discussion of doctoral committies.</p>
+<p>
+  One thing many BISB students don't learn until a couple of years into their
+  Ph.D is that you'll need <em>two</em> advisors. This requirement is written
+  on the <a href="http://bioinformatics.ucsd.edu/node/38">official website</a>,
+  however tersely:
+</p>
+<blockquote>
+  Each graduate student in the program will work on a dissertation project
+  under dual mentorship, consisting of a primary advisor who is Program
+  Training Faculty, and a co-advisor who may or may not be Program Training
+  Faculty, but must be from a different disciplinary area.
+</blockquote>
+<p>
+  The typical interpretation of the "different disciplinary area" clause is
+  that if the advisor is computationally focused then the co-advisor should be
+  experimentally focused and vice versa. However, there is no formal definition
+  of what this means.
+</p>
+<p>
+  When choosing your advisor and co-advisor, consider talking to older students
+  about pairs they've chosen and what has or hasn't been successful.
+</p>
+{{ macros.list_of_posts(posts, current_user, 'committee.detail', 'committee.update') }}
+{% endblock %}
