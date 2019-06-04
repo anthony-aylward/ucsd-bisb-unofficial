@@ -63,6 +63,7 @@ delete_comment = construct_delete_comment_route(bp, 'lab')
 @named_permission.require(http_exception=403)
 def rotations():
     """Render the rotation database"""
+    
     quarter = request.args.get('quarter', 'all', type=str)
     rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_CSV'])
     for column_name, json_file_path in current_app.config[

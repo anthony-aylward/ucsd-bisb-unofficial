@@ -39,6 +39,7 @@
     {% if current_user.is_anonymous %}
     <li><a href="{{ url_for('auth.register') }}">Register</a>
     <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    <li><a href="{{ url_for('auth.demo') }}">Demo</a>
     {% else %}
     <li><span>{{ current_user.username }}</span>
     <li><a href="{{ url_for('jumbotron.full') }}">Home</a>

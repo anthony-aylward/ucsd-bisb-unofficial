@@ -34,6 +34,7 @@ from ucsd_bisb_unofficial.forms import (
 )
 from ucsd_bisb_unofficial.models import get_db, User, Role
 from ucsd_bisb_unofficial.email import send_confirmation_email
+from ucsd_bisb_unofficial.rotation_database import RotationDatabase
 
 
 
@@ -128,6 +129,47 @@ def login():
             next_page = url_for('jumbotron.index')
         return redirect(next_page)
     return render_template('auth/login.html', title='Log In', form=form)
+
+
+@bp.route('/demo')
+def demo():
+    """Demo of site functionality"""
+
+    quarter = request.args.get('quarter', 'all', type=str)
+    rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_CSV'])
+    for column_name, json_file_path in current_app.config[
+        'ROTATION_DATABASE_JSON'
+    ].items():
+        rotation_db.add_json(
+            column_name,
+            json_file_path
+        )
+
+    def markdown_link(col, text):
+        return '[{}]({})'.format(
+            text,
+            url_for('protected.protected', filename=rotation_db.dict[name][col])
+        )
+
+    for name in rotation_db.dict.keys():
+        if rotation_db.dict[name][7]:
+            rotation_db.dict[name][7] = markdown_link(7, 'Proposal')
+        if rotation_db.dict[name][8]:
+            rotation_db.dict[name][8] = markdown_link(8, 'Report')
+        if rotation_db.dict[name][9]:
+            rotation_db.dict[name][9] = markdown_link(9, 'Proposal')
+        if rotation_db.dict[name][10]:
+            rotation_db.dict[name][10] = markdown_link(10, 'Report')
+    quarter_to_columns = {
+        'all': (1, 2, 7, 8, 3, 4, 9, 10, 5, 6, 11),
+        'fall-2018': (1, 2, 7, 8, 11), 'winter-2019': (3, 4, 9, 10, 11),
+        'spring-2019': (5, 6, 11)
+    }
+    return render_template(
+        'auth/demo.html',
+        table=rotation_db.markdown_table(*quarter_to_columns[quarter]),
+        quarter=quarter
+    )
 
 
 @bp.route('/logout')
