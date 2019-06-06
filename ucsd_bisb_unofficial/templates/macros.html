@@ -217,3 +217,11 @@ following options turned on: `autolink`, `fenced_code`, `highlight`, `quote`,
 <a class="btn btn-outline-primary" href="{{ url_for('lab.profs', dept=dept_key) }}">{{ text }}</a>
 {% endif %}
 {% endmacro %}
+
+{% macro demo_button(quarter, quarter_key, text) %}
+{% if quarter == quarter_key %}
+<button class="btn btn-outline-secondary" disabled>{{ text }}</button>
+{% else %}
+<a class="btn btn-outline-primary" href="{{ url_for('auth.demo', quarter=quarter_key) }}">{{ text }}</a>
+{% endif %}
+{% endmacro %}
