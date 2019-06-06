@@ -3,11 +3,22 @@
 
 {% block header %}
 <h1>{% block title %}BISB Rotation Databse{% endblock %}</h1>
-<a class="btn btn-outline-primary" href="{{ url_for('lab.index') }}">Lab Index</a>
 {% endblock %}
 
 {% block content %}
 <hr>
+<p class="lead">
+  This is a demo page showing one of UCSD BISB Unofficial's features: the
+  rotation database. This feature allows users to browse past rotation projects,
+  view rotation reports, and contact students who have rotated in labs they
+  may be interested in. This is currently the best way to find up-to-date
+  information about what kind of research is being done in various labs.
+</p>
+<p class="lead">
+  UCSD BISB Unofficial also includes information and advice on bioinformatics
+  careers, California residency, TA'ing requirements, mental health, and more,
+  along with annually-collected statistics about the BISB program.
+</p>
 {{ rotation_db_button(quarter, 'all', 'All Quarters') }}
 {{ rotation_db_button(quarter, 'fall-2018', 'Fall 2018') }}
 {{ rotation_db_button(quarter, 'winter-2019', 'Winter 2019') }}
