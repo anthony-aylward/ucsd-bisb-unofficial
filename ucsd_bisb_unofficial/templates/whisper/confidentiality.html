@@ -28,8 +28,8 @@
 <h3>Section 1. Intention of Agreement</h3>
 <p>
   This Agreement is intended to cover the Users’ confidentiality obligations
-  with respect to disclosures regarding or pertinent to the [information
-  provided, shared, published or otherwise disclosed on Whisper] in order to
+  with respect to disclosures regarding or pertinent to the information
+  provided, shared, published or otherwise disclosed on Whisper in order to
   facilitate honest and frank discussions amongst graduate students at
   University of California, San Diego.  Whisper is an anonymized section of the
   Website that contains sensitive and confidential information.
@@ -143,8 +143,7 @@
       shall be deemed an original and all of which together shall constitute
       one instrument.  Due to the anonymous nature of Whisper, a list of all
       Users who have agreed to this Agreement prior to accessing Whisper will
-      not be maintained.  A list can be provided if there is a legal need to do
-      so.
+      not be maintained.
     </li>
   </ol>
 </p>
@@ -153,10 +152,7 @@
   This Agreement shall be subject to and be governed by the law of the State of
   California and the place of jurisdiction shall be San Diego, California.
 </p>
-<hr>
-<p>IN WITNESS WHEREOF, the parties have executed this agreement effective as of the date first written above.</p>
-<p>By accepting, you are agreeing to the terms of this Confidentiality Agreement.</p>
 <p>Date: {{ date }}</p>
-<a href="{{ url_for('whisper.anonymize') }}" class="btn btn-outline-warning">Accept</a>
+<a href="{{ url_for('whisper.anonymize') }}" class="btn btn-outline-warning">Agree</a>
 <a href="{{ url_for('jumbotron.index') }}" class="btn btn-outline-primary">Decline</a>
 {% endblock %}
