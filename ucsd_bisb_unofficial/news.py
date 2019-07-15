@@ -31,7 +31,7 @@ from ucsd_bisb_unofficial.principals import named_permission
 from ucsd_bisb_unofficial.blog import (
     get_post, construct_create_route, construct_update_route,
     construct_delete_route, construct_detail_route, construct_comment_route,
-    construct_delete_comment_route
+    construct_delete_comment_route, construct_index_route
 )
 
 
@@ -46,19 +46,7 @@ bp = Blueprint('news', __name__, url_prefix='/news')
 
 # Functions ====================================================================
 
-@bp.route('/index')
-@login_required
-@named_permission.require(http_exception=403)
-def index():
-    """Render the news index"""
-    
-    db = get_db()
-    posts = Post.query.filter(Post.tag == 'news').all()[::-1]
-    for post in posts:
-        post.preview = post.body[:128]
-    return render_template('news/index.html', posts=posts)
-
-
+index = construct_index_route(bp, 'news')
 create = construct_create_route(bp, 'news')
 update = construct_update_route(bp, 'news')
 delete = construct_delete_route(bp, 'news')

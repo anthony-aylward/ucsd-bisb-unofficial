@@ -34,4 +34,10 @@
   about pairs they've chosen and what has or hasn't been successful.
 </p>
 {{ macros.list_of_posts(posts, current_user, 'committee.detail', 'committee.update') }}
+{% if prev_url %}
+<a class="btn btn-outline-primary" href="{{ prev_url }}">Newer posts</a>
+{% endif %}
+{% if next_url %}
+<a class="btn btn-outline-primary" href="{{ next_url }}">Older posts</a>
+{% endif %}
 {% endblock %}
