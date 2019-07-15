@@ -32,7 +32,7 @@ from ucsd_bisb_unofficial.blog import (
     get_post, construct_create_route, construct_update_route,
     construct_delete_route, construct_detail_route, construct_update_route,
     construct_delete_route, construct_detail_route, construct_comment_route,
-    construct_delete_comment_route
+    construct_delete_comment_route, construct_index_route
 )
 
 
@@ -47,19 +47,7 @@ bp = Blueprint('tech', __name__, url_prefix='/tech')
 
 # Functions ====================================================================
 
-@bp.route('/index')
-@login_required
-@named_permission.require(http_exception=403)
-def index():
-    """Render the tech index"""
-    
-    db = get_db()
-    posts = Post.query.filter(Post.tag == 'tech').all()[::-1]
-    for post in posts:
-        post.preview = post.body[:256]
-    return render_template('tech/index.html', posts=posts)
-
-
+index = construct_index_route(bp, 'tech')
 create = construct_create_route(bp, 'tech')
 update = construct_update_route(bp, 'tech')
 delete = construct_delete_route(bp, 'tech')
