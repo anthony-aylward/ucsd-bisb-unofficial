@@ -173,7 +173,6 @@ APPROVED_EMAILS = [
     'cmartino@eng.ucsd.edu',
     'jhavens@eng.ucsd.edu',
     'ckmah@ucsd.edu',
-    'craylward@gmail.com',
     'mragsac@eng.ucsd.edu',
     'solvason@eng.ucsd.edu',
     'earmingol@eng.ucsd.edu',
