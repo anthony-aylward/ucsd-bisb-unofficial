@@ -81,18 +81,11 @@ def rotations():
         )
 
     for name in rotation_db.dict.keys():
-        if rotation_db.dict[name][7]:
-            rotation_db.dict[name][7] = markdown_link(7, 'Proposal')
-        if rotation_db.dict[name][8]:
-            rotation_db.dict[name][8] = markdown_link(8, 'Report')
-        if rotation_db.dict[name][9]:
-            rotation_db.dict[name][9] = markdown_link(9, 'Proposal')
-        if rotation_db.dict[name][10]:
-            rotation_db.dict[name][10] = markdown_link(10, 'Report')
-        if rotation_db.dict[name][11]:
-            rotation_db.dict[name][11] = markdown_link(11, 'Proposal')
-        if rotation_db.dict[name][12]:
-            rotation_db.dict[name][12] = markdown_link(12, 'Report')
+        for col in 10, 11, 12, 13, 14, 15:
+            if rotation_db.dict[name][col]:
+                rotation_db.dict[name][col] = markdown_link(
+                    col, 'Proposal' if col % 2 == 0 else 'Report'
+                )
     quarter_to_columns = {
         'all': (1, 2, 10, 11, 3, 4, 12, 13, 5, 6, 14, 15, 7, 8, 16),
         'fall-2018': (1, 2, 10, 11, 16), 'winter-2019': (3, 4, 12, 13, 16),
