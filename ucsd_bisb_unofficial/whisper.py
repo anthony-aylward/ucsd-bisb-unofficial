@@ -120,6 +120,15 @@ def anonymize():
     """Log out of named account and log in to whisper account
     """
 
+    user = User.query.get(current_user.id)
+    if not user:
+        flash('Strange, no account found.', 'error')
+    if not user.confidentiality_agreed:
+        user.confidentiality_agreed = True
+        user.confidentiality_agreed_on = datetime.utcnow()
+        db = get_db()
+        db.session.add(user)
+        db.session.commit()
     send_whisper_email_form = SendWhisperEmailForm()
     whisper_login_form = LoginForm()
     if whisper_login_form.validate_on_submit():

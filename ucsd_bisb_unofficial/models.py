@@ -118,6 +118,8 @@ class User(UserMixin, db.Model):
     email_confirmation_sent_on : datetime
     email_confirmed : bool
     email_confirmed_on : datetime
+    confidentiality_agreed : bool
+    confidentiality_agreed_on : datetime
     """
 
     id = db.Column(db.Integer, primary_key=True)
@@ -129,6 +131,8 @@ class User(UserMixin, db.Model):
     email_confirmation_sent_on = db.Column(db.DateTime, nullable=True)
     email_confirmed = db.Column(db.Boolean, default=False, nullable=True)
     email_confirmed_on = db.Column(db.DateTime, nullable=True)
+    confidentiality_agreed = db.Column(db.Boolean, default=False, nullable=True)
+    confidentiality_agreed_on = db.Column(db.DateTime, nullable=True)
     roles = db.relationship(
         'Role',
         secondary=roles_users,
