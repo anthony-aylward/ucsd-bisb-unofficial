@@ -6,6 +6,7 @@
 * watermark on confidential images (CONFIDENTIAL DO NOT DISTRIBUTE)
 * google scholar scrubbing
 * set up a better mail server
+* email alerts for new posts
 
 # Other suggestions
 
