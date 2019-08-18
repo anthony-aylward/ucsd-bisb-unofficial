@@ -61,7 +61,7 @@ def index():
             'is_registered': is_registered(email),
             'signed_whisper_nda': signed_whisper_nda(email)
         }
-        for office, email in current_app.config['GBIC_EMAILS']
+        for office, email in current_app.config['GBIC_EMAILS'].items()
     }
 
     return render_template(
