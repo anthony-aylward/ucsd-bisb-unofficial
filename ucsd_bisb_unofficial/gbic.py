@@ -50,21 +50,28 @@ def signed_whisper_nda(email):
         return user.confidentiality_agreed
 
 
+def status(email):
+    if not is_registered(email):
+        return 'not registered'
+    elif not signed_whisper_nda(email):
+        return 'registered'
+    else:
+        return 'registered and signed Whisper NDA'
+
+
 @bp.route('/index')
 @login_required
 @named_permission.require(http_exception=403)
 def index():
     """Render the gbic index"""
-    status = {
-        office: {
-            'email': email,
-            'is_registered': is_registered(email),
-            'signed_whisper_nda': signed_whisper_nda(email)
-        }
-        for office, email in current_app.config['GBIC_EMAILS'].items()
-    }
 
     return render_template(
         'gbic/index.html',
-        **status
+        **{
+            office: {
+                'email': email,
+                'status': status(email)
+            }
+            for office, email in current_app.config['GBIC_EMAILS'].items()
+        }
     )
