@@ -8,10 +8,6 @@
 * set up a better mail server
 * email alerts for new posts
 
-# Other suggestions
-
-* Modernize layout/styling
-
 # ucsd-bisb-unofficial
 The unofficial information hub for students in the Bioinformatics and Systems Biology graduate program at UCSD. If you have any questions about it, contact Tony (aaylward@eng.ucsd.edu).
 
