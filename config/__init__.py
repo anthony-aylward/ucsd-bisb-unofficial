@@ -153,6 +153,15 @@ PROFS_CSV = {{
 }}
 COMPANIES_CSV = os.path.join(basedir, 'protected', 'companies.csv')
 ADMINS = ['ucsd.bisb.unofficial@gmail.com']
+GBIC_EMAILS = {{
+    'president': 'dnachman@eng.ucsd.edu',
+    'internal_affairs': 'mragsac@eng.ucsd.edu',
+    'external_affairs': 'f5yuan@eng.ucsd.edu',
+    'outreach': 'jhavens@eng.ucsd.edu',
+    'development': 'ckmah@ucsd.edu',
+    'student_wellness': 'jepekar@eng.ucsd.edu',
+    'onboarding': 'ochapman@eng.ucsd.edu'
+}}
 APPROVED_EMAILS = [
     'ucsd.bisb.unofficial@gmail.com',
     'aaylward@eng.ucsd.edu',
