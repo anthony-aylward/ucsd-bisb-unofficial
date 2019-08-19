@@ -169,7 +169,8 @@ GBIC_EMAILS = {{
     'outreach': 'jhavens@eng.ucsd.edu',
     'development': 'ckmah@ucsd.edu',
     'student_wellness': 'jepekar@eng.ucsd.edu',
-    'onboarding': 'ochapman@eng.ucsd.edu'
+    'onboarding': 'ochapman@eng.ucsd.edu',
+    'finance': 'cew003@ucsd.edu'
 }}
 APPROVED_EMAILS = [
     'ucsd.bisb.unofficial@gmail.com',
