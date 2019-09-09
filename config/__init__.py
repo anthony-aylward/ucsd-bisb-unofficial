@@ -91,7 +91,7 @@ GBIC_EMAILS = {{
 APPROVED_EMAILS = []
 '''
 
-PRODUCTION_CONFIG_DATA = f'''
+PRODUCTION_CONFIG_DATA = f"""
 import os
 import os.path
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -220,9 +220,28 @@ APPROVED_EMAILS = [
     'hsher@eng.ucsd.edu',
     'jepekar@eng.ucsd.edu',
     'f5yuan@eng.ucsd.edu',
-    'cew003@ucsd.edu'
+    'cew003@ucsd.edu',
+    'abbas22a@mtholyoke.edu',
+    'fatemeh.amrollahi@emory.edu',
+    'xiaomidu23@gmail.com',
+    'b101102109@tmu.edu.tw',
+    'pratibha.jagannatha@gmail.com',
+    'aklie@ucsd.edu',
+    'emikoifish@gmail.com',
+    'ericrkofman@gmail.com',
+    'roy.charlesalexandre@gmail.com',
+    'domschenone@gmail.com',
+    'jdtibochab@unal.edu.co',
+    'xzwen.irene@gmail.com',
+    'amabbasi@eng.ucsd.edu',
+    'famrolla@eng.ucsd.edu',
+    'xid032@eng.ucsd.edu',
+    'b2jia@eng.ucsd.edu',
+    'ekofman@eng.ucsd.edu',
+    'dschenon@eng.ucsd.edu',
+    'j1tiboch@eng.ucsd.edu'
 ]
-'''
+"""
 
 
 
