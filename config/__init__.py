@@ -267,6 +267,7 @@ def parse_arguments():
     )
     return parser.parse_args()
 
+
 def main():
     args = parse_arguments()
     with open(os.path.join(args.instance, 'config.py'), 'w') as f:
