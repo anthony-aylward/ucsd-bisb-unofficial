@@ -243,7 +243,6 @@ APPROVED_EMAILS = [
     'jsnedeco@gmail.com',
     'jtsorren@eng.ucsd.edu',
     'jlz014@eng.ucsd.edu'
-
 ]
 """
 
