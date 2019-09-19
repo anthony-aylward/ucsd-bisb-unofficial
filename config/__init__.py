@@ -273,8 +273,7 @@ def main():
     args = parse_arguments()
     with open(os.path.join(args.instance, 'config.py'), 'w') as f:
         f.write(
-            PRODUCTION_CONFIG_DATA
-            if args.production
+            PRODUCTION_CONFIG_DATA if args.production
             else DEVELOPMENT_CONFIG_DATA
         )
 
