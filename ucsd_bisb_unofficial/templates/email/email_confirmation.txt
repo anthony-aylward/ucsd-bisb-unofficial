@@ -5,4 +5,4 @@ activate your account:
 {{ url_for('auth.confirm_email', token=token, _external=True) }}
  
 --
-Questions? Comments? Email aaylward@eng.ucsd.edu
+Questions? Comments? Email ucsd.bisb.unofficial@ucsd-bisb.info
