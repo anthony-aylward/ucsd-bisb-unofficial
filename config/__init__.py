@@ -173,7 +173,6 @@ GBIC_EMAILS = {{
     'finance': 'cew003@ucsd.edu'
 }}
 APPROVED_EMAILS = [
-    'ucsd.bisb.unofficial@gmail.com',
     'aaylward@eng.ucsd.edu',
     'amraman@ucsd.edu',
     'bkellman@eng.ucsd.edu',
