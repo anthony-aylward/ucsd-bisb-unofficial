@@ -161,7 +161,7 @@ PROFS_CSV = {{
     'cse': os.path.join(basedir, 'protected', 'profs-cse.csv'),
 }}
 COMPANIES_CSV = os.path.join(basedir, 'protected', 'companies.csv')
-ADMINS = ['ucsd.bisb.unofficial@gmail.com']
+ADMINS = ['ucsd.bisb.unofficial@ucsd-bisb.info']
 GBIC_EMAILS = {{
     'president': 'dnachman@eng.ucsd.edu',
     'internal_affairs': 'mragsac@eng.ucsd.edu',
