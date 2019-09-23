@@ -103,11 +103,11 @@ SQLALCHEMY_DATABASE_URI = (
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 FTS_DATABASE = os.path.join(basedir, 'fts.db')
 FTS_SOURCE_DATABASE = os.path.join(basedir, 'app.db')
-MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.gmail.com'
+MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'mail.smtp2go.com'
 MAIL_PORT = int(os.environ.get('MAIL_PORT') or 465)
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
-MAIL_USERNAME = 'ucsd.bisb.unofficial'
+MAIL_USERNAME = 'ucsd.bisb.unofficial@ucsd-bisb.info'
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 POSTS_PER_PAGE = 5
 MAX_CONTENT_LENGTH = 64 * 1024 * 1024
@@ -243,7 +243,8 @@ APPROVED_EMAILS = [
     'jsnedeco@gmail.com',
     'jtsorren@eng.ucsd.edu',
     'jlz014@eng.ucsd.edu',
-    'oshanta@eng.ucsd.edu'
+    'oshanta@eng.ucsd.edu',
+    'anthony.aylward@gmail.com'
 ]
 """
 
