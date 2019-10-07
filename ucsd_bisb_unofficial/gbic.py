@@ -52,11 +52,11 @@ def signed_whisper_nda(email):
 
 def status(email):
     if not is_registered(email):
-        return 'not registered'
+        return ''
     elif not signed_whisper_nda(email):
-        return 'registered'
+        return '✔'
     else:
-        return 'registered and signed Whisper NDA'
+        return '✔✔'
 
 
 @bp.route('/index')
