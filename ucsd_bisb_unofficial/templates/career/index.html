@@ -9,13 +9,36 @@
 <hr>
 <a class="btn btn-outline-primary" href="{{ url_for('career.companies') }}">Industry Companies Database</a>
 <hr>
-<p class="lead">
-  Check out
-  <a href="https://olgabotvinnik.com/blog/job-seq-the-lowest-throughput-sequencing-technology/">Olga Botvinnik's blog</a>
-  for some useful wisdom on this topic. (She's a program alum.)
+<p>
+  <strong>Must-reads!</strong>
+  <ul>
+  <li>Check out <a href="https://olgabotvinnik.com/blog/job-seq-the-lowest-throughput-sequencing-technology/">Olga Botvinnik's blog</a> for some useful wisdom on starting a bioinformatics career. (She's a program alum.)</li>
+  <li>The Broad Institute's <a href="https://mitcommlab.mit.edu/broad/use-the-commkit/">CommKit</a> is a collection of tips and guidelines for writing and formatting slideshows, posters, papers, fellowship applications, CV's, etc.
+  </ul>
 </p>
 <hr>
-<p class="lead">
+<p>
+  <strong>Recent job openings:</strong>
+  <ul>
+    <li><a href="https://jobs.lever.co/deepgenomics">Various</a> (Deep Genomics)</li>
+    <li><a href="https://guardanthealth.com/careers/jobs/">Various</a> (Guardant Health)</li>
+    <li><a href="https://ucsd-bisb.info/career/102/detail">Scientist - Genomics & Proteomics</a> (Chan Zuckerberg Biohub, 2019-10-13)</li>
+    <li><a href="https://ucsd-bisb.info/career/81/detail">Bioinformatics scientist</a> (Monoceros Biosystems, 2019-08-18)</li>
+    <li><a href="https://ucsd-bisb.info/career/90/detail">Computational biologist</a> (Fulcrum Theraputics, 2019-07-21)</li>
+    <li><a href="https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=b8ec930a-62fc-4ed1-99a6-f570d6e33145&ccId=2602324307_4514&type=MP&lang=en_US">Applications scientist</a> (Bionano Genomics, 2019-07-19)</li>
+    <li><a href="{{ url_for('protected.protected', filename='2019-04-30-denovo-bioinformatics-scientist-position.pdf') }}">Bioinformatics scientist</a> (Denovo Biopharma, 2019-04-30)</li>
+    <li><a href="{{ url_for('protected.protected', filename='2018-10-30-ideaya-senior-scientist-position.pdf') }}">Senior bioinformatics scientist</a> (Ideaya, 2018-10-30)</li>
+    <li><a href="{{ url_for('protected.protected', filename='2018-10-08-ascus-data-scientist-position.pdf') }}">Data scientist</a> (Ascus, 2018-10-08)</li>
+    <li><a href="https://illumina.wd1.myworkdayjobs.com/illumina-careers/job/US---California---San-Diego/Bioinformatics-Scientist-1_15216-JOB">Bioinformatics scientist</a> (Illumina, 2018-10-01)</li>
+    <li><a href="https://illumina.wd1.myworkdayjobs.com/en-US/illumina-careers/job/US---California---San-Diego/Bioinformatics-Scientist-1_13182-JOB">Bioinformatics scientist</a> (Illumina, 2018-08-28)</li>
+    <li><a href="{{ url_for('protected.protected', filename='2018-08-11-brightseed-bioinformatics-scientist-position.pdf') }}">Bioinformatics scientist</a> (Brightseed, 2018-08-11)</li>
+    <li><a href="{{ url_for('career.example_position') }}">Computational biologist</a> (Johnson & Johnson, 2018-07-17)</li>
+    <li><a href="{{ url_for('protected.protected', filename='2018-06-18-biota-data-science-position.pdf') }}">Data scientist</a> (Biota, 2018-06-18)</li>
+    <li><a href="{{ url_for('protected.protected', filename='2018-03-11-twinstrand-bioinformatics-engineer-position.pdf') }}">Bioinformatics engineer</a> (Twin Strand, 2018-03-11)</li>
+  </ul>
+</p>
+<hr>
+<p>
   There are also <a href="http://bioinformatics.ucsd.edu/node/34">some resources</a>
   listed on the official BISB website:
 </p>
@@ -40,41 +63,6 @@
       Look on the calendar for workshops that may help in your career preparation.
     </li>
   </ul>
-</p>
-<hr>
-{{
-  macros.quote(
-    'For scientists, finishing a Ph.D. or postdoc and automatically moving on to a research-faculty position is no longer the
-    norm. In fact, the share of all U.S. science and engineering doctorate recipients working in academe dropped from 55% to
-    44% between 1973 and 2008; that percentage includes postdocs, staff scientists, research and teaching faculty, and administrators.
-    Within academe, the proportion of scientists employed in tenured or tenure-track positions has also declined [...] likely
-    reflecting a growth in postdoctoral, staff scientist, and other non–tenure-track slots. And with a growing population of
-    talented trainees poised to enter the job market, the competition for sought-after academic jobs is tough.',
-    '<cite title="You Need a Game Plan">You Need a Game Plan</cite>, Science Magazine',
-    cite='http://www.sciencemag.org/careers/2012/09/you-need-game-plan',
-    safe=true
-  )
-}}
-<hr>
-<p>
-  See recent examples of job openings:
-  <ul>
-    <li><a href="https://jobs.lever.co/deepgenomics">Various</a> (Deep Genomics)</li>
-    <li><a href="https://guardanthealth.com/careers/jobs/">Various</a> (Guardant Health)</li>
-    <li><a href="https://ucsd-bisb.info/career/81/detail">Bioinformatics scientist</a> (Monoceros Biosystems, 2019-08-18)</li>
-    <li><a href="https://ucsd-bisb.info/career/90/detail">Computational biologist</a> (Fulcrum Theraputics, 2019-07-21)</li>
-    <li><a href="https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=b8ec930a-62fc-4ed1-99a6-f570d6e33145&ccId=2602324307_4514&type=MP&lang=en_US">Applications scientist</a> (Bionano Genomics, 2019-07-19)</li>
-    <li><a href="{{ url_for('protected.protected', filename='2019-04-30-denovo-bioinformatics-scientist-position.pdf') }}">Bioinformatics scientist</a> (Denovo Biopharma, 2019-04-30)</li>
-    <li><a href="{{ url_for('protected.protected', filename='2018-10-30-ideaya-senior-scientist-position.pdf') }}">Senior bioinformatics scientist</a> (Ideaya, 2018-10-30)</li>
-    <li><a href="{{ url_for('protected.protected', filename='2018-10-08-ascus-data-scientist-position.pdf') }}">Data scientist</a> (Ascus, 2018-10-08)</li>
-    <li><a href="https://illumina.wd1.myworkdayjobs.com/illumina-careers/job/US---California---San-Diego/Bioinformatics-Scientist-1_15216-JOB">Bioinformatics scientist</a> (Illumina, 2018-10-01)</li>
-    <li><a href="https://illumina.wd1.myworkdayjobs.com/en-US/illumina-careers/job/US---California---San-Diego/Bioinformatics-Scientist-1_13182-JOB">Bioinformatics scientist</a> (Illumina, 2018-08-28)</li>
-    <li><a href="{{ url_for('protected.protected', filename='2018-08-11-brightseed-bioinformatics-scientist-position.pdf') }}">Bioinformatics scientist</a> (Brightseed, 2018-08-11)</li>
-    <li><a href="{{ url_for('career.example_position') }}">Computational biologist</a> (Johnson & Johnson, 2018-07-17)</li>
-    <li><a href="{{ url_for('protected.protected', filename='2018-06-18-biota-data-science-position.pdf') }}">Data scientist</a> (Biota, 2018-06-18)</li>
-    <li><a href="{{ url_for('protected.protected', filename='2018-03-11-twinstrand-bioinformatics-engineer-position.pdf') }}">Bioinformatics engineer</a> (Twin Strand, 2018-03-11)</li>
-  </ul>
-</p>
 {{ macros.list_of_posts(posts, current_user, 'career.detail', 'career.update') }}
 {% if prev_url %}
 <a class="btn btn-outline-primary" href="{{ prev_url }}">Newer posts</a>
