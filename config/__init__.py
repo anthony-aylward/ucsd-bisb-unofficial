@@ -246,7 +246,9 @@ APPROVED_EMAILS = [
     'oshanta@eng.ucsd.edu',
     'andreabcastro@ucsd.edu',
     'olga.botvinnik@gmail.com',
-    'jpnguyen@ucsd.edu'
+    'jpnguyen@ucsd.edu',
+    'jluebeck@eng.ucsd.edu',
+    'pfiaux@ucsd.edu'
 ]
 """
 
