@@ -1,7 +1,7 @@
 :root {
   --primary: var(--cyan);
   --info: var(--blue);
-  --anchor: var(--teal);
+  --anchor: var(--cyan);
   --anchor-hover: var(--yellow);
   --anchor-nav: paleturquoise;
   --warning-outline: goldenrod;
