@@ -19,11 +19,20 @@ bp : Blueprint
 
 # Imports ======================================================================
 
-from flask import Blueprint, render_template, current_app
+from flask import (
+    Blueprint, flash, g, redirect, render_template, request, url_for
+)
 from flask_login import current_user, login_required
 from werkzeug.exceptions import abort
 
+from ucsd_bisb_unofficial.forms import PostForm
+from ucsd_bisb_unofficial.models import get_db, Post
 from ucsd_bisb_unofficial.principals import named_permission
+from ucsd_bisb_unofficial.blog import (
+    get_post, construct_index_route, construct_create_route,
+    construct_update_route, construct_delete_route, construct_detail_route,
+    construct_comment_route, construct_delete_comment_route
+)
 
 
 
@@ -37,10 +46,10 @@ bp = Blueprint('townhall', __name__, url_prefix='/townhall')
 
 # Functions ====================================================================
 
-@bp.route('/index')
-@login_required
-@named_permission.require(http_exception=403)
-def index():
-    """Render the town hall index"""
-
-    return render_template('townhall/index.html')
+index = construct_index_route(bp, 'townhall')
+create = construct_create_route(bp, 'townhall')
+update = construct_update_route(bp, 'townhall')
+delete = construct_delete_route(bp, 'townhall')
+detail = construct_detail_route(bp, 'townhall')
+comment = construct_comment_route(bp, 'townhall')
+delete_comment = construct_delete_comment_route(bp, 'townhall')
