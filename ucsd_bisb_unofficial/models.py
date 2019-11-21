@@ -133,6 +133,7 @@ class User(UserMixin, db.Model):
     email_confirmed_on = db.Column(db.DateTime, nullable=True)
     confidentiality_agreed = db.Column(db.Boolean, default=False, nullable=True)
     confidentiality_agreed_on = db.Column(db.DateTime, nullable=True)
+    subscribed = db.Column(db.Boolean, default=True, nullable=True)
     roles = db.relationship(
         'Role',
         secondary=roles_users,

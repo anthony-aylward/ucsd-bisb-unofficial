@@ -24,6 +24,25 @@ from ucsd_bisb_unofficial import create_app
 
 
 
+# Constants ====================================================================
+
+TAG_DICT = {
+    'career': 'Career',
+    'committee': 'Doctoral Committee',
+    'fellowships': 'Fellowships',
+    'lab': 'Lab',
+    'mental_health': 'Mental Health',
+    'news': 'News',
+    'residency': 'Residency',
+    'seminars': 'Seminars',
+    'stats': 'Program Statistics',
+    'ta': 'TAships',
+    'tech': 'Technology',
+    'townhall': 'Town Hall & SC'
+}
+
+
+
 
 
 # Initialization ===============================================================
@@ -169,5 +188,21 @@ def send_whisper_email(user):
             'email/whisper.html',
             user=user,
             token=token
+        )
+    )
+
+
+def send_new_post_email(user, tag):
+    send_email(
+        f'[ucsd-bisb-unofficial] New {TAG_DICT[tag]} content',
+        sender=current_app.config['ADMINS'][0],
+        recipients=[user.email],
+        text_body=render_template(
+            'email/email_confirmation.txt',
+            tag=TAG_DICT[tag]
+        ),
+        html_body=render_template(
+            'email/email_confirmation.html',
+            tag=TAG_DICT[tag]
         )
     )

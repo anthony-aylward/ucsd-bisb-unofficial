@@ -187,3 +187,25 @@ class SearchForm(FlaskForm):
         if 'formdata' not in kwargs:
             kwargs['formdata'] = request.args
         super(SearchForm, self).__init__(*args, **kwargs)
+
+
+class SubscribeForm(FlaskForm):
+    """A form for user login credentials
+
+    Attributes
+    ----------
+    submit : SubmitField
+    """
+
+    submit = SubmitField('Subscribe')
+
+
+class UnsubscribeForm(FlaskForm):
+    """A form for user login credentials
+
+    Attributes
+    ----------
+    submit : SubmitField
+    """
+
+    submit = SubmitField('Unsubscribe')
