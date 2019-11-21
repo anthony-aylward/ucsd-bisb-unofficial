@@ -1,0 +1,8 @@
+A new post has been made in the {{ tag }} section on UCSD BISB Unofficial:
+
+{{ title }}
+  
+View the post: {{ url_for(detail_route, _external=True, id=post_id) }}
+Unsubscribe from email notifications: {{ url_for('settings.index', _external=True) }}
+--
+Questions? Comments? Email ucsd.bisb.unofficial@ucsd-bisb.info

@@ -27,9 +27,10 @@ from flask import (
 from flask_login import current_user, login_required
 from werkzeug.exceptions import abort
 from ucsd_bisb_unofficial.forms import PostForm, CommentForm
-from ucsd_bisb_unofficial.models import get_db, Post, Comment
+from ucsd_bisb_unofficial.models import get_db, Post, Comment, User
 from ucsd_bisb_unofficial.principals import named_permission
 from ucsd_bisb_unofficial.uploads import documents, images
+from ucsd_bisb_unofficial.email import send_new_post_email
 
 
 
@@ -122,6 +123,9 @@ def construct_create_route(blueprint, tag):
             )
             db.session.add(post)
             db.session.commit()
+            for user in User.query.all():
+                if user.subscribed:
+                    send_new_post_email(user, tag, f'{tag}.index', f'{tag}.detail', post.id)
             flash('your post is now live!')
             return redirect(url_for(f'{tag}.index'))
         return render_template(f'blog/create.html', form=form)
