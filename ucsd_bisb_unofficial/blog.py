@@ -125,7 +125,7 @@ def construct_create_route(blueprint, tag):
             db.session.commit()
             for user in User.query.all():
                 if user.subscribed:
-                    send_new_post_email(user, tag, f'{tag}.index', f'{tag}.detail', post.id)
+                    send_new_post_email(user, tag, f'{tag}.index', f'{tag}.detail', post.title, post.id)
             flash('your post is now live!')
             return redirect(url_for(f'{tag}.index'))
         return render_template(f'blog/create.html', form=form)

@@ -57,7 +57,7 @@ def index():
             db = get_db()
             db.session.add(user)
             db.session.commit()
-            flash('You are now subscribed to UCSD BISB Unofficial emails')
+            flash('You have unsubscribed from UCSD BISB Unofficial email alerts')
             return redirect(url_for('settings.index'))
     else:
         form = SubscribeForm()
@@ -66,9 +66,10 @@ def index():
             db = get_db()
             db.session.add(user)
             db.session.commit()
-            flash('You have unsubscribed from UCSD BISB Unofficial emails')
+            flash('You are now subscribed to UCSD BISB Unofficial email alerts')
             return redirect(url_for('settings.index'))
     return render_template(
         'settings/index.html',
-        form=form
+        form=form,
+        not_subscribed=not user.subscribed
     )
