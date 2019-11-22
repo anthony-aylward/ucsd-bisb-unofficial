@@ -1,7 +1,11 @@
-A new post has been made in the <a href="{{ url_for(index_route, _external=True) }}">{{ tag }}</a> section on UCSD BISB Unofficial:
+<p>
+  A new post has been made in the
+  <a href="{{ url_for(index_route, _external=True) }}">{{ tag }}</a>
+  section on UCSD BISB Unofficial:
+</p>
 
-<a href="{{ url_for(detail_route, _external=True, id=post_id) }}">{{ title }}</a>
+<p><a href="{{ url_for(detail_route, _external=True, id=post_id) }}">{{ title }}</a></p>
 
-Click <a href="{{ url_for('settings.index', _external=True) }}">here</a> to unsubscribe from email notifications.
---
-Questions? Comments? Email ucsd.bisb.unofficial@ucsd-bisb.info
+<p>Click <a href="{{ url_for('settings.index', _external=True) }}">here</a> to unsubscribe from email notifications.</p>
+<p>--</p>
+<p>Questions? Comments? Email ucsd.bisb.unofficial@ucsd-bisb.info</p>

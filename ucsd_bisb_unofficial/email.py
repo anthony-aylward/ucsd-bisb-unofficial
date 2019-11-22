@@ -193,7 +193,7 @@ def send_whisper_email(user):
     )
 
 
-def send_new_post_email(user, tag, index_route, detail_route, post_id):
+def send_new_post_email(user, tag, index_route, detail_route, title, post_id):
     send_email(
         f'[ucsd-bisb-unofficial] New {TAG_DICT[tag]} content',
         sender=current_app.config['ADMINS'][0],
@@ -202,6 +202,7 @@ def send_new_post_email(user, tag, index_route, detail_route, post_id):
             'email/new_post.txt',
             tag=TAG_DICT[tag],
             detail_route=detail_route,
+            title=title,
             post_id=post_id
         ),
         html_body=render_template(
@@ -209,6 +210,7 @@ def send_new_post_email(user, tag, index_route, detail_route, post_id):
             tag=TAG_DICT[tag],
             index_route=index_route,
             detail_route=detail_route,
+            title=title,
             post_id=post_id
         )
     )
