@@ -63,8 +63,8 @@ body {
 }
 
 h1 { margin: 1rem 0; }
-a { color: var(--anchor); }
-a:hover { text-decoration: none; color: var(--anchor-hover) }
+a { color: var(--anchor); font-weight: bold; }
+a:hover { text-decoration: none; color: var(--anchor-hover); }
 hr { border: none; border-top: 1px solid var(--secondary); }
 
 nav {
