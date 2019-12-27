@@ -5,8 +5,6 @@
 * Page for info about electives
 * watermark on confidential images (CONFIDENTIAL DO NOT DISTRIBUTE)
 * google scholar scrubbing
-* set up a better mail server
-* email alerts for new posts
 
 # ucsd-bisb-unofficial
 The unofficial information hub for students in the Bioinformatics and Systems Biology graduate program at UCSD. If you have any questions about it, contact Tony (aaylward@eng.ucsd.edu).
