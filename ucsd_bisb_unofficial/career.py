@@ -68,6 +68,14 @@ def companies():
         table=markdown_table(current_app.config['COMPANIES_CSV'])
     )
 
+@bp.route('/older-job-openings')
+@login_required
+@named_permission.require(http_exception=403)
+def older_job_openings():
+    """Render older job openings"""
+
+    return render_template('career/older-job-openings.html')
+
 
 index = construct_index_route(bp, 'career')
 create = construct_create_route(bp, 'career')
