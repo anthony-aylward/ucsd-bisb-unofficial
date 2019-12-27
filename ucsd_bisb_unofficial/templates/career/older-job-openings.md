@@ -1,0 +1,8 @@
+- [Senior bioinformatics scientist]({{ url_for('protected.protected', filename='2018-10-30-ideaya-senior-scientist-position.pdf') }}) (Ideaya, 2018-10-30)
+- [Data scientist]({{ url_for('protected.protected', filename='2018-10-08-ascus-data-scientist-position.pdf') }}) (Ascus, 2018-10-08)
+- [Bioinformatics scientist](https://illumina.wd1.myworkdayjobs.com/illumina-careers/job/US---California---San-Diego/Bioinformatics-Scientist-1_15216-JOB) (Illumina, 2018-10-01)
+- [Bioinformatics scientist](https://illumina.wd1.myworkdayjobs.com/en-US/illumina-careers/job/US---California---San-Diego/Bioinformatics-Scientist-1_13182-JOB) (Illumina, 2018-08-28)
+- [Bioinformatics scientist]({{ url_for('protected.protected', filename='2018-08-11-brightseed-bioinformatics-scientist-position.pdf') }}) (Brightseed, 2018-08-11)
+- [Computational biologist]({{ url_for('career.example_position') }}) (Johnson & Johnson, 2018-07-17)
+- [Data scientist]({{ url_for('protected.protected', filename='2018-06-18-biota-data-science-position.pdf') }}) (Biota, 2018-06-18)
+- [Bioinformatics engineer]({{ url_for('protected.protected', filename='2018-03-11-twinstrand-bioinformatics-engineer-position.pdf') }}) (Twin Strand, 2018-03-11)
