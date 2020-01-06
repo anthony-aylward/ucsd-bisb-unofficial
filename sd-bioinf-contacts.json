@@ -21,7 +21,7 @@
   "Illumina": {
     "Yun Ding": {
       "url": "https://www.linkedin.com/in/yunding06/",
-      "email": "",
+      "email": "yding2@illumina.com",
       "papers": [
         ""
       ]
@@ -35,7 +35,7 @@
     },
     "Dylan Skola": {
       "url": "https://www.linkedin.com/in/dylan-skola-83a2a13/",
-      "email": "",
+      "email": "dskola@illumina.com",
       "papers": [
         ""
       ]
@@ -49,7 +49,8 @@
     },
     "Charles Aylward": {
       "url": "",
-      "email": ""
+      "email": "caylward@illumina.com"
     }
-  }
+  },
+  "{}
 }
