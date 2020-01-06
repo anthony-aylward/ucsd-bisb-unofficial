@@ -52,5 +52,25 @@
       "email": "caylward@illumina.com"
     }
   },
-  "{}
+  "Pathway Genomics": {
+    "Tanya Moreno": {
+      "url": "https://www.linkedin.com/in/tanya-moreno/",
+      "email": "tamoreno@gmail.com",
+      "papers": [
+        "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4606558/",
+        "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4256737/"
+      ]
+    }
+  },
+  "Millenium Health": {
+    "Tanya Moreno": {
+      "url": "https://www.linkedin.com/in/tanya-moreno/",
+      "email": "tamoreno@gmail.com",
+      "papers": [
+        "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4533947/",
+        "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6443844/",
+        "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5895772/"
+      ]
+    }
+  }
 }
