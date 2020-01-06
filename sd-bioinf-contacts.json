@@ -10,7 +10,46 @@
     }
   },
   "BioLegend": {
-    
+    "Jason Lehmann": {
+      "url": "https://www.linkedin.com/in/lehmannjasons/",
+      "email": "jlehmann@biolegend.com",
+      "papers": [
+        "https://www.ncbi.nlm.nih.gov/pubmed/31727238"
+      ]
+    }
+  },
+  "Illumina": {
+    "Yun Ding": {
+      "url": "https://www.linkedin.com/in/yunding06/",
+      "email": "",
+      "papers": [
+        ""
+      ]
+    },
+    "Jeffrey Yuan": {
+      "url": "https://www.linkedin.com/in/jeffreyyuan29/",
+      "email": "",
+      "papers": [
+        ""
+      ]
+    },
+    "Dylan Skola": {
+      "url": "https://www.linkedin.com/in/dylan-skola-83a2a13/",
+      "email": "",
+      "papers": [
+        ""
+      ]
+    },
+    "Brian Tsui": {
+      "url": "https://www.linkedin.com/in/brian-y-tsui/",
+      "email": "",
+      "papers": [
+        ""
+      ]
+    },
+    "Charles Aylward": {
+      "url": "",
+      "email": ""
+    }
   }
-
 }
