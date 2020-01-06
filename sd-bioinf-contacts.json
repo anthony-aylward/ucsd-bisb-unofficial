@@ -72,5 +72,38 @@
         "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5895772/"
       ]
     }
+  },
+  "Poseida Theraputics": {
+    "Xinxin Wang": {
+      "url": "https://www.linkedin.com/in/xinxin-wang-89815971/",
+      "email": "xwang@poseida.com",
+      "papers": ["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5713229/"]
+    }
+  },
+  "Rancho Biosciences": {
+    "John Obenauer": {
+      "url": "https://www.linkedin.com/in/john-obenauer-2a70899/",
+      "email": "john.obenauer@ranchobiosciences.com",
+      "papers": ["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6802086/"]
+    }
+  },
+  "Sanford Burnham Prebys": {
+    "Malene Hansen": {
+      "url": "https://www.sbpdiscovery.org/our-scientists/malene-hansen-phd",
+      "email": "mhansen@SBPdiscovery.org",
+      "papers": ["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6906454/"]
+    },
+    "Ze'ev Ronai": {
+      "url": "https://www.sbpdiscovery.org/our-scientists/zeev-ronai-phd",
+      "email": "ronai@SBPdiscovery.org",
+      "papers": ["https://www.ncbi.nlm.nih.gov/pubmed/31816571"]
+    },
+    "Guy Salvesen": {
+      "url": "https://www.sbpdiscovery.org/our-scientists/guy-salvesen-phd",
+      "email": "gsalvesen@SBPdiscovery.org",
+      "papers": ["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6839509/"]
+    }
+  },
+  "n": {
   }
 }
