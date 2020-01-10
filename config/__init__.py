@@ -249,7 +249,8 @@ APPROVED_EMAILS = [
     'jpnguyen@ucsd.edu',
     'jluebeck@eng.ucsd.edu',
     'pfiaux@ucsd.edu',
-    'Nathaniel.P.DelosSantos@jacobs.ucsd.edu'
+    'Nathaniel.P.DelosSantos@jacobs.ucsd.edu',
+    'isshamie@eng.ucsd.edu'
 ]
 """
 
