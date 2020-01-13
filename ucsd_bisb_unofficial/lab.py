@@ -81,7 +81,7 @@ def rotations():
         )
 
     for name in rotation_db.dict.keys():
-        for col in 10, 11, 12, 13, 14, 15:
+        for col in 14, 15, 16, 17, 18, 19, 20, 21:
             if rotation_db.dict[name][col]:
                 rotation_db.dict[name][col] = markdown_link(
                     col, 'Proposal' if col % 2 == 0 else 'Report'
