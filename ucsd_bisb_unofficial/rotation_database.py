@@ -26,6 +26,13 @@ class RotationDatabase:
     ----------
     csv_file_path : str
         path to a CSF file containing rotation information
+
+    Attributes
+    ----------
+    header : str
+        header names for the table
+    dict : dict
+        dictionary containing table data
     """
 
     def __init__(self, csv_file_path: str):
