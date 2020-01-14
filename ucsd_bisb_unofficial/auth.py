@@ -136,9 +136,12 @@ def demo():
     """Demo of site functionality"""
 
     quarter = request.args.get('quarter', 'fall-2019', type=str)
-    rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_CSV'])
+    if quarter == 'fall-2019':
+        rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_2019_CSV'])
+    else:
+        rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_CSV'])
     for column_name, json_file_path in current_app.config[
-        'ROTATION_DATABASE_JSON'
+        'ROTATION_DATABASE_2019_JSON' if quarter == 'fall-2019' else 'ROTATION_DATABASE_JSON'
     ].items():
         rotation_db.add_json(
             column_name,
@@ -152,15 +155,14 @@ def demo():
         )
 
     for name in rotation_db.dict.keys():
-        for col in 14, 15, 16, 17, 18, 19, 20, 21:
+        for col in (2, 3) if quarter == 'fall-2019' else (10, 11, 12, 13, 14, 15):
             if rotation_db.dict[name][col]:
                 rotation_db.dict[name][col] = markdown_link(
                     col, 'Proposal' if col % 2 == 0 else 'Report'
                 )
     quarter_to_columns = {
-        'fall-2018': (1, 2, 14, 15, 22), 'winter-2019': (3, 4, 16, 17, 22),
-        'spring-2019': (5, 6, 18, 19, 22), 'summer-2019': (7, 8, 22),
-        'fall-2019': (9, 10, 20, 21, 22)
+        'fall-2018': (1, 2, 10, 11, 16), 'winter-2019': (3, 4, 12, 13, 16),
+        'spring-2019': (5, 6, 14, 15, 16), 'fall-2019': (1, 2, 3, 4)
     }
     return render_template(
         'auth/demo.html',
