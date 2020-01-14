@@ -91,7 +91,7 @@ def rotations():
                 )
     quarter_to_columns = {
         'fall-2018': (1, 2, 10, 11, 16), 'winter-2019': (3, 4, 12, 13, 16),
-        'spring-2019': (5, 6, 14, 15, 16), 'fall-2019': (1, 2, 3, 4)
+        'spring-2019': (5, 6, 14, 15, 16), 'fall-2019': (0, 1, 2, 3, 4)
     }
     return render_template(
         'lab/rotations.html',
