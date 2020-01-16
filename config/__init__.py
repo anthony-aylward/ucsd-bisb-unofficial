@@ -66,6 +66,38 @@ ROTATION_DATABASE_JSON = {{
         'protected',
         'rotation-report-w19.json'
     ),
+    'Proposal S19': os.path.join(
+        basedir,
+        'protected',
+        'rotation-proposal-s19.json'
+    ),
+    'Report S19': os.path.join(
+        basedir,
+        'protected',
+        'rotation-report-s19.json'
+    ),
+    'Contact': os.path.join(
+        basedir,
+        'protected',
+        'rotation-contact.json'
+    )
+}}
+ROTATION_DATABASE_2019_CSV = os.path.join(
+    basedir,
+    'protected',
+    'rotation-database-2019.csv'
+)
+ROTATION_DATABASE_2019_JSON = {{
+    'Proposal F19': os.path.join(
+        basedir,
+        'protected',
+        'rotation-proposal-f19.json'
+    ),
+    'Report F19': os.path.join(
+        basedir,
+        'protected',
+        'rotation-report-f19.json'
+    ),
     'Contact': os.path.join(
         basedir,
         'protected',
@@ -150,6 +182,18 @@ ROTATION_DATABASE_JSON = {{
         'protected',
         'rotation-report-s19.json'
     ),
+    'Contact': os.path.join(
+        basedir,
+        'protected',
+        'rotation-contact.json'
+    )
+}}
+ROTATION_DATABASE_2019_CSV = os.path.join(
+    basedir,
+    'protected',
+    'rotation-database-2019.csv'
+)
+ROTATION_DATABASE_2019_JSON = {{
     'Proposal F19': os.path.join(
         basedir,
         'protected',
