@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% from 'macros.html' import demo_button as demo_button %}
+{% import 'macros.html' as macros %}
 
 {% block header %}
 <h1>{% block title %}BISB Rotation Databse{% endblock %}</h1>
@@ -19,10 +19,19 @@
   careers, California residency, TA'ing requirements, mental health, and more,
   along with annually-collected statistics about the BISB program.
 </p>
-{{ demo_button(quarter, 'fall-2018', 'Fall 2018') }}
-{{ demo_button(quarter, 'winter-2019', 'Winter 2019') }}
-{{ demo_button(quarter, 'spring-2019', 'Spring 2019') }}
-{{ demo_button(quarter, 'fall-2019', 'Fall 2019') }}
+<p>
+  {{
+    macros.quote(
+      'This is definitely important. I know it has helped me to look at the
+      reports that were up there many times already this year.',
+      'First-year BISB student'
+    )
+  }}
+</p>
+{{ macros.demo_button(quarter, 'fall-2018', 'Fall 2018') }}
+{{ macros.demo_button(quarter, 'winter-2019', 'Winter 2019') }}
+{{ macros.demo_button(quarter, 'spring-2019', 'Spring 2019') }}
+{{ macros.demo_button(quarter, 'fall-2019', 'Fall 2019') }}
 <hr>
 {{ table|markdown(autolink=True, tables=True) }}
 {% endblock %}
