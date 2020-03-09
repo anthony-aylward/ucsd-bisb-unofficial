@@ -15,9 +15,7 @@ import seaborn as sns
 # Functions ====================================================================
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(
-        description='plot completion rates'
-    )
+    parser = argparse.ArgumentParser(description='plot completion rates')
     parser.add_argument(
         'file',
         metavar='<path/to/file.{pdf,png,svg}>',
@@ -33,8 +31,8 @@ def main():
     rates = pd.DataFrame(
         { 
             'Year': ('2018', '2019', '2020'),
-            'Yes': (17.5, 44.4, 7.1),
-            'Somewhat': (35, 88.8, 57.1),
+            'Yes': (17.5, 44.4, 14.7),
+            'Somewhat': (35, 88.8, 52.9),
             'No': (100, 100, 100),
         }
     )
@@ -50,7 +48,7 @@ def main():
     ax.set_title('Are you satisfied with the current administrative resources\nprovided by the program?')
     ax.legend(ncol=3, loc='upper center', frameon=True)
     ax.set(ylabel='', yticks=[], ylim=(0, 112))
-    for p, percent in zip(ax.patches, (65.0, 11.1, 42.9, 17.5, 44.4, 50.0, 17.5, 44.4, 7.1)):
+    for p, percent in zip(ax.patches, (65.0, 11.1, 47.1, 17.5, 44.4, 38.2, 17.5, 44.4, 14.7)):
         height = p.get_height()
         ax.text(
             p.get_x()+p.get_width()/2.,
