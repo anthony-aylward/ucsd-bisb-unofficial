@@ -39,7 +39,8 @@ TAG_DICT = {
     'ta': 'TAships',
     'tech': 'Technology',
     'townhall': 'Town Hall & SC',
-    'blog': 'Test blog'
+    'blog': 'Test blog',
+    'td': 'Thesis/Dissertation'
 }
 
 
