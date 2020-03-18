@@ -18,7 +18,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='ucsd-bisb-unofficial',
-    version='1.6.11',
+    version='1.6.12',
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
