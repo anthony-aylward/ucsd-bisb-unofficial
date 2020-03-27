@@ -12,6 +12,14 @@
 }}
 {{
   feature(
+    'Exams',
+    'See materials presented by students who passed qualifying and senate exams.',
+    'View exam materials',
+    href=url_for('exam.index')
+  )
+}}
+{{
+  feature(
     'GBIC',
     'Directory of GBIC officers and GBIC constitution',
     'Check GBIC directory',
@@ -72,14 +80,6 @@
     'Discuss the makeup of doctoral committees.',
     'Discuss committees',
     href=url_for('committee.index')
-  )
-}}
-{{
-  feature(
-    'Exam',
-    'See materials presented by students who passed qualifying and senate exams.',
-    'View exam materials',
-    button_class='btn btn-outline-secondary'
   )
 }}
 {{
