@@ -190,7 +190,7 @@ class SearchForm(FlaskForm):
 
 
 class SubscribeForm(FlaskForm):
-    """A form for user login credentials
+    """A form for email subscription
 
     Attributes
     ----------
@@ -201,7 +201,7 @@ class SubscribeForm(FlaskForm):
 
 
 class UnsubscribeForm(FlaskForm):
-    """A form for user login credentials
+    """A form for email subscription
 
     Attributes
     ----------
