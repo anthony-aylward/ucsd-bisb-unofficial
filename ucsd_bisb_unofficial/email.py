@@ -40,7 +40,8 @@ TAG_DICT = {
     'tech': 'Technology',
     'townhall': 'Town Hall & SC',
     'blog': 'Test blog',
-    'td': 'Thesis/Dissertation'
+    'td': 'Thesis/Dissertation',
+    'exam': 'Exams'
 }
 
 
