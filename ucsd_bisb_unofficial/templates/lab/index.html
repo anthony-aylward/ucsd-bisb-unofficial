@@ -14,10 +14,19 @@
 <a class="btn btn-outline-primary" href="{{ url_for('lab.profs') }}">BISB Faculty Database</a>
 <hr>
 {% filter markdown %}
-**Must-read posts:**
+## Must-read posts
 
 - [Inaccuracy of rotation guidelines](https://ucsd-bisb.info/lab/61/detail)
 - ["Manage Up" series from UCSF OCPD](https://ucsd-bisb.info/lab/128/detail)
+
+## [Student-compiled rotation report guidelines](https://docs.google.com/document/d/1-O1bEJv_3URn6doPl06N5uRZdXjKJVQgIKy1r9ooI9k/edit)
+For guidelines on qualifying and senate exams, see [Exams](https://ucsd-bisb.info/exam/index).
+For guidelines on dissertations, see [Thesis / Dissertation](https://ucsd-bisb.info/td/index).
+
+- A report is due after every quarter/rotation 
+- 5 pages, focus on background and work completed
+- Email to BISB coordinator, copying your PI
+
 {% endfilter %}
 {{ list_of_posts(posts, current_user, 'lab.detail', 'lab.update') }}
 {% if prev_url %}
