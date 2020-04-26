@@ -309,7 +309,8 @@ APPROVED_EMAILS = [
     'cag104@eng.ucsd.edu',
     'lfrancus@ucsd.edu',
     'amassara@ucsd.edu',
-    'snwright@ucsd.edu'
+    'snwright@ucsd.edu',
+    'lily.m.francus@gmail.com'
 ]
 """
 
