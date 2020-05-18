@@ -311,7 +311,8 @@ APPROVED_EMAILS = [
     'amassara@ucsd.edu',
     'snwright@ucsd.edu',
     'lily.m.francus@gmail.com',
-    'kpgodine@ucsd.edu'
+    'kpgodine@ucsd.edu',
+    'mcuoco@ucsd.edu'
 ]
 """
 
