@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block header %}
+<h1>{% block title %}Anti-racism{% endblock  title %}</h1>
+<a class="btn btn-outline-primary" href="{{ url_for('anti_racism.create') }}">
+  New post
+</a>
+{% endblock header %}
+
+{% block content %}
+<hr>
+<p class="lead">
+  This page is for discussion of anti-racist activities in BISB/BMI.
+</p>
+{{ macros.list_of_posts(posts, current_user, 'anti_racism.detail', 'anti_racism.update') }}
+{% if prev_url %}
+<a class="btn btn-outline-primary" href="{{ prev_url }}">Newer posts</a>
+{% endif %}
+{% if next_url %}
+<a class="btn btn-outline-primary" href="{{ next_url }}">Older posts</a>
+{% endif %}
+{% endblock %}
