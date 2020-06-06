@@ -2,7 +2,6 @@
 
 * Fix & expand unit testing
 * Alum page
-* Page for info about electives
 * watermark on confidential images (CONFIDENTIAL DO NOT DISTRIBUTE)
 * google scholar scrubbing
 

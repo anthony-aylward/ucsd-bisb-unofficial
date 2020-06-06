@@ -306,7 +306,14 @@ APPROVED_EMAILS = [
     'Nathaniel.P.DelosSantos@jacobs.ucsd.edu',
     'isshamie@eng.ucsd.edu',
     'lamaral@eng.ucsd.edu',
-    'cag104@eng.ucsd.edu'
+    'cag104@eng.ucsd.edu',
+    'lfrancus@ucsd.edu',
+    'amassara@ucsd.edu',
+    'snwright@ucsd.edu',
+    'lily.m.francus@gmail.com',
+    'kpgodine@ucsd.edu',
+    'mcuoco@ucsd.edu',
+    'abegzati@ucsd.edu'
 ]
 """
 
