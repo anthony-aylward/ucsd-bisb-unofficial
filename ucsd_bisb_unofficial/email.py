@@ -41,7 +41,8 @@ TAG_DICT = {
     'townhall': 'Town Hall & SC',
     'blog': 'Test blog',
     'td': 'Thesis/Dissertation',
-    'exam': 'Exams'
+    'exam': 'Exams',
+    'anti_racism': 'Anti-racism'
 }
 
 
