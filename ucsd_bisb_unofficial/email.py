@@ -42,7 +42,8 @@ TAG_DICT = {
     'blog': 'Test blog',
     'td': 'Thesis/Dissertation',
     'exam': 'Exams',
-    'anti_racism': 'Anti-racism'
+    'anti_racism': 'Anti-racism',
+    'outreach': 'Outreach'
 }
 
 
