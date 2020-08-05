@@ -35,8 +35,8 @@ def main():
         y='Median Time to degree (years)',
         data=pd.DataFrame(
             { 
-                'Cohort': ('2000-02', '2003-05', '2006-08'),
-                'Median Time to degree (years)': (6.0, 5.75, 5.75)
+                'Cohort': ('2000-02', '2001-03', '2003-05', '2004-06', '2006-08', '2007-09'),
+                'Median Time to degree (years)': (6.0, 6.0, 5.75, 6.0, 5.75, 5.38)
             }
         ),
         palette='rocket_r'
