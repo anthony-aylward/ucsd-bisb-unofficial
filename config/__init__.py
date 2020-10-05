@@ -319,7 +319,8 @@ APPROVED_EMAILS = [
     'j7lam@ucsd.edu',
     'cguccion@ucsd.edu',
     'yif064@ucsd.edu',
-    'j5kim@ucsd.edu'
+    'j5kim@ucsd.edu',
+    'tvp005@health.ucsd.edu'
 ]
 """
 
