@@ -73,7 +73,7 @@ def rotations():
         rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_CSV'])
     for column_name, json_file_path in current_app.config[
         'ROTATION_DATABASE_2019_JSON' if quarter == 'fall-2019' else
-        'ROTATION_DATABSE_2020_JSON' if quarter == 'fall-2020' else
+        'ROTATION_DATABASE_2020_JSON' if quarter == 'fall-2020' else
         'ROTATION_DATABASE_JSON'
     ].items():
         rotation_db.add_json(
