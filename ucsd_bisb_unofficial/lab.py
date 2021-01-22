@@ -67,10 +67,14 @@ def rotations():
     quarter = request.args.get('quarter', 'fall-2019', type=str)
     if quarter == 'fall-2019':
         rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_2019_CSV'])
+    elif quarter == 'fall-2020':
+        rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_2020_CSV'])
     else:
         rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_CSV'])
     for column_name, json_file_path in current_app.config[
-        'ROTATION_DATABASE_2019_JSON' if quarter == 'fall-2019' else 'ROTATION_DATABASE_JSON'
+        'ROTATION_DATABASE_2019_JSON' if quarter == 'fall-2019' else
+        'ROTATION_DATABSE_2020_JSON' if quarter == 'fall-2020' else
+        'ROTATION_DATABASE_JSON'
     ].items():
         rotation_db.add_json(
             column_name,
@@ -91,7 +95,8 @@ def rotations():
                 )
     quarter_to_columns = {
         'fall-2018': (1, 2, 10, 11, 16), 'winter-2019': (3, 4, 12, 13, 16),
-        'spring-2019': (5, 6, 14, 15, 16), 'fall-2019': (0, 1, 2, 3, 4)
+        'spring-2019': (5, 6, 14, 15, 16), 'fall-2019': (0, 1, 2, 3, 4),
+        'fall-2020': (0, 1, 2, 3, 4)
     }
     return render_template(
         'lab/rotations.html',
