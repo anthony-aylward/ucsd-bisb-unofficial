@@ -210,6 +210,28 @@ ROTATION_DATABASE_2019_JSON = {{
         'rotation-contact.json'
     )
 }}
+ROTATION_DATABASE_2020_CSV = os.path.join(
+    basedir,
+    'protected',
+    'rotation-database-2020.csv'
+)
+ROTATION_DATABASE_2020_JSON = {{
+    'Proposal F20': os.path.join(
+        basedir,
+        'protected',
+        'rotation-proposal-f20.json'
+    ),
+    'Report F20': os.path.join(
+        basedir,
+        'protected',
+        'rotation-report-f20.json'
+    ),
+    'Contact': os.path.join(
+        basedir,
+        'protected',
+        'rotation-contact.json'
+    )
+}}
 PROFS_CSV = {{
     'bio': os.path.join(basedir, 'protected', 'profs-bio.csv'),
     'bioe': os.path.join(basedir, 'protected', 'profs-bioe.csv'),
