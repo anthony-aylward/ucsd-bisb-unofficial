@@ -29,6 +29,7 @@ from ucsd_bisb_unofficial import create_app
 TAG_DICT = {
     'career': 'Career',
     'committee': 'Doctoral Committee',
+    'courses': 'Courses',
     'fellowships': 'Fellowships',
     'lab': 'Lab',
     'mental_health': 'Mental Health',
