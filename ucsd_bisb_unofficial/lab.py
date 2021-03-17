@@ -64,7 +64,7 @@ delete_comment = construct_delete_comment_route(bp, 'lab')
 def rotations():
     """Render the rotation database"""
     
-    quarter = request.args.get('quarter', 'fall-2019', type=str)
+    quarter = request.args.get('quarter', 'fall-2020', type=str)
     if quarter == 'fall-2019':
         rotation_db = RotationDatabase(current_app.config['ROTATION_DATABASE_2019_CSV'])
     elif quarter == 'fall-2020':
