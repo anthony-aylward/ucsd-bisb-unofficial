@@ -159,7 +159,7 @@ def demo():
         )
 
     for name in rotation_db.dict.keys():
-        for col in (2, 3) if quarter == 'fall-2019' else (10, 11, 12, 13, 14, 15):
+        for col in (2, 3) if (quarter in ('fall-2019', 'fall-2020')) else (10, 11, 12, 13, 14, 15):
             if rotation_db.dict[name][col]:
                 rotation_db.dict[name][col] = markdown_link(
                     col, 'Proposal' if col % 2 == 0 else 'Report'
