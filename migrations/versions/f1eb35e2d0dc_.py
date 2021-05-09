@@ -35,8 +35,6 @@ def upgrade():
     sa.Column('email_confirmed_on', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_index(op.f('ix_user_email'), 'user', ['email'], unique=True)
-    op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=True)
     op.create_table('whisper_user',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=64), nullable=True),
@@ -124,8 +122,6 @@ def downgrade():
     op.drop_table('post')
     op.drop_index(op.f('ix_whisper_user_username'), table_name='whisper_user')
     op.drop_table('whisper_user')
-    op.drop_index(op.f('ix_user_username'), table_name='user')
-    op.drop_index(op.f('ix_user_email'), table_name='user')
     op.drop_table('user')
     op.drop_table('role')
     # ### end Alembic commands ###
