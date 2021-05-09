@@ -21,8 +21,8 @@ pip3 install -e .
 pip3 install pytest
 export FLASK_APP=ucsd_bisb_unofficial
 export FLASK_ENV=development
-mkdir instance
-python3 config/__init__.py instance/
+mkdir -p instance/protected
+python3 config/__init__.py --email <testing gmail> instance/
 flask db upgrade
 pytest
 flask run
