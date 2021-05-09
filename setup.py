@@ -37,7 +37,7 @@ setup(
         'flask-misaka',
         'flask-principal',
         'flask-sqlalchemy',
-        'flask-uploads',
+        'flask-reuploaded',
         'flask-wtf',
         'itsdangerous',
         'jinja2',
