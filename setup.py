@@ -29,6 +29,7 @@ setup(
         'blinker',
         'click',
         'coverage',
+        'email-validator',
         'flask',
         'flask-ftscursor',
         'flask-login',
