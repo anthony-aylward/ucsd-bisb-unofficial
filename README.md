@@ -13,7 +13,7 @@ First, if you haven't yet, spend a few hours getting familiar with [HTML](https:
 
 The best place to start might be the official [Flask tutorial](http://flask.pocoo.org/docs/1.0/tutorial/). [This other Flask tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) is a bit dated but the first few chapters are also worth a look (as an introduction to [Flask-SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/).) [Yet another Flask Tutorial](http://www.patricksoftwareblog.com/flask-tutorial/) is also available. And [another](https://www.blog.pythonlibrary.org/2017/12/12/flask-101-getting-started/) still.
 
-Once you're ready, create your own fork of this repository, clone the fork to your local machine and navigate to the working directory. When inside, do the following:
+Once you're ready, create your own fork of this repository, clone the fork to your local machine and navigate to the working directory. When inside, do the following (using a testing gmail address):
 ```
 python3 -m venv venv
 source venv/bin/activate
@@ -22,7 +22,8 @@ pip3 install pytest
 export FLASK_APP=ucsd_bisb_unofficial
 export FLASK_ENV=development
 mkdir -p instance/protected
-python3 config/__init__.py --email <testing gmail> instance/
+python3 config/__init__.py --email <gmail address> instance/
+export MAIL_PASSWORD=<gmail password>
 flask db upgrade
 pytest
 flask run
