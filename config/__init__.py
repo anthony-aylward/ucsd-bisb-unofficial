@@ -35,7 +35,7 @@ MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.gmail.com'
 MAIL_PORT = int(os.environ.get('MAIL_PORT') or 587)
 MAIL_USE_TLS = True
 MAIL_USE_SSL = False
-MAIL_USERNAME = ''
+MAIL_USERNAME = '{{email}}'
 MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 POSTS_PER_PAGE = 3
 UPLOADED_IMAGES_DEST = os.path.join(basedir, 'uploads', 'img')
@@ -110,7 +110,7 @@ PROFS_CSV = {{
     'cse': os.path.join(basedir, 'protected', 'profs-cse.csv'),
 }}
 COMPANIES_CSV = os.path.join(basedir, 'protected', 'companies.csv')
-ADMINS = []
+ADMINS = ['{{email}}']
 GBIC_EMAILS = {{
     'president': 'dnachman@eng.ucsd.edu',
     'internal_affairs': 'mragsac@eng.ucsd.edu',
@@ -121,7 +121,7 @@ GBIC_EMAILS = {{
     'onboarding': 'ochapman@eng.ucsd.edu',
     'finance': 'cew003@ucsd.edu'
 }}
-APPROVED_EMAILS = []
+APPROVED_EMAILS = ['{{email}}']
 '''
 
 PRODUCTION_CONFIG_DATA = f"""
@@ -361,19 +361,22 @@ def parse_arguments():
         help='path to instance folder'
     )
     parser.add_argument(
+        '--email',
+        help='email address for development'
+    )
+    parser.add_argument(
         '--production',
         action='store_true',
         help='write a production config file'
     )
     return parser.parse_args()
 
-
 def main():
     args = parse_arguments()
     with open(os.path.join(args.instance, 'config.py'), 'w') as f:
         f.write(
             PRODUCTION_CONFIG_DATA if args.production
-            else DEVELOPMENT_CONFIG_DATA
+            else DEVELOPMENT_CONFIG_DATA.format(email=args.email)
         )
 
 
