@@ -99,9 +99,6 @@ def create_app(test_config=None):
     from ucsd_bisb_unofficial.uploads import documents, images
     configure_uploads(app, documents)
     configure_uploads(app, images)
-    app.view_functions['_uploads.uploaded_file'] = login_required(
-        app.view_functions['_uploads.uploaded_file']
-    )
 
     @app.before_first_request
     def populate_databse():
