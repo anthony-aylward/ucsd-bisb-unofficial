@@ -16,7 +16,7 @@ import os
 
 from flask import Flask
 from flask_login import login_required
-from flask_uploads import configure_uploads, patch_request_class
+from flask_uploads import configure_uploads
 
 
 
@@ -99,7 +99,6 @@ def create_app(test_config=None):
     from ucsd_bisb_unofficial.uploads import documents, images
     configure_uploads(app, documents)
     configure_uploads(app, images)
-    patch_request_class(app, 64 * 1024 * 1024)
     app.view_functions['_uploads.uploaded_file'] = login_required(
         app.view_functions['_uploads.uploaded_file']
     )
