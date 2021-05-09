@@ -45,7 +45,7 @@ ROTATION_DATABASE_CSV = os.path.join(
     'protected',
     'bisb-cohort-rotation-database.csv'
 )
-ROTATION_DATABASE_JSON = {{
+ROTATION_DATABASE_JSON = {{{{
     'Proposal F18': os.path.join(
         basedir,
         'protected',
@@ -81,13 +81,13 @@ ROTATION_DATABASE_JSON = {{
         'protected',
         'rotation-contact.json'
     )
-}}
+}}}}
 ROTATION_DATABASE_2019_CSV = os.path.join(
     basedir,
     'protected',
     'rotation-database-2019.csv'
 )
-ROTATION_DATABASE_2019_JSON = {{
+ROTATION_DATABASE_2019_JSON = {{{{
     'Proposal F19': os.path.join(
         basedir,
         'protected',
@@ -103,15 +103,15 @@ ROTATION_DATABASE_2019_JSON = {{
         'protected',
         'rotation-contact.json'
     )
-}}
-PROFS_CSV = {{
+}}}}
+PROFS_CSV = {{{{
     'bio': os.path.join(basedir, 'protected', 'profs-bio.csv'),
     'bioe': os.path.join(basedir, 'protected', 'profs-bioe.csv'),
     'cse': os.path.join(basedir, 'protected', 'profs-cse.csv'),
-}}
+}}}}
 COMPANIES_CSV = os.path.join(basedir, 'protected', 'companies.csv')
 ADMINS = ['{{email}}']
-GBIC_EMAILS = {{
+GBIC_EMAILS = {{{{
     'president': 'dnachman@eng.ucsd.edu',
     'internal_affairs': 'mragsac@eng.ucsd.edu',
     'external_affairs': 'f5yuan@eng.ucsd.edu',
@@ -120,7 +120,7 @@ GBIC_EMAILS = {{
     'student_wellness': 'jepekar@eng.ucsd.edu',
     'onboarding': 'ochapman@eng.ucsd.edu',
     'finance': 'cew003@ucsd.edu'
-}}
+}}}}
 APPROVED_EMAILS = ['{{email}}']
 '''
 
