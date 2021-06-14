@@ -343,7 +343,8 @@ APPROVED_EMAILS = [
     'yif064@ucsd.edu',
     'j5kim@ucsd.edu',
     'tvp005@health.ucsd.edu',
-    'earmand@ucsd.edu'
+    'earmand@ucsd.edu',
+    'dwc001@ucsd.edu'
 ]
 """
 
