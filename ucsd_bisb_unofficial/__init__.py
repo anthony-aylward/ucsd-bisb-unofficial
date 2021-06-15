@@ -16,7 +16,7 @@ import os
 
 from flask import Flask
 from flask_login import login_required
-from flask_uploads import configure_uploads
+from flask_uploads import configure_uploads, uploads_mod
 
 
 
@@ -47,8 +47,6 @@ def create_app(test_config=None):
 
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
-
-    print(app.instance_path)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -92,13 +90,11 @@ def create_app(test_config=None):
         tech.bp, whisper.bp, residency.bp, ta.bp, search.bp, seminars.bp,
         mental_health.bp, news.bp, stats.bp, committee.bp, gbic.bp,
         fellowships.bp, townhall.bp, settings.bp, courses.bp, td.bp, exam.bp,
-        anti_racism.bp, outreach.bp
+        anti_racism.bp, outreach.bp, uploads_mod
     ):
         app.register_blueprint(bp)
 
     app.add_url_rule('/', endpoint='auth.login')
-
-    print(app.config['UPLOADED_DOCUMENTS_DEST'])
 
     from ucsd_bisb_unofficial.uploads import documents, images
     configure_uploads(app, documents)
