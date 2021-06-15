@@ -16,7 +16,7 @@ import os
 
 from flask import Flask
 from flask_login import login_required
-from flask_uploads import configure_uploads, uploads_mod
+from flask_uploads import configure_uploads
 
 
 
@@ -90,9 +90,12 @@ def create_app(test_config=None):
         tech.bp, whisper.bp, residency.bp, ta.bp, search.bp, seminars.bp,
         mental_health.bp, news.bp, stats.bp, committee.bp, gbic.bp,
         fellowships.bp, townhall.bp, settings.bp, courses.bp, td.bp, exam.bp,
-        anti_racism.bp, outreach.bp, uploads_mod
+        anti_racism.bp, outreach.bp
     ):
         app.register_blueprint(bp)
+    
+    from ucsd_bisb_unofficial import uploads
+    app.register_blueprint(uploads.uploads_mod)
 
     app.add_url_rule('/', endpoint='auth.login')
 
