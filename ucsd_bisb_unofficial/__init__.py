@@ -16,7 +16,7 @@ import os
 
 from flask import Flask
 from flask_login import login_required
-from flask_uploads import configure_uploads, UploadSet, IMAGES
+from flask_uploads import configure_uploads
 
 
 
@@ -96,8 +96,9 @@ def create_app(test_config=None):
 
     app.add_url_rule('/', endpoint='auth.login')
 
-    documents = UploadSet('documents', ('pdf',))
-    images = UploadSet('images', IMAGES)
+    print(app.config['UPLOADED_DOCUMENTS_DEST'])
+
+    from ucsd_bisb_unofficial.uploads import documents, images
     configure_uploads(app, documents)
     configure_uploads(app, images)
 
