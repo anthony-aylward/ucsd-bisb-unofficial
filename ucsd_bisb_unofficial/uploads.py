@@ -2,6 +2,7 @@
 # uploads.py
 #===============================================================================
 
+from typing import Any
 from flask import Blueprint, abort, current_app, send_from_directory
 from flask_uploads import UploadSet, IMAGES
 
