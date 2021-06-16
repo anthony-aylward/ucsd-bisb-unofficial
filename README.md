@@ -1,6 +1,5 @@
 # TO DO
 
-* Put disclaimer on login page
 * Fix & expand unit testing
 * Alum page
 * watermark on confidential images (CONFIDENTIAL DO NOT DISTRIBUTE)
